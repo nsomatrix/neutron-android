@@ -106,12 +106,15 @@ import com.nsomatrix.neutron.util.Constants;
 import com.nsomatrix.neutron.util.FileUtils;
 import com.nsomatrix.neutron.util.LogUtils;
 
+import com.nsomatrix.neutron.settings.KeyMapperActivity;
+import com.nsomatrix.neutron.settings.SettingsActivity;
+
 public class AppsListFragment extends Fragment implements GameAdapter.OnGameActionListener,
 		GameOptionsBottomSheet.GameOptionsListener {
 
 	private static final String TAG = AppsListFragment.class.getSimpleName();
 
-	private HeroHeaderAdapter heroAdapter;
+	private StartScreenHeaderAdapter startScreenAdapter;
 	private GameAdapter gameAdapter;
 	private ConcatAdapter concatAdapter;
 	private AppItem currentHeroItem = null;
@@ -269,7 +272,32 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 	}
 
 	private void setupRecyclerView() {
-		heroAdapter = new HeroHeaderAdapter(this::onGameClick);
+		startScreenAdapter = new StartScreenHeaderAdapter(new StartScreenHeaderAdapter.OnStartScreenActionListener() {
+			@Override
+			public void onHeroPlay(AppItem item) {
+				onGameClick(item);
+			}
+
+			@Override
+			public void onQuickActionAdd() {
+				launchFilePicker();
+			}
+
+			@Override
+			public void onQuickActionStorage() {
+				startActivity(new Intent(requireActivity(), SettingsActivity.class));
+			}
+
+			@Override
+			public void onQuickActionKeyMapper() {
+				startActivity(new Intent(requireActivity(), KeyMapperActivity.class));
+			}
+
+			@Override
+			public void onQuickActionSettings() {
+				startActivity(new Intent(requireActivity(), SettingsActivity.class));
+			}
+		});
 		gameAdapter = new GameAdapter(this);
 
 		int savedViewMode = preferences.getInt(PREF_LIBRARY_VIEW_MODE, GameAdapter.MODE_GRID);
@@ -277,14 +305,14 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 		gameAdapter.setFavorites(getFavorites());
 		gameAdapter.setRecentPaths(getRecents());
 
-		concatAdapter = new ConcatAdapter(heroAdapter, gameAdapter);
+		concatAdapter = new ConcatAdapter(startScreenAdapter, gameAdapter);
 
 		int gridColumns = getResources().getInteger(R.integer.grid_columns);
 		GridLayoutManager layoutManager = new GridLayoutManager(requireContext(), gridColumns);
 		layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 			@Override
 			public int getSpanSize(int position) {
-				if (heroAdapter.getItemCount() > 0 && position == 0) {
+				if (startScreenAdapter.getItemCount() > 0 && position == 0) {
 					return gridColumns;
 				}
 				if (gameAdapter.getViewMode() == GameAdapter.MODE_LIST) {
@@ -343,15 +371,17 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 				}
 			}
 		}
+		if (startScreenAdapter != null) {
+			startScreenAdapter.setRecentItem(currentHeroItem);
+		}
 		updateHeroVisibility();
 	}
 
 	private void updateHeroVisibility() {
-		if (heroAdapter == null) return;
-		boolean shouldShow = currentHeroItem != null
-				&& (gameAdapter == null || gameAdapter.getActiveFilter() == GameAdapter.FILTER_ALL)
+		if (startScreenAdapter == null) return;
+		boolean shouldShow = (gameAdapter == null || gameAdapter.getActiveFilter() == GameAdapter.FILTER_ALL)
 				&& (gameAdapter == null || TextUtils.isEmpty(gameAdapter.getSearchQuery()));
-		heroAdapter.setHeroItem(shouldShow ? currentHeroItem : null);
+		startScreenAdapter.setVisible(shouldShow);
 	}
 
 	private void setupEmptyStateAndFab() {
@@ -424,7 +454,9 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 
 	private void updateEmptyStateVisibility() {
 		if (binding == null || gameAdapter == null) return;
-		boolean isEmpty = gameAdapter.getItemCount() == 0 && (heroAdapter == null || heroAdapter.getItemCount() == 0);
+		boolean isSearchOrFilter = gameAdapter.getActiveFilter() != GameAdapter.FILTER_ALL
+				|| !TextUtils.isEmpty(gameAdapter.getSearchQuery());
+		boolean isEmpty = gameAdapter.getItemCount() == 0 && isSearchOrFilter;
 		binding.layoutEmptyState.setVisibility(isEmpty ? View.VISIBLE : View.GONE);
 		binding.recyclerView.setVisibility(isEmpty ? View.GONE : View.VISIBLE);
 
