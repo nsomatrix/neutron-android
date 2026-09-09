@@ -34,6 +34,25 @@
         <item name="textColorPrimary">@color/text_primary</item>
         <item name="textColorSecondary">@color/text_secondary</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+        <!-- Global Typography: Google Sans -->
+        <item name="fontFamily">@font/google_sans</item>
+        <item name="android:fontFamily">@font/google_sans</item>
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.App.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TextAppearance.App.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.App.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.App.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.App.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.App.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.App.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.App.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.App.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.App.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.App.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.App.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.App.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.App.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.App.LabelSmall</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar">
@@ -72,6 +91,25 @@
         <item name="textColorSecondary">@color/text_secondary</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <item name="actionOverflowMenuStyle">@style/Widget.AppTheme.OverflowMenu</item>
+
+        <!-- Global Typography: Google Sans -->
+        <item name="fontFamily">@font/google_sans</item>
+        <item name="android:fontFamily">@font/google_sans</item>
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.App.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TextAppearance.App.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.App.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.App.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.App.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.App.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.App.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.App.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.App.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.App.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.App.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.App.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.App.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.App.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.App.LabelSmall</item>
     </style>
 
     <style name="Widget.AppTheme.OverflowMenu" parent="Widget.Material3.PopupMenu.Overflow">
@@ -94,6 +132,8 @@
         <!-- These are important. Handled by toolbar. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="fontFamily">@font/google_sans</item>
+        <item name="android:fontFamily">@font/google_sans</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
 
