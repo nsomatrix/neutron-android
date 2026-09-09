@@ -49,17 +49,6 @@ neutron-android/
 ├── dexlib/               # DEX bytecode manipulation & conversion library
 └── gradle/               # Gradle wrapper configuration
 ```
-
----
-
-## Acknowledgments & Upstream Heritage
-
-Neutron is built upon the incredible open-source heritage of:
-- **[J2ME-Loader](https://github.com/nikita36078/J2ME-Loader)** by Nikita Shakarun
-- **[JL-Mod](https://github.com/woesss/JL-Mod)** by Yury Kharchenko (woesss)
-- **[J2meLoader](https://github.com/NaikSoftware/J2meLoader)** by Nickolay Savchenko
-- **[MicroEmulator](https://github.com/bartekt/microemulator)** by Bartek Teodorczyk
-
 ---
 
 ## License
