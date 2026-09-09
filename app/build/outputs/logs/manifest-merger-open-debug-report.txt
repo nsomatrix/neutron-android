@@ -1,0 +1,674 @@
+-- Merging decision tree log ---
+provider#androidx.core.content.FileProvider
+INJECTED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:142:9-150:20
+	android:authorities
+		INJECTED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml
+provider#com.nsomatrix.neutron.storage.DocumentProvider
+INJECTED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:151:9-161:20
+	android:authorities
+		INJECTED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml
+manifest
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:2:1-167:12
+MERGED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:2:1-167:12
+INJECTED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml:2:1-11:12
+INJECTED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml:2:1-11:12
+INJECTED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.databinding:viewbinding:8.5.1] /home/manish/.gradle/caches/transforms-4/7634872c279ba8653f9591dc0a4cc04c/transformed/viewbinding-8.5.1/AndroidManifest.xml:2:1-7:12
+MERGED from [:dexlib] /home/manish/projects/neutron-android/dexlib/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.room:room-rxjava2:2.5.2] /home/manish/.gradle/caches/transforms-4/1b52f171d7f86dc5e00b6831e89d9b74/transformed/room-rxjava2-2.5.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.room:room-runtime:2.5.2] /home/manish/.gradle/caches/transforms-4/b997ee94d3b2aed0a89a77f7e21396fa/transformed/room-runtime-2.5.2/AndroidManifest.xml:17:1-31:12
+MERGED from [com.google.android.material:material:1.9.0] /home/manish/.gradle/caches/transforms-4/4c99575fe23216e4f4b1682ccc8607a8/transformed/material-1.9.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/manish/.gradle/caches/transforms-4/f184be608bb1be8f76c3c52d9908d651/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.preference:preference:1.2.0] /home/manish/.gradle/caches/transforms-4/dcf418a18f428c185791b5028c46b7b3/transformed/preference-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.camera:camera-video:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/66bab1d5a13021c08feb8370065a8bfa/transformed/camera-video-1.3.0-beta01/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.camera:camera-lifecycle:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b6a6edcc1705a2843d7b321fe6f05d68/transformed/camera-lifecycle-1.3.0-beta01/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:17:1-36:12
+MERGED from [androidx.camera:camera-core:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/adfddbe997a52482aaa96546b98f69d4/transformed/camera-core-1.3.0-beta01/AndroidManifest.xml:17:1-36:12
+MERGED from [androidx.camera:camera-view:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/8157c6f9d8ac705074fe23663dd85495/transformed/camera-view-1.3.0-beta01/AndroidManifest.xml:2:1-7:12
+MERGED from [com.github.nikita36078:filepicker:4.3.0] /home/manish/.gradle/caches/transforms-4/9919a2c7b683a51729c69dd51da21f58/transformed/filepicker-4.3.0/AndroidManifest.xml:7:1-18:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/manish/.gradle/caches/transforms-4/2a8c24a4b33b9e9ff51d17abf5fcfc77/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/manish/.gradle/caches/transforms-4/5c51f9569857dd67e71ecb4cae944eab/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.multidex:multidex:2.0.1] /home/manish/.gradle/caches/transforms-4/1dfc8f1ce6516d139017b10624d8cd5e/transformed/multidex-2.0.1/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.volley:volley:1.2.1] /home/manish/.gradle/caches/transforms-4/011bd6e5a1af613b217e8acc98e8ee64/transformed/volley-1.2.1/AndroidManifest.xml:2:1-7:12
+MERGED from [ch.acra:acra-dialog:5.9.3] /home/manish/.gradle/caches/transforms-4/d40cb72a8e4bb7a3116d2c32b65911fb/transformed/acra-dialog-5.9.3/AndroidManifest.xml:17:1-34:12
+MERGED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:17:1-47:12
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] /home/manish/.gradle/caches/transforms-4/789739906df9723d34455b47ad2c3322/transformed/rxandroid-2.1.1/AndroidManifest.xml:15:1-20:12
+MERGED from [com.github.billthefarmer:mididriver:v1.21] /home/manish/.gradle/caches/transforms-4/5a22dc05eb085aaeb72cad00990b6e1f/transformed/mididriver-v1.21/AndroidManifest.xml:2:1-9:12
+MERGED from [com.github.nikita36078:mobile-ffmpeg:v4.3.2-compact] /home/manish/.gradle/caches/transforms-4/14a33af89ecb14ec167baf5c52606c14/transformed/mobile-ffmpeg-v4.3.2-compact/AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.yukuku:ambilwarna:2.0.1] /home/manish/.gradle/caches/transforms-4/3db02e3215e153c5c26eb829aa403caf/transformed/ambilwarna-2.0.1/AndroidManifest.xml:2:1-12:12
+MERGED from [androidx.sqlite:sqlite-framework:2.3.1] /home/manish/.gradle/caches/transforms-4/e7fb544311fd0cf12e59047181dfe1a7/transformed/sqlite-framework-2.3.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite:2.3.1] /home/manish/.gradle/caches/transforms-4/5ca292c8ce25b600746441da27dbe2bb/transformed/sqlite-2.3.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/manish/.gradle/caches/transforms-4/e23094af83784936d9a1683c272c2bfc/transformed/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment-ktx:1.3.6] /home/manish/.gradle/caches/transforms-4/4cb9b1540e38d22220db570b97a1b24e/transformed/fragment-ktx-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/manish/.gradle/caches/transforms-4/3d1acd58832379fb6c284835289c02aa/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.3.6] /home/manish/.gradle/caches/transforms-4/a70f5ce9423d8bdd87fb32b418750bef/transformed/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity-ktx:1.6.0] /home/manish/.gradle/caches/transforms-4/613589b00591e3f70809454becea1607/transformed/activity-ktx-1.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.6.0] /home/manish/.gradle/caches/transforms-4/8f752268c7e1dc69411b750c2d82a0b8/transformed/activity-1.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] /home/manish/.gradle/caches/transforms-4/bdf709dfe995cef911a318dd213889dd/transformed/lifecycle-viewmodel-savedstate-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/manish/.gradle/caches/transforms-4/e204df376aa783d4bd54c0f1c4b20d71/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/manish/.gradle/caches/transforms-4/99931c8a95a24a01c70b45040ed6abb3/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/manish/.gradle/caches/transforms-4/cab8ab4966264d8c85e36d74eab3008a/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/manish/.gradle/caches/transforms-4/9bf0ad30e03ba21ce2915be235158a12/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1] /home/manish/.gradle/caches/transforms-4/bf751f99790389252698d80f3c8fec63/transformed/lifecycle-viewmodel-ktx-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] /home/manish/.gradle/caches/transforms-4/1e332cbb638666a2db1bb1c47ba5e310/transformed/lifecycle-viewmodel-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.0] /home/manish/.gradle/caches/transforms-4/37a52210fd0e8e69d2d66ab411875072/transformed/savedstate-ktx-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.2.0] /home/manish/.gradle/caches/transforms-4/f2ed3a1041c29df26e34315250974d8e/transformed/savedstate-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /home/manish/.gradle/caches/transforms-4/b6de175b8a0eb8d4569c41beb0b202bb/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.window:window:1.0.0] /home/manish/.gradle/caches/transforms-4/cfda931faf07e4d08b97ae15c6d81778/transformed/window-1.0.0/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.5.1] /home/manish/.gradle/caches/transforms-4/a0651cb1d9f8e19815831e2d52d65e74/transformed/lifecycle-runtime-ktx-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /home/manish/.gradle/caches/transforms-4/b270846b1938a5f2d135b5e607acde12/transformed/emoji2-views-helper-1.2.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/manish/.gradle/caches/transforms-4/387fbb9e67087ccca5e7f8725445cdf2/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/manish/.gradle/caches/transforms-4/745f0f377d8c22298b13e0f8fd6118b9/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/manish/.gradle/caches/transforms-4/0efe6c1ce192fc10b58aca141c5232f2/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/manish/.gradle/caches/transforms-4/6bd1042dd4e099a052c7efd01423c7c6/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core-ktx:1.9.0] /home/manish/.gradle/caches/transforms-4/077599c77d69e69e5b57fe3e958d778c/transformed/core-ktx-1.9.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/manish/.gradle/caches/transforms-4/943ca48d825463cb52a685bb0226ffeb/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/manish/.gradle/caches/transforms-4/8156c7f3f40d189b29964bb0693dba8e/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.1.0] /home/manish/.gradle/caches/transforms-4/982a6e50d14b1fcc53d965d514164368/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.4.1] /home/manish/.gradle/caches/transforms-4/364692dd2437e2e37e872998fe0309db/transformed/transition-1.4.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.0.0] /home/manish/.gradle/caches/transforms-4/e38f40be7883e5e169a072e26ebb0d8f/transformed/media-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/manish/.gradle/caches/transforms-4/8325a9f0589c03e4606c20da7bfa95f5/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/manish/.gradle/caches/transforms-4/9f8f4197ebb4d5d42f92c637ee586ee5/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/manish/.gradle/caches/transforms-4/4cabf69fa5efef5ba245080f9ac3c1b1/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] /home/manish/.gradle/caches/transforms-4/a03dd433cdd8f2a335239e3976ae7120/transformed/lifecycle-livedata-core-ktx-2.3.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/manish/.gradle/caches/transforms-4/b05ca72b21ce6e5533216afc4c6c3952/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/manish/.gradle/caches/transforms-4/82e10f625047e9efa23f985ad1a924ad/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:17:1-37:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] /home/manish/.gradle/caches/transforms-4/5c483f6dfad58748f7982d7a725a053b/transformed/lifecycle-runtime-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] /home/manish/.gradle/caches/transforms-4/e6ba8c0406b8fc76649e0c5e0328ebc8/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /home/manish/.gradle/caches/transforms-4/a2b3bed88f08f1facc2a5a95bbeaa3d0/transformed/exifinterface-1.3.2/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/manish/.gradle/caches/transforms-4/7da15bbe64372c51f56c5c991112b512/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/manish/.gradle/caches/transforms-4/4733de8f0fbe9e55bbe6baaa1424a070/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] /home/manish/.gradle/caches/transforms-4/59d2f2a6f4118b0062b8f9f49d46ce72/transformed/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] /home/manish/.gradle/caches/transforms-4/df6fc9a0e07d69fe2a5f6c2b37ee1f43/transformed/lifecycle-livedata-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] /home/manish/.gradle/caches/transforms-4/77a5ef54cf6925c6dbc6910a7689049a/transformed/lifecycle-livedata-core-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/manish/.gradle/caches/transforms-4/59b93dfb7966be681a6ec931a3c83bbb/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/manish/.gradle/caches/transforms-4/4abd67f0591e6cf68433df8eec961123/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/manish/.gradle/caches/transforms-4/42294e688d6a4695154f27a0b167cbc9/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/manish/.gradle/caches/transforms-4/ebb53db698f077e2af1dcb9b596b01d2/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/manish/.gradle/caches/transforms-4/4179220787927e89f63802c32f4957b0/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+	package
+		INJECTED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:2:11-69
+	android:installLocation
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:4:5-35
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:4:5-35
+uses-permission#android.permission.CAMERA
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:6:5-65
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:6:22-62
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:7:5-77
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:7:22-74
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:8:5-71
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:8:22-68
+uses-permission#android.permission.VIBRATE
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:9:5-66
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:9:22-63
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:10:5-81
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:10:22-78
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:11:5-81
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:11:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:12:5-79
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:12:22-76
+uses-permission#android.permission.INTERNET
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:13:5-67
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:13:22-64
+uses-permission#android.permission.BLUETOOTH
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:14:5-68
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:14:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:15:5-74
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:15:22-71
+uses-permission#android.permission.BLUETOOTH_ADVERTISE
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:16:5-78
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:16:22-75
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:17:5-76
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:17:22-73
+uses-permission#android.permission.BLUETOOTH_SCAN
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:18:5-20:31
+	android:usesPermissionFlags
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:19:9-55
+	tools:targetApi
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:20:9-28
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:18:22-70
+uses-permission#com.android.launcher.permission.INSTALL_SHORTCUT
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:21:5-88
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:21:22-85
+uses-sdk
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:23:5-68
+INJECTED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml
+INJECTED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml
+MERGED from [androidx.databinding:viewbinding:8.5.1] /home/manish/.gradle/caches/transforms-4/7634872c279ba8653f9591dc0a4cc04c/transformed/viewbinding-8.5.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.databinding:viewbinding:8.5.1] /home/manish/.gradle/caches/transforms-4/7634872c279ba8653f9591dc0a4cc04c/transformed/viewbinding-8.5.1/AndroidManifest.xml:5:5-44
+MERGED from [:dexlib] /home/manish/projects/neutron-android/dexlib/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:5:5-44
+MERGED from [:dexlib] /home/manish/projects/neutron-android/dexlib/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:5:5-44
+MERGED from [androidx.room:room-rxjava2:2.5.2] /home/manish/.gradle/caches/transforms-4/1b52f171d7f86dc5e00b6831e89d9b74/transformed/room-rxjava2-2.5.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-rxjava2:2.5.2] /home/manish/.gradle/caches/transforms-4/1b52f171d7f86dc5e00b6831e89d9b74/transformed/room-rxjava2-2.5.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-runtime:2.5.2] /home/manish/.gradle/caches/transforms-4/b997ee94d3b2aed0a89a77f7e21396fa/transformed/room-runtime-2.5.2/AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-runtime:2.5.2] /home/manish/.gradle/caches/transforms-4/b997ee94d3b2aed0a89a77f7e21396fa/transformed/room-runtime-2.5.2/AndroidManifest.xml:21:5-44
+MERGED from [com.google.android.material:material:1.9.0] /home/manish/.gradle/caches/transforms-4/4c99575fe23216e4f4b1682ccc8607a8/transformed/material-1.9.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.material:material:1.9.0] /home/manish/.gradle/caches/transforms-4/4c99575fe23216e4f4b1682ccc8607a8/transformed/material-1.9.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/manish/.gradle/caches/transforms-4/f184be608bb1be8f76c3c52d9908d651/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/manish/.gradle/caches/transforms-4/f184be608bb1be8f76c3c52d9908d651/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.preference:preference:1.2.0] /home/manish/.gradle/caches/transforms-4/dcf418a18f428c185791b5028c46b7b3/transformed/preference-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.preference:preference:1.2.0] /home/manish/.gradle/caches/transforms-4/dcf418a18f428c185791b5028c46b7b3/transformed/preference-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-video:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/66bab1d5a13021c08feb8370065a8bfa/transformed/camera-video-1.3.0-beta01/AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-video:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/66bab1d5a13021c08feb8370065a8bfa/transformed/camera-video-1.3.0-beta01/AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-lifecycle:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b6a6edcc1705a2843d7b321fe6f05d68/transformed/camera-lifecycle-1.3.0-beta01/AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-lifecycle:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b6a6edcc1705a2843d7b321fe6f05d68/transformed/camera-lifecycle-1.3.0-beta01/AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-core:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/adfddbe997a52482aaa96546b98f69d4/transformed/camera-core-1.3.0-beta01/AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-core:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/adfddbe997a52482aaa96546b98f69d4/transformed/camera-core-1.3.0-beta01/AndroidManifest.xml:21:5-44
+MERGED from [androidx.camera:camera-view:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/8157c6f9d8ac705074fe23663dd85495/transformed/camera-view-1.3.0-beta01/AndroidManifest.xml:5:5-44
+MERGED from [androidx.camera:camera-view:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/8157c6f9d8ac705074fe23663dd85495/transformed/camera-view-1.3.0-beta01/AndroidManifest.xml:5:5-44
+MERGED from [com.github.nikita36078:filepicker:4.3.0] /home/manish/.gradle/caches/transforms-4/9919a2c7b683a51729c69dd51da21f58/transformed/filepicker-4.3.0/AndroidManifest.xml:12:5-14:41
+MERGED from [com.github.nikita36078:filepicker:4.3.0] /home/manish/.gradle/caches/transforms-4/9919a2c7b683a51729c69dd51da21f58/transformed/filepicker-4.3.0/AndroidManifest.xml:12:5-14:41
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/manish/.gradle/caches/transforms-4/2a8c24a4b33b9e9ff51d17abf5fcfc77/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/manish/.gradle/caches/transforms-4/2a8c24a4b33b9e9ff51d17abf5fcfc77/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/manish/.gradle/caches/transforms-4/5c51f9569857dd67e71ecb4cae944eab/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/manish/.gradle/caches/transforms-4/5c51f9569857dd67e71ecb4cae944eab/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.multidex:multidex:2.0.1] /home/manish/.gradle/caches/transforms-4/1dfc8f1ce6516d139017b10624d8cd5e/transformed/multidex-2.0.1/AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.1] /home/manish/.gradle/caches/transforms-4/1dfc8f1ce6516d139017b10624d8cd5e/transformed/multidex-2.0.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.volley:volley:1.2.1] /home/manish/.gradle/caches/transforms-4/011bd6e5a1af613b217e8acc98e8ee64/transformed/volley-1.2.1/AndroidManifest.xml:5:5-43
+MERGED from [com.android.volley:volley:1.2.1] /home/manish/.gradle/caches/transforms-4/011bd6e5a1af613b217e8acc98e8ee64/transformed/volley-1.2.1/AndroidManifest.xml:5:5-43
+MERGED from [ch.acra:acra-dialog:5.9.3] /home/manish/.gradle/caches/transforms-4/d40cb72a8e4bb7a3116d2c32b65911fb/transformed/acra-dialog-5.9.3/AndroidManifest.xml:20:5-22:41
+MERGED from [ch.acra:acra-dialog:5.9.3] /home/manish/.gradle/caches/transforms-4/d40cb72a8e4bb7a3116d2c32b65911fb/transformed/acra-dialog-5.9.3/AndroidManifest.xml:20:5-22:41
+MERGED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:21:5-23:41
+MERGED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:21:5-23:41
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] /home/manish/.gradle/caches/transforms-4/789739906df9723d34455b47ad2c3322/transformed/rxandroid-2.1.1/AndroidManifest.xml:18:5-43
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] /home/manish/.gradle/caches/transforms-4/789739906df9723d34455b47ad2c3322/transformed/rxandroid-2.1.1/AndroidManifest.xml:18:5-43
+MERGED from [com.github.billthefarmer:mididriver:v1.21] /home/manish/.gradle/caches/transforms-4/5a22dc05eb085aaeb72cad00990b6e1f/transformed/mididriver-v1.21/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.billthefarmer:mididriver:v1.21] /home/manish/.gradle/caches/transforms-4/5a22dc05eb085aaeb72cad00990b6e1f/transformed/mididriver-v1.21/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.nikita36078:mobile-ffmpeg:v4.3.2-compact] /home/manish/.gradle/caches/transforms-4/14a33af89ecb14ec167baf5c52606c14/transformed/mobile-ffmpeg-v4.3.2-compact/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.nikita36078:mobile-ffmpeg:v4.3.2-compact] /home/manish/.gradle/caches/transforms-4/14a33af89ecb14ec167baf5c52606c14/transformed/mobile-ffmpeg-v4.3.2-compact/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.yukuku:ambilwarna:2.0.1] /home/manish/.gradle/caches/transforms-4/3db02e3215e153c5c26eb829aa403caf/transformed/ambilwarna-2.0.1/AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.yukuku:ambilwarna:2.0.1] /home/manish/.gradle/caches/transforms-4/3db02e3215e153c5c26eb829aa403caf/transformed/ambilwarna-2.0.1/AndroidManifest.xml:8:5-10:41
+MERGED from [androidx.sqlite:sqlite-framework:2.3.1] /home/manish/.gradle/caches/transforms-4/e7fb544311fd0cf12e59047181dfe1a7/transformed/sqlite-framework-2.3.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.3.1] /home/manish/.gradle/caches/transforms-4/e7fb544311fd0cf12e59047181dfe1a7/transformed/sqlite-framework-2.3.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.3.1] /home/manish/.gradle/caches/transforms-4/5ca292c8ce25b600746441da27dbe2bb/transformed/sqlite-2.3.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.3.1] /home/manish/.gradle/caches/transforms-4/5ca292c8ce25b600746441da27dbe2bb/transformed/sqlite-2.3.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/manish/.gradle/caches/transforms-4/e23094af83784936d9a1683c272c2bfc/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/manish/.gradle/caches/transforms-4/e23094af83784936d9a1683c272c2bfc/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment-ktx:1.3.6] /home/manish/.gradle/caches/transforms-4/4cb9b1540e38d22220db570b97a1b24e/transformed/fragment-ktx-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment-ktx:1.3.6] /home/manish/.gradle/caches/transforms-4/4cb9b1540e38d22220db570b97a1b24e/transformed/fragment-ktx-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/manish/.gradle/caches/transforms-4/3d1acd58832379fb6c284835289c02aa/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /home/manish/.gradle/caches/transforms-4/3d1acd58832379fb6c284835289c02aa/transformed/legacy-support-v4-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.3.6] /home/manish/.gradle/caches/transforms-4/a70f5ce9423d8bdd87fb32b418750bef/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /home/manish/.gradle/caches/transforms-4/a70f5ce9423d8bdd87fb32b418750bef/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity-ktx:1.6.0] /home/manish/.gradle/caches/transforms-4/613589b00591e3f70809454becea1607/transformed/activity-ktx-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.6.0] /home/manish/.gradle/caches/transforms-4/613589b00591e3f70809454becea1607/transformed/activity-ktx-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.6.0] /home/manish/.gradle/caches/transforms-4/8f752268c7e1dc69411b750c2d82a0b8/transformed/activity-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.6.0] /home/manish/.gradle/caches/transforms-4/8f752268c7e1dc69411b750c2d82a0b8/transformed/activity-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] /home/manish/.gradle/caches/transforms-4/bdf709dfe995cef911a318dd213889dd/transformed/lifecycle-viewmodel-savedstate-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] /home/manish/.gradle/caches/transforms-4/bdf709dfe995cef911a318dd213889dd/transformed/lifecycle-viewmodel-savedstate-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/manish/.gradle/caches/transforms-4/e204df376aa783d4bd54c0f1c4b20d71/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/manish/.gradle/caches/transforms-4/e204df376aa783d4bd54c0f1c4b20d71/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/manish/.gradle/caches/transforms-4/99931c8a95a24a01c70b45040ed6abb3/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/manish/.gradle/caches/transforms-4/99931c8a95a24a01c70b45040ed6abb3/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/manish/.gradle/caches/transforms-4/cab8ab4966264d8c85e36d74eab3008a/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/manish/.gradle/caches/transforms-4/cab8ab4966264d8c85e36d74eab3008a/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/manish/.gradle/caches/transforms-4/9bf0ad30e03ba21ce2915be235158a12/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/manish/.gradle/caches/transforms-4/9bf0ad30e03ba21ce2915be235158a12/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1] /home/manish/.gradle/caches/transforms-4/bf751f99790389252698d80f3c8fec63/transformed/lifecycle-viewmodel-ktx-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1] /home/manish/.gradle/caches/transforms-4/bf751f99790389252698d80f3c8fec63/transformed/lifecycle-viewmodel-ktx-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] /home/manish/.gradle/caches/transforms-4/1e332cbb638666a2db1bb1c47ba5e310/transformed/lifecycle-viewmodel-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] /home/manish/.gradle/caches/transforms-4/1e332cbb638666a2db1bb1c47ba5e310/transformed/lifecycle-viewmodel-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.0] /home/manish/.gradle/caches/transforms-4/37a52210fd0e8e69d2d66ab411875072/transformed/savedstate-ktx-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.0] /home/manish/.gradle/caches/transforms-4/37a52210fd0e8e69d2d66ab411875072/transformed/savedstate-ktx-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] /home/manish/.gradle/caches/transforms-4/f2ed3a1041c29df26e34315250974d8e/transformed/savedstate-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] /home/manish/.gradle/caches/transforms-4/f2ed3a1041c29df26e34315250974d8e/transformed/savedstate-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /home/manish/.gradle/caches/transforms-4/b6de175b8a0eb8d4569c41beb0b202bb/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] /home/manish/.gradle/caches/transforms-4/b6de175b8a0eb8d4569c41beb0b202bb/transformed/slidingpanelayout-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0] /home/manish/.gradle/caches/transforms-4/cfda931faf07e4d08b97ae15c6d81778/transformed/window-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0] /home/manish/.gradle/caches/transforms-4/cfda931faf07e4d08b97ae15c6d81778/transformed/window-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.5.1] /home/manish/.gradle/caches/transforms-4/a0651cb1d9f8e19815831e2d52d65e74/transformed/lifecycle-runtime-ktx-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.5.1] /home/manish/.gradle/caches/transforms-4/a0651cb1d9f8e19815831e2d52d65e74/transformed/lifecycle-runtime-ktx-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /home/manish/.gradle/caches/transforms-4/b270846b1938a5f2d135b5e607acde12/transformed/emoji2-views-helper-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /home/manish/.gradle/caches/transforms-4/b270846b1938a5f2d135b5e607acde12/transformed/emoji2-views-helper-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/manish/.gradle/caches/transforms-4/387fbb9e67087ccca5e7f8725445cdf2/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/manish/.gradle/caches/transforms-4/387fbb9e67087ccca5e7f8725445cdf2/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/manish/.gradle/caches/transforms-4/745f0f377d8c22298b13e0f8fd6118b9/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/manish/.gradle/caches/transforms-4/745f0f377d8c22298b13e0f8fd6118b9/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/manish/.gradle/caches/transforms-4/0efe6c1ce192fc10b58aca141c5232f2/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/manish/.gradle/caches/transforms-4/0efe6c1ce192fc10b58aca141c5232f2/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/manish/.gradle/caches/transforms-4/6bd1042dd4e099a052c7efd01423c7c6/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/manish/.gradle/caches/transforms-4/6bd1042dd4e099a052c7efd01423c7c6/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-ktx:1.9.0] /home/manish/.gradle/caches/transforms-4/077599c77d69e69e5b57fe3e958d778c/transformed/core-ktx-1.9.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.9.0] /home/manish/.gradle/caches/transforms-4/077599c77d69e69e5b57fe3e958d778c/transformed/core-ktx-1.9.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/manish/.gradle/caches/transforms-4/943ca48d825463cb52a685bb0226ffeb/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/manish/.gradle/caches/transforms-4/943ca48d825463cb52a685bb0226ffeb/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/manish/.gradle/caches/transforms-4/8156c7f3f40d189b29964bb0693dba8e/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/manish/.gradle/caches/transforms-4/8156c7f3f40d189b29964bb0693dba8e/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /home/manish/.gradle/caches/transforms-4/982a6e50d14b1fcc53d965d514164368/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /home/manish/.gradle/caches/transforms-4/982a6e50d14b1fcc53d965d514164368/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.4.1] /home/manish/.gradle/caches/transforms-4/364692dd2437e2e37e872998fe0309db/transformed/transition-1.4.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.4.1] /home/manish/.gradle/caches/transforms-4/364692dd2437e2e37e872998fe0309db/transformed/transition-1.4.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.0.0] /home/manish/.gradle/caches/transforms-4/e38f40be7883e5e169a072e26ebb0d8f/transformed/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /home/manish/.gradle/caches/transforms-4/e38f40be7883e5e169a072e26ebb0d8f/transformed/media-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/manish/.gradle/caches/transforms-4/8325a9f0589c03e4606c20da7bfa95f5/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/manish/.gradle/caches/transforms-4/8325a9f0589c03e4606c20da7bfa95f5/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/manish/.gradle/caches/transforms-4/9f8f4197ebb4d5d42f92c637ee586ee5/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/manish/.gradle/caches/transforms-4/9f8f4197ebb4d5d42f92c637ee586ee5/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/manish/.gradle/caches/transforms-4/4cabf69fa5efef5ba245080f9ac3c1b1/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/manish/.gradle/caches/transforms-4/4cabf69fa5efef5ba245080f9ac3c1b1/transformed/annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] /home/manish/.gradle/caches/transforms-4/a03dd433cdd8f2a335239e3976ae7120/transformed/lifecycle-livedata-core-ktx-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.1] /home/manish/.gradle/caches/transforms-4/a03dd433cdd8f2a335239e3976ae7120/transformed/lifecycle-livedata-core-ktx-2.3.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/manish/.gradle/caches/transforms-4/b05ca72b21ce6e5533216afc4c6c3952/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/manish/.gradle/caches/transforms-4/b05ca72b21ce6e5533216afc4c6c3952/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/manish/.gradle/caches/transforms-4/82e10f625047e9efa23f985ad1a924ad/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/manish/.gradle/caches/transforms-4/82e10f625047e9efa23f985ad1a924ad/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] /home/manish/.gradle/caches/transforms-4/5c483f6dfad58748f7982d7a725a053b/transformed/lifecycle-runtime-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] /home/manish/.gradle/caches/transforms-4/5c483f6dfad58748f7982d7a725a053b/transformed/lifecycle-runtime-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] /home/manish/.gradle/caches/transforms-4/e6ba8c0406b8fc76649e0c5e0328ebc8/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/manish/.gradle/caches/transforms-4/e6ba8c0406b8fc76649e0c5e0328ebc8/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /home/manish/.gradle/caches/transforms-4/a2b3bed88f08f1facc2a5a95bbeaa3d0/transformed/exifinterface-1.3.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] /home/manish/.gradle/caches/transforms-4/a2b3bed88f08f1facc2a5a95bbeaa3d0/transformed/exifinterface-1.3.2/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/manish/.gradle/caches/transforms-4/7da15bbe64372c51f56c5c991112b512/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/manish/.gradle/caches/transforms-4/7da15bbe64372c51f56c5c991112b512/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/manish/.gradle/caches/transforms-4/4733de8f0fbe9e55bbe6baaa1424a070/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/manish/.gradle/caches/transforms-4/4733de8f0fbe9e55bbe6baaa1424a070/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/manish/.gradle/caches/transforms-4/59d2f2a6f4118b0062b8f9f49d46ce72/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/manish/.gradle/caches/transforms-4/59d2f2a6f4118b0062b8f9f49d46ce72/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] /home/manish/.gradle/caches/transforms-4/df6fc9a0e07d69fe2a5f6c2b37ee1f43/transformed/lifecycle-livedata-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] /home/manish/.gradle/caches/transforms-4/df6fc9a0e07d69fe2a5f6c2b37ee1f43/transformed/lifecycle-livedata-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] /home/manish/.gradle/caches/transforms-4/77a5ef54cf6925c6dbc6910a7689049a/transformed/lifecycle-livedata-core-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] /home/manish/.gradle/caches/transforms-4/77a5ef54cf6925c6dbc6910a7689049a/transformed/lifecycle-livedata-core-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/manish/.gradle/caches/transforms-4/59b93dfb7966be681a6ec931a3c83bbb/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/manish/.gradle/caches/transforms-4/59b93dfb7966be681a6ec931a3c83bbb/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/manish/.gradle/caches/transforms-4/4abd67f0591e6cf68433df8eec961123/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/manish/.gradle/caches/transforms-4/4abd67f0591e6cf68433df8eec961123/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/manish/.gradle/caches/transforms-4/42294e688d6a4695154f27a0b167cbc9/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/manish/.gradle/caches/transforms-4/42294e688d6a4695154f27a0b167cbc9/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/manish/.gradle/caches/transforms-4/ebb53db698f077e2af1dcb9b596b01d2/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/manish/.gradle/caches/transforms-4/ebb53db698f077e2af1dcb9b596b01d2/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/manish/.gradle/caches/transforms-4/4179220787927e89f63802c32f4957b0/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/manish/.gradle/caches/transforms-4/4179220787927e89f63802c32f4957b0/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+	tools:overrideLibrary
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:23:15-65
+	android:targetSdkVersion
+		INJECTED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml
+uses-feature#android.hardware.microphone
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:25:5-89
+	android:required
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:25:62-86
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:25:19-61
+uses-feature#android.hardware.bluetooth
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:26:5-88
+	android:required
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:26:61-85
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:26:19-60
+uses-feature#android.hardware.location
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:27:5-87
+	android:required
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:27:60-84
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:27:19-59
+uses-feature#android.hardware.camera
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:28:5-85
+	android:required
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:28:58-82
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:28:19-57
+application
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:30:5-165:19
+MERGED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:30:5-165:19
+MERGED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:30:5-165:19
+INJECTED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml:5:5-9:19
+MERGED from [androidx.room:room-runtime:2.5.2] /home/manish/.gradle/caches/transforms-4/b997ee94d3b2aed0a89a77f7e21396fa/transformed/room-runtime-2.5.2/AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.room:room-runtime:2.5.2] /home/manish/.gradle/caches/transforms-4/b997ee94d3b2aed0a89a77f7e21396fa/transformed/room-runtime-2.5.2/AndroidManifest.xml:23:5-29:19
+MERGED from [com.google.android.material:material:1.9.0] /home/manish/.gradle/caches/transforms-4/4c99575fe23216e4f4b1682ccc8607a8/transformed/material-1.9.0/AndroidManifest.xml:24:5-20
+MERGED from [com.google.android.material:material:1.9.0] /home/manish/.gradle/caches/transforms-4/4c99575fe23216e4f4b1682ccc8607a8/transformed/material-1.9.0/AndroidManifest.xml:24:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/manish/.gradle/caches/transforms-4/f184be608bb1be8f76c3c52d9908d651/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/manish/.gradle/caches/transforms-4/f184be608bb1be8f76c3c52d9908d651/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.camera:camera-core:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/adfddbe997a52482aaa96546b98f69d4/transformed/camera-core-1.3.0-beta01/AndroidManifest.xml:23:5-34:19
+MERGED from [androidx.camera:camera-core:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/adfddbe997a52482aaa96546b98f69d4/transformed/camera-core-1.3.0-beta01/AndroidManifest.xml:23:5-34:19
+MERGED from [com.github.nikita36078:filepicker:4.3.0] /home/manish/.gradle/caches/transforms-4/9919a2c7b683a51729c69dd51da21f58/transformed/filepicker-4.3.0/AndroidManifest.xml:16:5-20
+MERGED from [com.github.nikita36078:filepicker:4.3.0] /home/manish/.gradle/caches/transforms-4/9919a2c7b683a51729c69dd51da21f58/transformed/filepicker-4.3.0/AndroidManifest.xml:16:5-20
+MERGED from [ch.acra:acra-dialog:5.9.3] /home/manish/.gradle/caches/transforms-4/d40cb72a8e4bb7a3116d2c32b65911fb/transformed/acra-dialog-5.9.3/AndroidManifest.xml:24:5-32:19
+MERGED from [ch.acra:acra-dialog:5.9.3] /home/manish/.gradle/caches/transforms-4/d40cb72a8e4bb7a3116d2c32b65911fb/transformed/acra-dialog-5.9.3/AndroidManifest.xml:24:5-32:19
+MERGED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:25:5-45:19
+MERGED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:25:5-45:19
+MERGED from [androidx.window:window:1.0.0] /home/manish/.gradle/caches/transforms-4/cfda931faf07e4d08b97ae15c6d81778/transformed/window-1.0.0/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0] /home/manish/.gradle/caches/transforms-4/cfda931faf07e4d08b97ae15c6d81778/transformed/window-1.0.0/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/manish/.gradle/caches/transforms-4/82e10f625047e9efa23f985ad1a924ad/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/manish/.gradle/caches/transforms-4/82e10f625047e9efa23f985ad1a924ad/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/manish/.gradle/caches/transforms-4/7da15bbe64372c51f56c5c991112b512/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/manish/.gradle/caches/transforms-4/7da15bbe64372c51f56c5c991112b512/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/manish/.gradle/caches/transforms-4/4733de8f0fbe9e55bbe6baaa1424a070/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/manish/.gradle/caches/transforms-4/4733de8f0fbe9e55bbe6baaa1424a070/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+	android:extractNativeLibs
+		INJECTED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml
+	android:requestLegacyExternalStorage
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:39:9-52
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:39:9-52
+	android:appCategory
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:33:9-35
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:33:9-35
+	tools:ignore
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:45:9-34
+	android:roundIcon
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:40:9-48
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:40:9-48
+	android:largeHeap
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:37:9-33
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:37:9-33
+	android:icon
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:35:9-43
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:35:9-43
+	android:hasFragileUserData
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:34:9-42
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:34:9-42
+	android:preserveLegacyExternalStorage
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:38:9-53
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:38:9-53
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:41:9-35
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:41:9-35
+	android:label
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:36:9-41
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:36:9-41
+	tools:targetApi
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:44:9-28
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:44:9-28
+	android:allowBackup
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:32:9-36
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:32:9-36
+	android:theme
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:42:9-40
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:42:9-40
+	android:usesCleartextTraffic
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:43:9-44
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:43:9-44
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:31:9-44
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:31:9-44
+activity#com.nsomatrix.neutron.MainActivity
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:46:9-116:20
+	android:launchMode
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:50:13-44
+	android:exported
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:49:13-36
+	android:configChanges
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:48:13-91
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:47:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:51:13-55:29
+action#android.intent.action.MAIN
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:52:17-69
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:52:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:54:17-77
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:54:27-74
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:*+data:mimeType:application/java+data:mimeType:application/java-archive+data:mimeType:application/x-java-archive+data:mimeType:text/vnd.sun.j2me.app-descriptor+data:scheme:content+data:scheme:file
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:56:13-69:29
+action#android.intent.action.VIEW
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:57:17-69
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:57:25-66
+category#android.intent.category.DEFAULT
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:59:17-76
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:59:27-73
+category#android.intent.category.BROWSABLE
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:60:17-78
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:60:27-75
+data
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:62:17-61
+	android:mimeType
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:62:23-58
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:*+data:mimeType:text/vnd.sun.j2me.app-descriptor+data:scheme:http+data:scheme:https
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:70:13-80:29
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:*+data:mimeType:*/*+data:pathPattern:.*..*..*..*.JAD+data:pathPattern:.*..*..*..*.JAR+data:pathPattern:.*..*..*..*.KJX+data:pathPattern:.*..*..*..*.jad+data:pathPattern:.*..*..*..*.jar+data:pathPattern:.*..*..*..*.kjx+data:pathPattern:.*..*..*.JAD+data:pathPattern:.*..*..*.JAR+data:pathPattern:.*..*..*.KJX+data:pathPattern:.*..*..*.jad+data:pathPattern:.*..*..*.jar+data:pathPattern:.*..*..*.kjx+data:pathPattern:.*..*.JAD+data:pathPattern:.*..*.JAR+data:pathPattern:.*..*.KJX+data:pathPattern:.*..*.jad+data:pathPattern:.*..*.jar+data:pathPattern:.*..*.kjx+data:pathPattern:.*.JAD+data:pathPattern:.*.JAR+data:pathPattern:.*.KJX+data:pathPattern:.*.jad+data:pathPattern:.*.jar+data:pathPattern:.*.kjx+data:scheme:content+data:scheme:file
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:81:13-115:29
+activity#com.nsomatrix.neutron.config.ConfigActivity
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:117:9-120:57
+	android:windowSoftInputMode
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:120:13-54
+	android:exported
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:119:13-36
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:118:13-50
+activity#javax.microedition.shell.MicroActivity
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:121:9-126:41
+MERGED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:121:9-126:41
+MERGED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:121:9-126:41
+	android:process
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:126:13-38
+		REJECTED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:126:13-38
+	android:exported
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:123:13-37
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:123:13-37
+	android:configChanges
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:125:13-113
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:125:13-113
+	tools:remove
+		ADDED from /home/manish/projects/neutron-android/app/src/debug/AndroidManifest.xml:8:13-43
+	android:theme
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:124:13-56
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:124:13-56
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:122:13-66
+activity#com.nsomatrix.neutron.settings.SettingsActivity
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:127:9-134:20
+	android:exported
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:128:13-37
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:127:19-60
+intent-filter#action:name:android.intent.action.APPLICATION_PREFERENCES+category:name:android.intent.category.DEFAULT
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:129:13-133:29
+action#android.intent.action.APPLICATION_PREFERENCES
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:130:17-88
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:130:25-85
+activity#com.nsomatrix.neutron.settings.KeyMapperActivity
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:135:9-89
+	android:exported
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:135:62-86
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:135:19-61
+activity#com.nsomatrix.neutron.filepicker.FilteredFilePickerActivity
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:136:9-139:54
+	android:exported
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:138:13-37
+	android:theme
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:139:13-51
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:137:13-66
+activity#com.nsomatrix.neutron.config.ProfilesActivity
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:140:9-86
+	android:exported
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:140:59-83
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:140:19-58
+receiver#com.nokia.mid.ui.NotificationBroadcastReceiver
+ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:162:9-164:41
+	android:process
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:164:13-38
+	android:name
+		ADDED from /home/manish/projects/neutron-android/app/src/main/AndroidManifest.xml:163:13-74
+service#androidx.room.MultiInstanceInvalidationService
+ADDED from [androidx.room:room-runtime:2.5.2] /home/manish/.gradle/caches/transforms-4/b997ee94d3b2aed0a89a77f7e21396fa/transformed/room-runtime-2.5.2/AndroidManifest.xml:24:9-28:63
+	android:exported
+		ADDED from [androidx.room:room-runtime:2.5.2] /home/manish/.gradle/caches/transforms-4/b997ee94d3b2aed0a89a77f7e21396fa/transformed/room-runtime-2.5.2/AndroidManifest.xml:27:13-37
+	tools:ignore
+		ADDED from [androidx.room:room-runtime:2.5.2] /home/manish/.gradle/caches/transforms-4/b997ee94d3b2aed0a89a77f7e21396fa/transformed/room-runtime-2.5.2/AndroidManifest.xml:28:13-60
+	android:directBootAware
+		ADDED from [androidx.room:room-runtime:2.5.2] /home/manish/.gradle/caches/transforms-4/b997ee94d3b2aed0a89a77f7e21396fa/transformed/room-runtime-2.5.2/AndroidManifest.xml:26:13-43
+	android:name
+		ADDED from [androidx.room:room-runtime:2.5.2] /home/manish/.gradle/caches/transforms-4/b997ee94d3b2aed0a89a77f7e21396fa/transformed/room-runtime-2.5.2/AndroidManifest.xml:25:13-74
+service#androidx.camera.core.impl.MetadataHolderService
+ADDED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:24:9-33:19
+MERGED from [androidx.camera:camera-core:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/adfddbe997a52482aaa96546b98f69d4/transformed/camera-core-1.3.0-beta01/AndroidManifest.xml:29:9-33:78
+MERGED from [androidx.camera:camera-core:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/adfddbe997a52482aaa96546b98f69d4/transformed/camera-core-1.3.0-beta01/AndroidManifest.xml:29:9-33:78
+	tools:node
+		ADDED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:29:13-31
+	android:enabled
+		ADDED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:26:13-36
+	android:exported
+		ADDED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:27:13-37
+	tools:ignore
+		ADDED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:28:13-75
+	android:name
+		ADDED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:25:13-75
+meta-data#androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER
+ADDED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:30:13-32:89
+	android:value
+		ADDED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:32:17-86
+	android:name
+		ADDED from [androidx.camera:camera-camera2:1.3.0-beta01] /home/manish/.gradle/caches/transforms-4/b7ca1912fbe64bb60fd6231230004764/transformed/camera-camera2-1.3.0-beta01/AndroidManifest.xml:31:17-103
+activity#org.acra.dialog.CrashReportDialog
+ADDED from [ch.acra:acra-dialog:5.9.3] /home/manish/.gradle/caches/transforms-4/d40cb72a8e4bb7a3116d2c32b65911fb/transformed/acra-dialog-5.9.3/AndroidManifest.xml:25:9-31:59
+	android:process
+		ADDED from [ch.acra:acra-dialog:5.9.3] /home/manish/.gradle/caches/transforms-4/d40cb72a8e4bb7a3116d2c32b65911fb/transformed/acra-dialog-5.9.3/AndroidManifest.xml:30:13-36
+	android:excludeFromRecents
+		ADDED from [ch.acra:acra-dialog:5.9.3] /home/manish/.gradle/caches/transforms-4/d40cb72a8e4bb7a3116d2c32b65911fb/transformed/acra-dialog-5.9.3/AndroidManifest.xml:27:13-46
+	android:launchMode
+		ADDED from [ch.acra:acra-dialog:5.9.3] /home/manish/.gradle/caches/transforms-4/d40cb72a8e4bb7a3116d2c32b65911fb/transformed/acra-dialog-5.9.3/AndroidManifest.xml:29:13-48
+	android:theme
+		ADDED from [ch.acra:acra-dialog:5.9.3] /home/manish/.gradle/caches/transforms-4/d40cb72a8e4bb7a3116d2c32b65911fb/transformed/acra-dialog-5.9.3/AndroidManifest.xml:31:13-56
+	android:finishOnTaskLaunch
+		ADDED from [ch.acra:acra-dialog:5.9.3] /home/manish/.gradle/caches/transforms-4/d40cb72a8e4bb7a3116d2c32b65911fb/transformed/acra-dialog-5.9.3/AndroidManifest.xml:28:13-46
+	android:name
+		ADDED from [ch.acra:acra-dialog:5.9.3] /home/manish/.gradle/caches/transforms-4/d40cb72a8e4bb7a3116d2c32b65911fb/transformed/acra-dialog-5.9.3/AndroidManifest.xml:26:13-61
+service#org.acra.sender.LegacySenderService
+ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:26:9-30:39
+	android:process
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:30:13-36
+	android:enabled
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:28:13-63
+	android:exported
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:29:13-37
+	android:name
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:27:13-63
+service#org.acra.sender.JobSenderService
+ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:31:9-36:39
+	android:process
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:36:13-36
+	android:enabled
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:33:13-60
+	android:exported
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:34:13-37
+	android:permission
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:35:13-69
+	android:name
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:32:13-60
+provider#org.acra.attachment.AcraContentProvider
+ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:38:9-44:51
+	android:process
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:43:13-36
+	android:grantUriPermissions
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:42:13-47
+	android:authorities
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:40:13-56
+	android:exported
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:41:13-37
+	tools:replace
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:44:13-48
+	android:name
+		ADDED from [ch.acra:acra-core:5.9.3] /home/manish/.gradle/caches/transforms-4/5acee6a9945a95ae70d0af7a91164360/transformed/acra-core-5.9.3/AndroidManifest.xml:39:13-67
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.0.0] /home/manish/.gradle/caches/transforms-4/cfda931faf07e4d08b97ae15c6d81778/transformed/window-1.0.0/AndroidManifest.xml:25:9-27:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0] /home/manish/.gradle/caches/transforms-4/cfda931faf07e4d08b97ae15c6d81778/transformed/window-1.0.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0] /home/manish/.gradle/caches/transforms-4/cfda931faf07e4d08b97ae15c6d81778/transformed/window-1.0.0/AndroidManifest.xml:26:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.0.0] /home/manish/.gradle/caches/transforms-4/cfda931faf07e4d08b97ae15c6d81778/transformed/window-1.0.0/AndroidManifest.xml:28:9-30:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0] /home/manish/.gradle/caches/transforms-4/cfda931faf07e4d08b97ae15c6d81778/transformed/window-1.0.0/AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0] /home/manish/.gradle/caches/transforms-4/cfda931faf07e4d08b97ae15c6d81778/transformed/window-1.0.0/AndroidManifest.xml:29:13-51
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/manish/.gradle/caches/transforms-4/82e10f625047e9efa23f985ad1a924ad/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/manish/.gradle/caches/transforms-4/82e10f625047e9efa23f985ad1a924ad/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/manish/.gradle/caches/transforms-4/4733de8f0fbe9e55bbe6baaa1424a070/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/manish/.gradle/caches/transforms-4/4733de8f0fbe9e55bbe6baaa1424a070/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/manish/.gradle/caches/transforms-4/1bbb6896ebc72e7ac02be1c19023ffd1/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+permission#com.nsomatrix.neutron.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+uses-permission#com.nsomatrix.neutron.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0] /home/manish/.gradle/caches/transforms-4/cbeeb075161340cd964fa9641d49bbf5/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/manish/.gradle/caches/transforms-4/82e10f625047e9efa23f985ad1a924ad/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/manish/.gradle/caches/transforms-4/82e10f625047e9efa23f985ad1a924ad/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/manish/.gradle/caches/transforms-4/82e10f625047e9efa23f985ad1a924ad/transformed/lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78

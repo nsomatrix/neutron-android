@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d nové oznámení</item>
+    <item quantity="few">%d nová oznámení</item>
+    <item quantity="many">%d nového oznámení</item>
+    <item quantity="other">%d nových oznámení</item>
+  </plurals>
+    <string name="CANCEL_CMD">Zrušit</string>
+    <string name="CLEAR_DATA_CMD">Odstranit data</string>
+    <string name="CONFIRMATION_REQUIRED">Vyžadováno potvrzení</string>
+    <string name="FORCE_CLOSE_CONFIRMATION">Vynucené ukončení aplikace může vést ke ztrátě dat nebo ji dokonce úplně rozbít!\nPokračovat?</string>
+    <string name="PREF_BACKGROUND">Pozadí</string>
+    <string name="PREF_FILTER">Filtr</string>
+    <string name="PREF_FONT_ANTI_ALIASING">Vyhlazování hran</string>
+    <string name="PREF_FONT_LARGE">Velké</string>
+    <string name="PREF_FONT_MEDIUM">Střední</string>
+    <string name="PREF_FONT_OPTIONS">Možnosti písma</string>
+    <string name="PREF_FONT_SIZE_IN_SP">Hodnoty jsou ve škálovaných obrazových bodech</string>
+    <string name="PREF_FONT_SMALL">Malé</string>
+    <string name="PREF_FORCE_FULLSCREEN">Vynutit celoobrazovkový režim</string>
+    <string name="PREF_HEIGHT">Výška</string>
+    <string name="PREF_HW_ACCELERATION">HW akcelerace (nestabilní)</string>
+    <string name="PREF_IMMEDIATE">Režim okamžitého zpracování</string>
+    <string name="PREF_KEEP_ASPECT_RATIO">Zachovat poměr stran</string>
+    <string name="PREF_LAYOUT">Rozložení</string>
+    <string name="PREF_LIMIT_FPS">Omezit FPS</string>
+    <string name="PREF_ORIENTATION">Orientace obrazovky</string>
+    <string name="PREF_SCALE_RATIO">Měřítko (%)</string>
+    <string name="PREF_SCALE_TO_FIT">Přizpůsobit velikosti</string>
+    <string name="PREF_SCREEN_OPTIONS">Možnosti zobrazení</string>
+    <string name="PREF_SHADER_FILTER">Shader:</string>
+    <string name="PREF_SHOW_FPS">Zobrazit FPS</string>
+    <string name="PREF_SYS_PROPS">Systémové vlastnosti</string>
+    <string name="PREF_TOUCH_INPUT">Dotykové ovládání</string>
+    <string name="PREF_UNIT_MS">ms</string>
+    <string name="PREF_VIRTUAL_KEYBOARD_OPTIONS">Virtuální klávesnice</string>
+    <string name="PREF_VK_ALPHA">Neprůhlednost: </string>
+    <string name="PREF_VK_BACK">Tlačítka</string>
+    <string name="PREF_VK_FEEDBACK">Hmatová odezva</string>
+    <string name="PREF_VK_FIRE_KEY">Akce: </string>
+    <string name="PREF_VK_FORCE_OPACITY">Vynutit neprůhlednost pro tlačítka mimo obrazovku</string>
+    <string name="PREF_VK_FORE">Popisky</string>
+    <string name="PREF_VK_HIDE_DELAY">Skrýt zpoždění: </string>
+    <string name="PREF_VK_KEY_SIZES">Velikosti kláves</string>
+    <string name="PREF_VK_NAV_KEYS">Joystick: </string>
+    <string name="PREF_VK_NUM_KEYS">Číslice: </string>
+    <string name="PREF_VK_OUTLINE">Obrys</string>
+    <string name="PREF_VK_SEL_BACK">Tlačítka (P)</string>
+    <string name="PREF_VK_SEL_FORE">Popisky (P)</string>
+    <string name="PREF_VK_SHOW">Zobrazit klávesnici</string>
+    <string name="PREF_VK_SIZE_HINT">Velikost</string>
+    <string name="PREF_VK_SOFT_KEYS">Softwarové klávesy: </string>
+    <string name="PREF_VK_TYPE">Typ klávesnice</string>
+    <string name="PREF_WIDTH">Šířka</string>
+    <string name="RESET_LAYOUT_CMD">Obnovit rozložení kláves</string>
+    <string name="RESET_SETTINGS_CMD">Obnovit nastavení</string>
+    <string name="SIZE_PRESETS">Předvolby</string>
+    <string name="START_CMD">Spustit</string>
+    <string name="SWAP_SIZES">Prohodit velikosti</string>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Přejít na plochu"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Přejít nahoru"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Další možnosti"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"Hotovo"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Zobrazit vše"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Vybrat aplikaci"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"VYP"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"ZAP"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"delete"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Fn+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"mezerník"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"Vyhledat…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Smazat dotaz"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"Dotaz pro vyhledávání"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Hledat"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Odeslat dotaz"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Hlasové vyhledávání"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Sdílet s"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Sdílet s aplikací <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Sbalit"</string>
+    <string name="about">O aplikaci</string>
+    <string name="about_message">Tato aplikace umožňuje spouštět J2ME aplikace a hry na Androidu. Podporuje většinu 2D a 3D her (včetně Mascot Capsule 3D).&lt;BR></string>
+    <string name="action_context_delete">Odstranit</string>
+    <string name="action_context_rename">Přejmenovat</string>
+    <string name="action_context_shortcut">Přidat zkratku</string>
+    <string name="action_keyboard_ime">Klávesnice (IME)</string>
+    <string name="action_lock_orientation">Zamknout otáčení obrazovky</string>
+    <string name="action_reinstall">Přeinstalovat</string>
+    <string name="action_settings">Nastavení</string>
+    <string name="add">Přidat</string>
+    <string name="add_profile_description">Vytvořit nový profil</string>
+    <string name="alert_map_menu">Klávesa Menu (M) není přiřazena!\nTo může znemožnit přístup k možnostem emulátoru</string>
+    <string name="alert_msg_workdir_not_exists">Pracovní adresář neexistuje na cestě:\n\'%1$s\'\nChcete jej vytvořit nebo vybrat jiný?</string>
+    <string name="alert_rewrite_profile">Profil s názvem \"%1$s\" již existuje.\nChcete jej přepsat?</string>
+    <string name="author">Autor: </string>
+    <string name="bottomsheet_action_collapse">Sbalit spodní tabulku</string>
+    <string name="bottomsheet_action_expand">Rozbalit spodní tabulku</string>
+    <string name="bottomsheet_action_expand_halfway">Rozbalit napůl</string>
+    <string name="bottomsheet_drag_handle_clicked">Dvakrát jste klepli na úchyt pro přetažení</string>
+    <string name="bottomsheet_drag_handle_content_description">Úchyt pro přetažení</string>
+    <string name="change">Změnit</string>
+    <string name="character_counter_content_description">Zadané znaky: %1$d z %2$d</string>
+    <string name="character_counter_overflowed_content_description">Byl překročen povolený počet znaků (%1$d z %2$d)</string>
+    <string name="choose">Vybrat</string>
+    <string name="clear_text_end_icon_content_description">Vymazat text</string>
+    <string name="close">Zavřít</string>
+    <string name="cmd_menu">Menu</string>
+    <string name="converting_wait">Probíhá převod JAR...</string>
+    <string msgid="6083905920877235314" name="copy">"Kopírovat"</string>
+    <string name="crash_dialog_message">Chcete odeslat hlášení o chybě vývojáři?</string>
+    <string name="crash_dialog_title">Byla zjištěna chyba</string>
+    <string name="create">vytvořit</string>
+    <string name="create_apps_dir_failed">Nepodařilo se vytvořit složku na cestě:\n\'%s\'\nVyberte jinou.</string>
+    <string name="default_label">"%s (výchozí)"</string>
+    <string name="dismiss">Zavřít</string>
+    <string name="edit">Upravit</string>
+    <string name="enter_name">Zadejte název</string>
+    <string name="enter_new_name">Zadejte nový název</string>
+    <string name="err_missing_app">Aplikace nebyla nalezena.\nZkontrolujte prosím dostupnost úložiště %snebo vytvořte zástupce znovu.</string>
+    <string name="error">Chyba</string>
+    <string name="error_disk_io">Chyba úložiště: zkontrolujte místo v úložišti</string>
+    <string name="error_icon_content_description">Chyba</string>
+    <string name="error_name">Zadejte název!</string>
+    <string name="error_name_exists">Již existuje, zadejte jiný název</string>
+    <string name="exit">Ukončit</string>
+    <string msgid="2427401033573778270" name="expand_button_title">"Rozšířená nastavení"</string>
+    <string name="exposed_dropdown_menu_content_description">Zobrazit rozbalovací nabídku</string>
+    <string name="external_storage_not_mounted">Tato aplikace vyžaduje externí úložiště</string>
+    <string name="help">Nápověda</string>
+    <string name="help_message">• Povolení filtrování může v některých případech výrazně snížit výkon. Zakažte tuto možnost, pokud je hra příliš pomalá.&lt;BR>• Problémy s blikáním obrazu lze opravit tak, že povolíte možnost \"Režim okamžitého zpracování\".</string>
+    <string name="hide_buttons">Skrýt tlačítka</string>
+    <string name="icon_content_description">Ikona dialogového okna</string>
+    <string name="identity_filter">Rychlé (bez filtru)</string>
+    <string name="install">instalovat</string>
+    <string name="install_done">Aplikace byla úspěšně nainstalována!</string>
+    <string name="install_jar_needed">Vyberte JAR soubor</string>
+    <string name="install_jar_non_matched_jad">Tato aplikace se liší od té popsané v JAD.\nNebrat v úvahu JAD a přesto nainstalovat?</string>
+    <string name="invalid_resolution_not_saved">Neplatné rozlišení: neuloženo!</string>
+    <string name="item_view_role_description">Karta</string>
+    <string name="layout_edit_finish">Ukončit režim úprav</string>
+    <string name="layout_edit_finished">Režim úprav ukončen</string>
+    <string name="layout_edit_mode">Režim úpravy rozložení kláves</string>
+    <string name="layout_scale_mode">Režim změny velikosti kláves</string>
+    <string name="layout_switch">Přepnout rozložení kláves</string>
+    <string name="licenses">Licence</string>
+    <string name="load_profile">Načíst profil</string>
+    <string name="loading_info">načítání informací…</string>
+    <string name="log_saved">Protokol byl uložen</string>
+    <string name="mapping_dialog_key_not_specified">nenastaveno</string>
+    <string name="mapping_dialog_message">Stávající mapování: %1$s</string>
+    <string name="mapping_dialog_title">Stiskněte tlačítko</string>
+    <string name="material_clock_toggle_content_description">Vyberte AM nebo PM</string>
+    <string name="material_hour_24h_suffix">%1$s hodin</string>
+    <string name="material_hour_selection">Vyberte hodinu</string>
+    <string name="material_hour_suffix">%1$s</string>
+    <string name="material_minute_selection">Zvolte minuty</string>
+    <string name="material_minute_suffix">%1$s min</string>
+    <string name="material_timepicker_am">AM</string>
+    <string name="material_timepicker_clock_mode_description">Chcete-li zadat čas, přepněte na režim hodin.</string>
+    <string name="material_timepicker_hour">Hodina</string>
+    <string name="material_timepicker_minute">Minuta</string>
+    <string name="material_timepicker_pm">PM</string>
+    <string name="material_timepicker_select_time">Vyberte čas</string>
+    <string name="material_timepicker_text_input_mode_description">Chcete-li zadat čas, přepněte na režim textu.</string>
+    <string name="message_clear_data">Opravdu chcete odstranit data aplikace?</string>
+    <string name="message_delete">Opravdu chcete odstranit tuto aplikaci?</string>
+    <string name="midlet_name"><b>Název: </b></string>
+    <string name="midlet_size"><b>Velikost: </b></string>
+    <string name="midlet_source"><b>Zdroj: </b></string>
+    <string name="midlet_vendor"><b>Dodavatel: </b></string>
+    <string name="midlet_version"><b>Verze: </b></string>
+    <string name="more">Více</string>
+    <string name="mtrl_badge_numberless_content_description">Nové oznámení</string>
+    <string name="mtrl_chip_close_icon_content_description">Odstranit položku %1$s</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Více než %1$d nových oznámení</string>
+    <string name="mtrl_picker_a11y_next_month">Přejít na další měsíc</string>
+    <string name="mtrl_picker_a11y_prev_month">Přejít na předchozí měsíc</string>
+    <string name="mtrl_picker_announce_current_selection">Aktuální výběr: %1$s</string>
+    <string name="mtrl_picker_cancel">Zrušit</string>
+    <string name="mtrl_picker_confirm">OK</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">Vyberte datum</string>
+    <string name="mtrl_picker_date_header_unselected">Vybrané datum</string>
+    <string name="mtrl_picker_day_of_week_column_header">Sloupec dnů: %1$s</string>
+    <string name="mtrl_picker_invalid_format">Neplatný formát.</string>
+    <string name="mtrl_picker_invalid_format_example">Příklad: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">Použijte: %1$s</string>
+    <string name="mtrl_picker_invalid_range">Neplatný rozsah.</string>
+    <string name="mtrl_picker_navigate_to_year_description">Přejít na rok %1$s</string>
+    <string name="mtrl_picker_out_of_range">Mimo rozsah: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">Datum zahájení – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – datum ukončení</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">Vyberte rozsah</string>
+    <string name="mtrl_picker_range_header_unselected">Datum zahájení – datum ukončení</string>
+    <string name="mtrl_picker_save">Uložit</string>
+    <string name="mtrl_picker_text_input_date_hint">Datum</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">Datum ukončení</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">Datum zahájení</string>
+    <string name="mtrl_picker_text_input_day_abbr">d</string>
+    <string name="mtrl_picker_text_input_month_abbr">m</string>
+    <string name="mtrl_picker_text_input_year_abbr">r</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">Přepnout na režim zadávání do kalendáře</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Klepnutím přepnete na výběr dne</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">Přepnout na režim zadávání textu</string>
+    <string name="mtrl_picker_toggle_to_year_selection">Klepnutím přepnete na výběr roku</string>
+    <string name="mtrl_timepicker_cancel">Zrušit</string>
+    <string name="mtrl_timepicker_confirm">OK</string>
+    <string name="no_data_for_display">Žádná data</string>
+    <string name="not_saved_exists">Již existuje</string>
+    <string msgid="6573031135582639649" name="not_set">"Nenastaveno"</string>
+    <string name="opt_save_screen_params">uložit parametry obrazovky</string>
+    <string name="parallel_screen_redrawing">Paralelní překreslování obrazovky</string>
+    <string name="password_toggle_content_description">Zobrazit heslo</string>
+    <string name="permission_request_failed">Tato aplikace vyžaduje oprávnění k zápisu do úložiště</string>
+    <string name="pref_app_sort_date">Datum</string>
+    <string name="pref_app_sort_name">Název</string>
+    <string name="pref_app_sort_title">Pořadí řazení aplikací</string>
+    <string name="pref_app_sort_vendor">Dodavatel</string>
+    <string name="pref_button_shape_oval">Ovál</string>
+    <string name="pref_button_shape_rect">Obdélník</string>
+    <string name="pref_button_shape_round">Zaoblený obdélník</string>
+    <string name="pref_button_shape_title">Tvar tlačítka</string>
+    <string name="pref_category_experimental">Pokusné/dočasné možnosti</string>
+    <string name="pref_default_settings">Výchozí nastavení</string>
+    <string name="pref_emulator_dir">Pracovní adresář</string>
+    <string name="pref_enable_actionbar_summary">V celoobrazovkových aplikacích</string>
+    <string name="pref_enable_actionbar_title">Povolit panel akcí</string>
+    <string name="pref_enable_statusbar_title">Povolit stavovou lištu</string>
+    <string name="pref_encoding_title">Kódování</string>
+    <string name="pref_graphics_hw_gles">HW akcelerace (OpenGL ES)</string>
+    <string name="pref_graphics_hw_surface">HW akcelerace (surface)</string>
+    <string name="pref_graphics_hw_view">HW akcelerace (window)</string>
+    <string name="pref_graphics_mode_title">Grafický režim:</string>
+    <string name="pref_graphics_software">Software</string>
+    <string name="pref_input_devices_title">Vstupní zařízení</string>
+    <string name="pref_map_keys">Mapování kláves</string>
+    <string name="pref_mascot_summary">Zobrazit zprávu při použití</string>
+    <string name="pref_mascot_title">Zjistit použití Mascot Capsule 3D</string>
+    <string name="pref_orientation_auto">Automaticky</string>
+    <string name="pref_orientation_default">Výchozí</string>
+    <string name="pref_orientation_land">Na šířku</string>
+    <string name="pref_orientation_port">Na výšku</string>
+    <string name="pref_requires_restart_summary">Vyžaduje znovuspuštění</string>
+    <string name="pref_screen_gravity">Umístění obrazovky</string>
+    <string name="pref_screen_gravity_bottom">Dole</string>
+    <string name="pref_screen_gravity_center">Uprostřed</string>
+    <string name="pref_screen_gravity_left">Vlevo</string>
+    <string name="pref_screen_gravity_right">Vpravo</string>
+    <string name="pref_screen_gravity_top">Nahoře</string>
+    <string name="pref_screen_scale_type">Typ škálování</string>
+    <string name="pref_screen_scale_type_fill">Vyplnit okno (ignorovat poměr stran)</string>
+    <string name="pref_screen_scale_type_fit">Přizpůsobit oknu</string>
+    <string name="pref_screen_scale_type_none">Žádné</string>
+    <string name="pref_screenshot_summary">Zakázat škálování a filtrování snímků obrazovky</string>
+    <string name="pref_screenshot_title">Nezpracované snímky obrazovky</string>
+    <string name="pref_theme_auto_battery">Automaticky (podle spořiče baterie)</string>
+    <string name="pref_theme_auto_time">Automaticky (podle denní doby)</string>
+    <string name="pref_theme_light">Světlý</string>
+    <string name="pref_theme_night">Tmavý</string>
+    <string name="pref_theme_system">Výchozí nastavení systému</string>
+    <string name="pref_theme_title">Vzhled</string>
+    <string name="pref_vibration_title">Povolit vibrace</string>
+    <string name="pref_vk_hide_hint">zakázáno</string>
+    <string name="pref_vk_save_alert">Vlastní klávesnice bude nahrazena stávající.\nUložit?</string>
+    <string name="pref_vk_type_arrows">Šipky</string>
+    <string name="pref_vk_type_arrows_numbers">Šipky a čísla</string>
+    <string name="pref_vk_type_custom">Vlastní</string>
+    <string name="pref_vk_type_numbers">Čísla</string>
+    <string name="pref_vk_type_numbers_arrows">Čísla a šipky</string>
+    <string name="pref_vk_type_phone">Telefon</string>
+    <string name="pref_vk_type_phone_arrows">Telefon (šipky)</string>
+    <string name="pref_wakelock_title">Nevypínat obrazovku</string>
+    <string msgid="6685851473431805375" name="preference_copied">"Položka <ns1:g id="SUMMARY">%1$s</ns1:g> byla zkopírována do schránky."</string>
+    <string name="profiles">Profily</string>
+    <string name="reinstall">Aplikace je již nainstalována.\n\nChcete ji přeinstalovat?\nVšechna data budou uložena.</string>
+    <string name="reinstall_newest">Aktualizovat tuto aplikaci na verzi %1$s?\n\nNyní nainstalována: %2$s\nVšechna data budou uložena.</string>
+    <string name="reinstall_older">Nahradit tuto aplikaci verzí %1$s?\n\nNyní nainstalována: %2$s\nStarší verze nemusí správně pracovat s uloženými daty.</string>
+    <string name="report_crash">Odeslat</string>
+    <string name="reset">Obnovit</string>
+    <string name="reset_mapping">Obnovit</string>
+    <string name="retry">zkusit znovu</string>
+    <string name="save">Uložit</string>
+    <string name="save_log">Uložit protokol</string>
+    <string name="save_profile">Uložit profil</string>
+    <string name="saved">Uloženo</string>
+    <string name="scoped_storage_warning">Vaše uživatelská data jsou uložena v místě, které <b>bude smazáno</b> při odinstalaci aplikace:\n</string>
+    <string name="screenshot_saved">Snímek obrazovky byl uložen do</string>
+    <string name="search">Vyhledat</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Hledat"</string>
+    <string name="select_dialog_title">Vyberte MIDlet</string>
+    <string name="set_as_default">Nastavit jako výchozí</string>
+    <string name="set_default_profile_description">Vyberte tento profil jako výchozí nastavení pro všechny aplikace, které budou nainstalovány později</string>
+    <string name="shader_tuning">Ladění shaderu</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="9167775378838880170" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
+    <string name="take_screenshot">Pořídit snímek obrazovky</string>
+    <string name="unlimited">neomezeno</string>
+    <string msgid="3140233346420563315" name="v7_preference_off">"Vypnuto"</string>
+    <string msgid="89551595707643515" name="v7_preference_on">"Zapnuto"</string>
+    <string name="version">Verze: </string>
+    <string name="warn_install_from_net">Soubor bude stažen z internetu</string>
+    <string name="warning">Varování</string>
+</resources>

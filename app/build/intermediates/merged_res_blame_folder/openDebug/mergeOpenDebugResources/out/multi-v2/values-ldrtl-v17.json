@@ -1,0 +1,38 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.nsomatrix.neutron.app-mergeOpenDebugResources-46:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "map": [
+                {
+                    "source": "/home/manish/.gradle/caches/transforms-4/4c99575fe23216e4f4b1682ccc8607a8/transformed/material-1.9.0/res/values-ldrtl-v17/values-ldrtl-v17.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,191",
+                        "endColumns": "135,140",
+                        "endOffsets": "186,327"
+                    }
+                },
+                {
+                    "source": "/home/manish/projects/neutron-android/app/src/main/res/values-ldrtl/styles.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "182"
+                    },
+                    "to": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "332",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "459"
+                    }
+                }
+            ]
+        }
+    ]
+}

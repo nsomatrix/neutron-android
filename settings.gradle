@@ -4,6 +4,8 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven { url "https://repo1.maven.org/maven2/" }
+        maven { url "https://maven-central.storage-download.googleapis.com/maven2/" }
     }
 }
 dependencyResolutionManagement {
@@ -12,6 +14,8 @@ dependencyResolutionManagement {
         mavenLocal()
         google()
         mavenCentral()
+        maven { url "https://repo1.maven.org/maven2/" }
+        maven { url "https://maven-central.storage-download.googleapis.com/maven2/" }
         maven { url "https://jitpack.io" }
     }
 }

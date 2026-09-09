@@ -1,0 +1,77 @@
+In file included from /home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_core.c:88:
+In file included from /home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_rendercontext.c:227:
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_rendercontext.inl:275:78: warning: incompatible pointer to integer conversion passing 'void *' to parameter of type 'M3GNativeBitmap' (aka 'unsigned int') [-Wint-conversion]
+    EGLConfig config = m3gQueryEGLConfig(format, bufferBits, EGL_WINDOW_BIT, NULL);
+                                                                             ^~~~
+/home/manish/Android/Sdk/ndk/22.1.7171670/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/11.0.5/include/stddef.h:89:16: note: expanded from macro 'NULL'
+#  define NULL ((void*)0)
+               ^~~~~~~~~~
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_rendercontext.inl:44:52: note: passing argument to parameter 'bitmapHandle' here
+                                   M3GNativeBitmap bitmapHandle)
+                                                   ^
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_rendercontext.inl:356:69: warning: incompatible pointer to integer conversion passing 'void *' to parameter of type 'M3GNativeBitmap' (aka 'unsigned int') [-Wint-conversion]
+    config = m3gQueryEGLConfig(format, bufferBits, EGL_PBUFFER_BIT, NULL);
+                                                                    ^~~~
+/home/manish/Android/Sdk/ndk/22.1.7171670/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/11.0.5/include/stddef.h:89:16: note: expanded from macro 'NULL'
+#  define NULL ((void*)0)
+               ^~~~~~~~~~
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_rendercontext.inl:44:52: note: passing argument to parameter 'bitmapHandle' here
+                                   M3GNativeBitmap bitmapHandle)
+                                                   ^
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_rendercontext.inl:899:17: warning: shifting a negative signed value is undefined [-Wshift-negative-value]
+             -1 << 16, 1 << 16);
+             ~~ ^
+In file included from /home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_core.c:88:
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_rendercontext.c:791:21: warning: shifting a negative signed value is undefined [-Wshift-negative-value]
+                 -1 << 16, 1 << 16);
+                 ~~ ^
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_rendercontext.c:914:45: warning: shifting a negative signed value is undefined [-Wshift-negative-value]
+        glOrthox(0, w << 16, 0, h << 16, -1 << 16, 1 << 16);
+                                         ~~ ^
+In file included from /home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_core.c:110:
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_mesh.c:82:34: warning: comparison between pointer and integer ('M3Gulong' (aka 'unsigned long long') and 'void *') [-Wpointer-integer-compare]
+        if (mesh->appearances[i] != NULL) {
+            ~~~~~~~~~~~~~~~~~~~~ ^  ~~~~
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_mesh.c:260:34: warning: comparison between pointer and integer ('M3Gulong' (aka 'unsigned long long') and 'void *') [-Wpointer-integer-compare]
+        if (mesh->appearances[i] == NULL ||
+            ~~~~~~~~~~~~~~~~~~~~ ^  ~~~~
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_mesh.c:261:35: warning: comparison between pointer and integer ('M3Gulong' (aka 'unsigned long long') and 'void *') [-Wpointer-integer-compare]
+            mesh->indexBuffers[i] == NULL) continue;
+            ~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_mesh.c:430:21: warning: comparison between pointer and integer ('M3Gulong' (aka 'unsigned long long') and 'void *') [-Wpointer-integer-compare]
+                if (hTriangles[i] == NULL) {
+                    ~~~~~~~~~~~~~ ^  ~~~~
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_mesh.c:491:35: warning: comparison between pointer and integer ('M3Gulong' (aka 'unsigned long long') and 'void *') [-Wpointer-integer-compare]
+        if (mesh->indexBuffers[i] != NULL) {
+            ~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_mesh.c:496:34: warning: comparison between pointer and integer ('M3Gulong' (aka 'unsigned long long') and 'void *') [-Wpointer-integer-compare]
+        if (mesh->appearances[i] != NULL) {
+            ~~~~~~~~~~~~~~~~~~~~ ^  ~~~~
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_mesh.c:519:35: warning: comparison between pointer and integer ('M3Gulong' (aka 'unsigned long long') and 'void *') [-Wpointer-integer-compare]
+        if (mesh->indexBuffers[i] != NULL) {
+            ~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_mesh.c:522:44: warning: comparison between pointer and integer ('M3Gulong' (aka 'unsigned long long') and 'void *') [-Wpointer-integer-compare]
+        if (!found && mesh->appearances[i] != NULL) {
+                      ~~~~~~~~~~~~~~~~~~~~ ^  ~~~~
+In file included from /home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_core.c:111:
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_morphingmesh.c:904:31: warning: comparison between pointer and integer ('M3Gulong' (aka 'unsigned long long') and 'void *') [-Wpointer-integer-compare]
+        if (mmesh->targets[i] != NULL) {
+            ~~~~~~~~~~~~~~~~~ ^  ~~~~
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_morphingmesh.c:924:31: warning: comparison between pointer and integer ('M3Gulong' (aka 'unsigned long long') and 'void *') [-Wpointer-integer-compare]
+        if (mmesh->targets[i] != NULL) {
+            ~~~~~~~~~~~~~~~~~ ^  ~~~~
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_morphingmesh.c:1037:25: warning: comparison between pointer and integer ('M3Gulong' (aka 'unsigned long long') and 'void *') [-Wpointer-integer-compare]
+        if (hTargets[i] == NULL) {
+            ~~~~~~~~~~~ ^  ~~~~
+In file included from /home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_core.c:116:
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_skinnedmesh.c:1625:55: warning: shifting a negative signed value is undefined [-Wshift-negative-value]
+                mesh->bbox.min[i] = m3gMadd(scale, -1 << 15, bias[i]);
+                                                   ~~ ^
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/inc/m3g_math.h:154:55: note: expanded from macro 'm3gMadd'
+#   define m3gMadd(a, b, c)     ((float)(a) * (float)(b) + (float)(c))
+                                                      ^
+In file included from /home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_core.c:121:
+/home/manish/projects/neutron-android/app/src/main/cpp/m3g/src/m3g_vertexarray.c:644:17: warning: 5 enumeration values not handled in switch: 'M3G_UBYTE', 'M3G_USHORT', 'M3G_INT'... [-Wswitch]
+        switch (type) {
+                ^
+18 warnings generated.

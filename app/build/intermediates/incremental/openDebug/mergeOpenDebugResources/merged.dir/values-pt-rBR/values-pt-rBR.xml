@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d nova notificação</item>
+    <item quantity="other">%d novas notificações</item>
+  </plurals>
+    <string name="CANCEL_CMD">Cancelar</string>
+    <string name="CLEAR_DATA_CMD">Apagar dados</string>
+    <string name="CONFIRMATION_REQUIRED">Confirmação necessária</string>
+    <string name="FORCE_CLOSE_CONFIRMATION">O fechamento forçado do aplicativo pode resultar em perda de dados ou até mesmo interrompê-lo completamente!\nContinuar?</string>
+    <string name="PREF_BACKGROUND">Cor de fundo</string>
+    <string name="PREF_FILTER">Filtro</string>
+    <string name="PREF_FONT_ANTI_ALIASING">Anti-Serrilhado</string>
+    <string name="PREF_FONT_LARGE">Grande</string>
+    <string name="PREF_FONT_MEDIUM">Média</string>
+    <string name="PREF_FONT_OPTIONS">Opções de fonte</string>
+    <string name="PREF_FONT_SIZE_IN_SP">Os valores estão em Pixels Escalonados</string>
+    <string name="PREF_FONT_SMALL">Pequena</string>
+    <string name="PREF_FORCE_FULLSCREEN">Forçar tela cheia</string>
+    <string name="PREF_HEIGHT">Altura</string>
+    <string name="PREF_HW_ACCELERATION">Aceleração de HW (instável)</string>
+    <string name="PREF_IMMEDIATE">Modo de processamento imediato</string>
+    <string name="PREF_KEEP_ASPECT_RATIO">Manter proporção</string>
+    <string name="PREF_LAYOUT">Layout</string>
+    <string name="PREF_LIMIT_FPS">Limite de FPS</string>
+    <string name="PREF_ORIENTATION">Orientação da tela</string>
+    <string name="PREF_SCALE_RATIO">Escala(%)</string>
+    <string name="PREF_SCALE_TO_FIT">Redimensionar para caber</string>
+    <string name="PREF_SCREEN_OPTIONS">Opções de tela</string>
+    <string name="PREF_SHADER_FILTER">Shader:</string>
+    <string name="PREF_SHOW_FPS">Exibir FPS</string>
+    <string name="PREF_SYS_PROPS">Propriedades do Sistema</string>
+    <string name="PREF_TOUCH_INPUT">Entrada por toque</string>
+    <string name="PREF_UNIT_MS">ms</string>
+    <string name="PREF_VIRTUAL_KEYBOARD_OPTIONS">Teclado virtual</string>
+    <string name="PREF_VK_ALPHA">Opacidade: </string>
+    <string name="PREF_VK_BACK">Botões</string>
+    <string name="PREF_VK_FEEDBACK">Feedback tátil</string>
+    <string name="PREF_VK_FIRE_KEY">Escolher: </string>
+    <string name="PREF_VK_FORCE_OPACITY">Forçar opacidade dos botões fora da tela</string>
+    <string name="PREF_VK_FORE">Rótulos</string>
+    <string name="PREF_VK_HIDE_DELAY">Esconder atraso: </string>
+    <string name="PREF_VK_KEY_SIZES">Tamanho dos botões</string>
+    <string name="PREF_VK_NAV_KEYS">Controle: </string>
+    <string name="PREF_VK_NUM_KEYS">Dígitos: </string>
+    <string name="PREF_VK_OUTLINE">Contorno</string>
+    <string name="PREF_VK_SEL_BACK">Botões (P)</string>
+    <string name="PREF_VK_SEL_FORE">Rótulos (P)</string>
+    <string name="PREF_VK_SHOW">Exibir o teclado</string>
+    <string name="PREF_VK_SIZE_HINT">Tamanho</string>
+    <string name="PREF_VK_SOFT_KEYS">Teclas de função: </string>
+    <string name="PREF_VK_TYPE">Tipo de teclado</string>
+    <string name="PREF_WIDTH">Largura</string>
+    <string name="RESET_LAYOUT_CMD">Redefinir layout das teclas</string>
+    <string name="RESET_SETTINGS_CMD">Redefinir configurações</string>
+    <string name="SIZE_PRESETS">Predefinições</string>
+    <string name="START_CMD">Iniciar</string>
+    <string name="SWAP_SIZES">Inverter resolução</string>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Navegar para a página inicial"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Navegar para cima"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Mais opções"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"Concluído"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Ver tudo"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Selecionar um app"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"DESATIVADO"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"ATIVADO"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"delete"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"espaço"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"Pesquisar…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Limpar consulta"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"Consulta de pesquisa"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Pesquisar"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Enviar consulta"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Pesquisa por voz"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Compartilhar com"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Compartilhar com <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Recolher"</string>
+    <string name="about">Sobre</string>
+    <string name="about_message">Este aplicativo permite iniciar aplicativos e jogos J2ME no Android. Ele suporta a maioria dos jogos 2D e 3D (incluindo Mascot Capsule 3D).&lt;BR></string>
+    <string name="action_context_delete">Apagar</string>
+    <string name="action_context_rename">Renomear</string>
+    <string name="action_context_shortcut">Adicionar atalho</string>
+    <string name="action_keyboard_ime">Teclado (IME)</string>
+    <string name="action_lock_orientation">Bloquear rotação de tela</string>
+    <string name="action_reinstall">Reinstalar</string>
+    <string name="action_settings">Configurações</string>
+    <string name="add">Adicionar</string>
+    <string name="add_profile_description">Criar novo perfil</string>
+    <string name="alert_map_menu">Tecla de menu (M) não está atribuída!\nIsto pode impossibilitar o acesso às opções do emulador</string>
+    <string name="alert_msg_workdir_not_exists">Diretório de trabalho não existe no caminho:\n\'%1$s\'.\nVocê quer criá-lo ou escolher outro?</string>
+    <string name="alert_rewrite_profile">Um perfil chamado \"%1$s\" já existe.\nVocê deseja substituí-lo?</string>
+    <string name="author">Autor: </string>
+    <string name="bottomsheet_action_collapse">Fechar a página inferior</string>
+    <string name="bottomsheet_action_expand">Abrir a página inferior</string>
+    <string name="bottomsheet_action_expand_halfway">Expandir até a metade</string>
+    <string name="bottomsheet_drag_handle_clicked">Alça de arrastar tocada duas vezes</string>
+    <string name="bottomsheet_drag_handle_content_description">Alça de arrastar</string>
+    <string name="change">Alterar</string>
+    <string name="character_counter_content_description">Caracteres inseridos: %1$d de %2$d</string>
+    <string name="character_counter_overflowed_content_description">Limite de %2$d caracteres excedido em %1$d</string>
+    <string name="choose">Escolher</string>
+    <string name="clear_text_end_icon_content_description">Limpar texto</string>
+    <string name="close">Fechar</string>
+    <string name="cmd_menu">Menu</string>
+    <string name="converting_wait">Convertendo JAR...</string>
+    <string msgid="6083905920877235314" name="copy">"Copiar"</string>
+    <string name="crash_dialog_message">Deseja enviar um relatório de erro ao desenvolvedor?</string>
+    <string name="crash_dialog_title">Erro detectado</string>
+    <string name="create">Criar</string>
+    <string name="create_apps_dir_failed">Falha ao criar uma pasta no caminho:\n\'%s\'\nselecione outra.</string>
+    <string name="default_label">"%s (padrão)"</string>
+    <string name="dismiss">Descartar</string>
+    <string name="edit">Editar</string>
+    <string name="enter_name">Inserir nome</string>
+    <string name="enter_new_name">Inserir novo nome</string>
+    <string name="err_missing_app">Aplicativo não encontrado.\nPor favor, verifique se o armazenamento %sesta disponível ou recrie o atalho.</string>
+    <string name="error">Erro</string>
+    <string name="error_disk_io">Erro de armazenamento: verifique o espaço no disco</string>
+    <string name="error_icon_content_description">Erro</string>
+    <string name="error_name">Digitar nome!</string>
+    <string name="error_name_exists">Já existe, insira outro nome</string>
+    <string name="exit">Sair</string>
+    <string msgid="2427401033573778270" name="expand_button_title">"Avançado"</string>
+    <string name="exposed_dropdown_menu_content_description">Mostrar menu suspenso</string>
+    <string name="external_storage_not_mounted">Este aplicativo requer armazenamento externo</string>
+    <string name="help">Ajuda</string>
+    <string name="help_message">• Ativando a filtragem em alguns casos pode reduzir muito a performance. Desative esta opção se o jogo estiver muito lento.&lt;BR>• Problemas de exibição de imagens podem ser corrigidos ao ativar a opção \"Modo de processamento imediato\".</string>
+    <string name="hide_buttons">Ocultar botões</string>
+    <string name="icon_content_description">Ícone de caixa de diálogo</string>
+    <string name="identity_filter">Rápido (sem filtro)</string>
+    <string name="install">instalar</string>
+    <string name="install_done">Aplicativo instalado com sucesso!</string>
+    <string name="install_jar_needed">Selecione o arquivo JAR</string>
+    <string name="install_jar_non_matched_jad">Este aplicativo é diferente do descrito em JAD.\nIgnorar JAD e instalar mesmo assim?</string>
+    <string name="invalid_resolution_not_saved">Resoluções inválidas: não salvas!</string>
+    <string name="item_view_role_description">Guia</string>
+    <string name="layout_edit_finish">Finalizar modo de edição</string>
+    <string name="layout_edit_finished">Modo de edição concluído</string>
+    <string name="layout_edit_mode">Modo de edição do teclado</string>
+    <string name="layout_scale_mode">Editar tamanho dos botões</string>
+    <string name="layout_switch">Alterar layout dos botões</string>
+    <string name="licenses">Licenças</string>
+    <string name="load_profile">Carregar perfil</string>
+    <string name="loading_info">Carregando informações…</string>
+    <string name="log_saved">Log foi salvo</string>
+    <string name="mapping_dialog_key_not_specified">não especificado</string>
+    <string name="mapping_dialog_message">Mapeamento atual: %1$s</string>
+    <string name="mapping_dialog_title">Pressione um botão</string>
+    <string name="material_clock_toggle_content_description">Selecionar AM ou PM</string>
+    <string name="material_hour_24h_suffix">%1$s horas</string>
+    <string name="material_hour_selection">Selecionar horário</string>
+    <string name="material_hour_suffix">%1$s em ponto</string>
+    <string name="material_minute_selection">Selecione os minutos</string>
+    <string name="material_minute_suffix">%1$s minutos</string>
+    <string name="material_timepicker_am">AM</string>
+    <string name="material_timepicker_clock_mode_description">Alterne para o modo de relógio para informar o horário.</string>
+    <string name="material_timepicker_hour">Hora</string>
+    <string name="material_timepicker_minute">Minuto</string>
+    <string name="material_timepicker_pm">PM</string>
+    <string name="material_timepicker_select_time">Selecionar horário</string>
+    <string name="material_timepicker_text_input_mode_description">Alterne para o modo de entrada de texto para informar o horário.</string>
+    <string name="message_clear_data">Deseja realmente apagar os dados do aplicativo?</string>
+    <string name="message_delete">Tem certeza de que deseja excluir este aplicativo?</string>
+    <string name="midlet_name"><b>Nome: </b></string>
+    <string name="midlet_size"><b>Tamanho: </b></string>
+    <string name="midlet_source"><b>Fonte: </b></string>
+    <string name="midlet_vendor"><b>Fabricante: </b></string>
+    <string name="midlet_version"><b>Versão: </b></string>
+    <string name="more">Mais</string>
+    <string name="mtrl_badge_numberless_content_description">Nova notificação</string>
+    <string name="mtrl_chip_close_icon_content_description">Remover %1$s</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Mais de %1$d novas notificações</string>
+    <string name="mtrl_picker_a11y_next_month">Alterar para o próximo mês</string>
+    <string name="mtrl_picker_a11y_prev_month">Alterar para o mês anterior</string>
+    <string name="mtrl_picker_announce_current_selection">Seleção atual: %1$s</string>
+    <string name="mtrl_picker_cancel">Cancelar</string>
+    <string name="mtrl_picker_confirm">OK</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">Selecionar data</string>
+    <string name="mtrl_picker_date_header_unselected">Data selecionada</string>
+    <string name="mtrl_picker_day_of_week_column_header">Coluna de dias: %1$s</string>
+    <string name="mtrl_picker_invalid_format">Formato inválido.</string>
+    <string name="mtrl_picker_invalid_format_example">Exemplo: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">Usar %1$s</string>
+    <string name="mtrl_picker_invalid_range">Intervalo inválido.</string>
+    <string name="mtrl_picker_navigate_to_year_description">Ir para o ano %1$s</string>
+    <string name="mtrl_picker_out_of_range">Fora do intervalo: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">Data de início – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – Data de término</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">Selecionar intervalo</string>
+    <string name="mtrl_picker_range_header_unselected">Data de início – Data de término</string>
+    <string name="mtrl_picker_save">Salvar</string>
+    <string name="mtrl_picker_text_input_date_hint">Data</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">Data de término</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">Data de início</string>
+    <string name="mtrl_picker_text_input_day_abbr">d</string>
+    <string name="mtrl_picker_text_input_month_abbr">m</string>
+    <string name="mtrl_picker_text_input_year_abbr">a</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">Alternar para o modo de entrada da agenda</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Toque para alternar para a seleção de um dia</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">Alternar para o modo de entrada de texto</string>
+    <string name="mtrl_picker_toggle_to_year_selection">Toque para alternar para a seleção de um ano</string>
+    <string name="mtrl_timepicker_cancel">Cancelar</string>
+    <string name="mtrl_timepicker_confirm">OK</string>
+    <string name="no_data_for_display">Sem dados</string>
+    <string name="not_saved_exists">Já existe</string>
+    <string msgid="6573031135582639649" name="not_set">"Não definido"</string>
+    <string name="opt_save_screen_params">salvar parâmetros de tela</string>
+    <string name="parallel_screen_redrawing">Redesenho de tela paralelo</string>
+    <string name="password_toggle_content_description">Exibir senha</string>
+    <string name="permission_request_failed">Este aplicativo requer permissão de gravação no armazenamento</string>
+    <string name="pref_app_sort_date">Data</string>
+    <string name="pref_app_sort_name">Nome</string>
+    <string name="pref_app_sort_title">Ordem de classificação</string>
+    <string name="pref_app_sort_vendor">Fabricante</string>
+    <string name="pref_button_shape_oval">Redondo</string>
+    <string name="pref_button_shape_rect">Quadrado</string>
+    <string name="pref_button_shape_round">Quadrado arredondado</string>
+    <string name="pref_button_shape_title">Formato dos botões</string>
+    <string name="pref_category_experimental">Opções experimentais/temporárias</string>
+    <string name="pref_default_settings">Configurações padrão</string>
+    <string name="pref_emulator_dir">Pasta padrão</string>
+    <string name="pref_enable_actionbar_summary">Em aplicativos em tela cheia</string>
+    <string name="pref_enable_actionbar_title">Ativar Barra de Ação</string>
+    <string name="pref_enable_statusbar_title">Ativar barra de status</string>
+    <string name="pref_encoding_title">Codificação</string>
+    <string name="pref_graphics_hw_gles">Aceleração de HW (OpenGL ES)</string>
+    <string name="pref_graphics_hw_surface">Aceleração de HW (superfície)</string>
+    <string name="pref_graphics_hw_view">Aceleração de HW (janela)</string>
+    <string name="pref_graphics_mode_title">Modos de gráfico:</string>
+    <string name="pref_graphics_software">Software</string>
+    <string name="pref_input_devices_title">Dispositivos de entrada</string>
+    <string name="pref_map_keys">Mapeamento do teclado</string>
+    <string name="pref_mascot_summary">Mostrar mensagem ao usar</string>
+    <string name="pref_mascot_title">Detectar Mascot Capsule 3D</string>
+    <string name="pref_orientation_auto">Automático</string>
+    <string name="pref_orientation_default">Padrão</string>
+    <string name="pref_orientation_land">Paisagem</string>
+    <string name="pref_orientation_port">Retrato</string>
+    <string name="pref_requires_restart_summary">Requer reinicialização</string>
+    <string name="pref_screen_gravity">Gravidade da tela</string>
+    <string name="pref_screen_gravity_bottom">Inferior</string>
+    <string name="pref_screen_gravity_center">Centro</string>
+    <string name="pref_screen_gravity_left">Esquerdo</string>
+    <string name="pref_screen_gravity_right">Direita</string>
+    <string name="pref_screen_gravity_top">Superior</string>
+    <string name="pref_screen_scale_type">Tipo de Escala</string>
+    <string name="pref_screen_scale_type_fill">Preencher janela (ignorar proporção de aspecto)</string>
+    <string name="pref_screen_scale_type_fit">Ajuste para caber na janela</string>
+    <string name="pref_screen_scale_type_none">Estilo padrão</string>
+    <string name="pref_screenshot_summary">Desativar escala e filtragem para capturas de tela</string>
+    <string name="pref_screenshot_title">Captura de tela em raw</string>
+    <string name="pref_theme_auto_battery">Automático, por Economia de Bateria</string>
+    <string name="pref_theme_auto_time">Automático, por hora do dia</string>
+    <string name="pref_theme_light">Claro</string>
+    <string name="pref_theme_night">Escuro</string>
+    <string name="pref_theme_system">Seguir as configurações do sistema</string>
+    <string name="pref_theme_title">Tema</string>
+    <string name="pref_vibration_title">Ativar vibração</string>
+    <string name="pref_vk_hide_hint">desativado</string>
+    <string name="pref_vk_save_alert">O Teclado Personalizado será substituído por\nSalvar?</string>
+    <string name="pref_vk_type_arrows">Setas</string>
+    <string name="pref_vk_type_arrows_numbers">Setas &amp; números</string>
+    <string name="pref_vk_type_custom">Personalizar</string>
+    <string name="pref_vk_type_numbers">Números</string>
+    <string name="pref_vk_type_numbers_arrows">Números &amp; setas</string>
+    <string name="pref_vk_type_phone">Telefone</string>
+    <string name="pref_vk_type_phone_arrows">Telefone (setas)</string>
+    <string name="pref_wakelock_title">Manter a tela ligada</string>
+    <string msgid="6685851473431805375" name="preference_copied">"\"<ns1:g id="SUMMARY">%1$s</ns1:g>\" copiado para a área de transferência."</string>
+    <string name="profiles">Perfis</string>
+    <string name="reinstall">Aplicativo já instalado.\n\nVocê deseja reinstalá-lo?\nTodos os dados serão salvos.</string>
+    <string name="reinstall_newest">Atualizar esta aplicação para a versão %1$s?\n\nAtualmente instalado: %2$s\nTodos os dados serão salvos.</string>
+    <string name="reinstall_older">Substituir este aplicativo pela versão %1$s?\n\nInstalada atualmente: %2$s\nA versão mais antiga pode não funcionar corretamente com os dados registrados.</string>
+    <string name="report_crash">Enviar</string>
+    <string name="reset">Redefinir</string>
+    <string name="reset_mapping">Redefinir</string>
+    <string name="retry">tentar novamente</string>
+    <string name="save">Salvar</string>
+    <string name="save_log">Salvar registro</string>
+    <string name="save_profile">Salvar perfil</string>
+    <string name="saved">Salvo</string>
+    <string name="scoped_storage_warning">Seus dados de usuário são armazenados em um local que <b>será excluído</b> quando você desinstalar o aplicativo:\n</string>
+    <string name="screenshot_saved">Captura de tela salva em</string>
+    <string name="search">Pesquisar</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Pesquisar"</string>
+    <string name="select_dialog_title">Selecionar MIDlet</string>
+    <string name="set_as_default">Definir como padrão</string>
+    <string name="set_default_profile_description">Selecione este perfil como uma configuração padrão para todos os aplicativos que serão instalados posteriormente</string>
+    <string name="shader_tuning">Ajustar Shader</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="9167775378838880170" name="summary_collapsed_preference_list">"<ns1:g id="CURRENT_ITEMS">%1$s</ns1:g>, <ns1:g id="ADDED_ITEMS">%2$s</ns1:g>"</string>
+    <string name="take_screenshot">Tirar captura de tela</string>
+    <string name="unlimited">ilimitado</string>
+    <string msgid="3140233346420563315" name="v7_preference_off">"DESATIVADO"</string>
+    <string msgid="89551595707643515" name="v7_preference_on">"ATIVADO"</string>
+    <string name="version">Versão: </string>
+    <string name="warn_install_from_net">O arquivo será baixado da Internet</string>
+    <string name="warning">Atenção</string>
+</resources>

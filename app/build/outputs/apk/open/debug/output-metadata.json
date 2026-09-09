@@ -1,0 +1,21 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.nsomatrix.neutron.debug",
+  "variantName": "openDebug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 101,
+      "versionName": "1.8.2-open",
+      "outputFile": "Neutron-1.8.2-open-debug.apk"
+    }
+  ],
+  "elementType": "File",
+  "minSdkVersionForDexing": 16
+}
