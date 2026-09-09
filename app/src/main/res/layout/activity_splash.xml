@@ -57,15 +57,18 @@
             android:gravity="center"
             android:fontFamily="@font/google_sans" />
 
-        <!-- Abstract Isometric Loader -->
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie_loader"
-            android:layout_width="88dp"
-            android:layout_height="88dp"
-            android:layout_marginTop="28dp"
-            app:lottie_fileName="abstract_loader.json"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true" />
+        <!-- Material 3 Premium Indeterminate Loader -->
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/splash_loader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:indeterminate="true"
+            app:indicatorSize="40dp"
+            app:trackThickness="3.5dp"
+            app:indicatorColor="@color/primary"
+            app:trackColor="@color/primary_container"
+            app:trackCornerRadius="2dp" />
 
     </LinearLayout>
 
