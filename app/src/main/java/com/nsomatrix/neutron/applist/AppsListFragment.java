@@ -2,6 +2,7 @@
  * Copyright 2015-2016 Nickolay Savchenko
  * Copyright 2017-2020 Nikita Shakarun
  * Copyright 2018-2022 Yury Kharchenko
+ * Copyright 2026 Neutron Emulator Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +22,10 @@ package com.nsomatrix.neutron.applist;
 import static com.nsomatrix.neutron.util.Constants.KEY_APP_URI;
 import static com.nsomatrix.neutron.util.Constants.KEY_MIDLET_NAME;
 import static com.nsomatrix.neutron.util.Constants.PREF_APP_SORT;
+import static com.nsomatrix.neutron.util.Constants.PREF_FAVORITES;
 import static com.nsomatrix.neutron.util.Constants.PREF_LAST_PATH;
+import static com.nsomatrix.neutron.util.Constants.PREF_LIBRARY_VIEW_MODE;
+import static com.nsomatrix.neutron.util.Constants.PREF_RECENTS;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -29,6 +33,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDiskIOException;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -38,19 +43,15 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,16 +63,26 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
+import androidx.core.graphics.Insets;
 import androidx.core.graphics.drawable.IconCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.core.widget.TextViewCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.ListFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -87,22 +98,25 @@ import com.nsomatrix.neutron.databinding.FragmentAppsListBinding;
 import com.nsomatrix.neutron.filepicker.FilteredFilePickerFragment;
 import com.nsomatrix.neutron.info.AboutDialogFragment;
 import com.nsomatrix.neutron.info.HelpDialogFragment;
+import com.nsomatrix.neutron.installer.InstallerDialog;
 import com.nsomatrix.neutron.settings.SettingsActivity;
 import com.nsomatrix.neutron.util.AppUtils;
 import com.nsomatrix.neutron.util.Constants;
 import com.nsomatrix.neutron.util.FileUtils;
 import com.nsomatrix.neutron.util.LogUtils;
-import com.nsomatrix.neutron.installer.InstallerDialog;
 
-public class AppsListFragment extends ListFragment {
+public class AppsListFragment extends Fragment implements GameAdapter.OnGameActionListener,
+		GameOptionsBottomSheet.GameOptionsListener {
+
 	private static final String TAG = AppsListFragment.class.getSimpleName();
-	private final AppsListAdapter adapter = new AppsListAdapter();
+
+	private GameAdapter adapter;
 	private Uri appUri;
 	private SharedPreferences preferences;
 	private AppRepository appRepository;
 	private Disposable searchViewDisposable;
 
-	FragmentAppsListBinding binding;
+	private FragmentAppsListBinding binding;
 
 	private final ActivityResultLauncher<String> openFileLauncher = registerForActivityResult(
 			FileUtils.getFilePicker(),
@@ -119,9 +133,11 @@ public class AppsListFragment extends ListFragment {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Bundle args = requireArguments();
-		appUri = args.getParcelable(KEY_APP_URI);
-		args.remove(KEY_APP_URI);
+		Bundle args = getArguments();
+		if (args != null) {
+			appUri = args.getParcelable(KEY_APP_URI);
+			args.remove(KEY_APP_URI);
+		}
 		preferences = PreferenceManager.getDefaultSharedPreferences(requireActivity());
 		AppListModel appListModel = new ViewModelProvider(requireActivity()).get(AppListModel.class);
 		appRepository = appListModel.getAppRepository();
@@ -130,144 +146,350 @@ public class AppsListFragment extends ListFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		binding = FragmentAppsListBinding.inflate(inflater, container, false);
 		return binding.getRoot();
 	}
 
 	@Override
-	public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		registerForContextMenu(getListView());
-		setHasOptionsMenu(true);
-		setListAdapter(adapter);
-		binding.floatingActionButton.setOnClickListener(v -> {
-			String path = preferences.getString(PREF_LAST_PATH, null);
-			if (path == null) {
-				File dir = Environment.getExternalStorageDirectory();
-				if (dir.canRead()) {
-					path = dir.getAbsolutePath();
-				}
-			}
+
+		setupWindowInsets();
+		setupToolbar();
+		setupRecyclerView();
+		setupFilterChips();
+		setupEmptyStateAndFab();
+	}
+
+	private void setupWindowInsets() {
+		ViewCompat.setOnApplyWindowInsetsListener(binding.appBarLayout, (v, insets) -> {
+			Insets statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars());
+			v.setPadding(0, statusBarInsets.top, 0, 0);
+			return insets;
+		});
+
+		ViewCompat.setOnApplyWindowInsetsListener(binding.recyclerView, (v, insets) -> {
+			Insets navBarInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars());
+			int baseBottom = (int) (96 * getResources().getDisplayMetrics().density);
+			v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), baseBottom + navBarInsets.bottom);
+			return insets;
+		});
+
+		ViewCompat.setOnApplyWindowInsetsListener(binding.floatingActionButton, (v, insets) -> {
+			Insets navBarInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars());
+			ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+			int baseMargin = (int) (20 * getResources().getDisplayMetrics().density);
+			lp.bottomMargin = baseMargin + navBarInsets.bottom;
+			lp.rightMargin = baseMargin + navBarInsets.right;
+			v.setLayoutParams(lp);
+			return insets;
+		});
+	}
+
+	private void setupToolbar() {
+		binding.toolbar.inflateMenu(R.menu.main);
+		MenuItem viewModeItem = binding.toolbar.getMenu().findItem(R.id.action_view_mode);
+		updateViewModeMenuIcon(viewModeItem);
+
+		binding.toolbar.setOnMenuItemClickListener(this::handleToolbarMenuItemClick);
+
+		// Setup Search
+		MenuItem searchItem = binding.toolbar.getMenu().findItem(R.id.action_search);
+		SearchView searchView = (SearchView) searchItem.getActionView();
+		if (searchView != null) {
+			searchView.setQueryHint(getString(R.string.search));
+			searchViewDisposable = Observable.create((ObservableOnSubscribe<String>) emitter ->
+					searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+						@Override
+						public boolean onQueryTextSubmit(String query) {
+							emitter.onNext(query);
+							return true;
+						}
+
+						@Override
+						public boolean onQueryTextChange(String newText) {
+							emitter.onNext(newText);
+							return true;
+						}
+					})).debounce(200, TimeUnit.MILLISECONDS)
+					.distinctUntilChanged()
+					.observeOn(AndroidSchedulers.mainThread())
+					.subscribe(query -> {
+						if (adapter != null) {
+							adapter.setSearchQuery(query);
+							updateEmptyStateVisibility();
+						}
+					});
+		}
+	}
+
+	private boolean handleToolbarMenuItemClick(MenuItem item) {
+		FragmentActivity activity = requireActivity();
+		int itemId = item.getItemId();
+		if (itemId == R.id.action_view_mode) {
+			toggleViewMode();
+			updateViewModeMenuIcon(item);
+			return true;
+		} else if (itemId == R.id.action_sort) {
+			showSortDialog();
+			return true;
+		} else if (itemId == R.id.action_about) {
+			new AboutDialogFragment().show(getChildFragmentManager(), "about");
+			return true;
+		} else if (itemId == R.id.action_profiles) {
+			startActivity(new Intent(activity, ProfilesActivity.class));
+			return true;
+		} else if (itemId == R.id.action_settings) {
+			startActivity(new Intent(activity, SettingsActivity.class));
+			return true;
+		} else if (itemId == R.id.action_help) {
+			new HelpDialogFragment().show(getChildFragmentManager(), "help");
+			return true;
+		} else if (itemId == R.id.action_save_log) {
 			try {
-				openFileLauncher.launch(path);
-			} catch (ActivityNotFoundException e) {
-				Toast.makeText(getContext(), R.string.error_no_picker, Toast.LENGTH_SHORT).show();
+				LogUtils.writeLog();
+				Toast.makeText(activity, R.string.log_saved, Toast.LENGTH_SHORT).show();
+			} catch (IOException e) {
 				e.printStackTrace();
+				Toast.makeText(activity, R.string.error, Toast.LENGTH_SHORT).show();
+			}
+			return true;
+		} else if (itemId == R.id.action_exit_app) {
+			activity.finish();
+			return true;
+		}
+		return false;
+	}
+
+	private void setupRecyclerView() {
+		adapter = new GameAdapter(this);
+		int savedViewMode = preferences.getInt(PREF_LIBRARY_VIEW_MODE, GameAdapter.MODE_GRID);
+		adapter.setViewMode(savedViewMode);
+		adapter.setFavorites(getFavorites());
+		adapter.setRecentPaths(getRecents());
+
+		int orientation = getResources().getConfiguration().orientation;
+		int gridColumns = orientation == Configuration.ORIENTATION_LANDSCAPE ? 4 : 2;
+		GridLayoutManager layoutManager = new GridLayoutManager(requireContext(), gridColumns);
+		layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+			@Override
+			public int getSpanSize(int position) {
+				if (adapter.isHeroPosition(position) || adapter.getViewMode() == GameAdapter.MODE_LIST) {
+					return gridColumns;
+				}
+				return 1;
+			}
+		});
+		binding.recyclerView.setLayoutManager(layoutManager);
+		binding.recyclerView.setAdapter(adapter);
+
+		// Shrink / Extend FAB on scroll
+		binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+			@Override
+			public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+				if (dy > 8 && binding.floatingActionButton.isExtended()) {
+					binding.floatingActionButton.shrink();
+				} else if (dy < -8 && !binding.floatingActionButton.isExtended()) {
+					binding.floatingActionButton.extend();
+				}
 			}
 		});
 	}
 
-	private void alertDbError(Throwable throwable) {
-		Activity activity = getActivity();
-		if (activity == null) {
-			Log.e(TAG, "Db error detected", throwable);
-			return;
+	private void setupFilterChips() {
+		binding.chipGroupFilters.setOnCheckedStateChangeListener((group, checkedIds) -> {
+			if (checkedIds.isEmpty()) return;
+			int checkedId = checkedIds.get(0);
+			if (checkedId == R.id.chip_all) {
+				adapter.setActiveFilter(GameAdapter.FILTER_ALL);
+			} else if (checkedId == R.id.chip_favorites) {
+				adapter.setActiveFilter(GameAdapter.FILTER_FAVORITES);
+			} else if (checkedId == R.id.chip_recent) {
+				adapter.setActiveFilter(GameAdapter.FILTER_RECENT);
+			} else if (checkedId == R.id.chip_3d) {
+				adapter.setActiveFilter(GameAdapter.FILTER_3D);
+			}
+			updateEmptyStateVisibility();
+		});
+	}
+
+	private void setupEmptyStateAndFab() {
+		binding.floatingActionButton.setOnClickListener(v -> launchFilePicker());
+		binding.btnEmptyImport.setOnClickListener(v -> launchFilePicker());
+		binding.btnEmptyFolder.setOnClickListener(v -> {
+			startActivity(new Intent(requireActivity(), SettingsActivity.class));
+		});
+	}
+
+	private void launchFilePicker() {
+		String path = preferences.getString(PREF_LAST_PATH, null);
+		if (path == null) {
+			File dir = Environment.getExternalStorageDirectory();
+			if (dir.canRead()) {
+				path = dir.getAbsolutePath();
+			}
 		}
-		if (throwable instanceof SQLiteDiskIOException) {
-			Toast.makeText(activity, R.string.error_disk_io, Toast.LENGTH_SHORT).show();
+		try {
+			openFileLauncher.launch(path);
+		} catch (ActivityNotFoundException e) {
+			Toast.makeText(getContext(), R.string.error_no_picker, Toast.LENGTH_SHORT).show();
+			e.printStackTrace();
+		}
+	}
+
+	private void toggleViewMode() {
+		int currentMode = adapter.getViewMode();
+		int nextMode = (currentMode == GameAdapter.MODE_GRID) ? GameAdapter.MODE_LIST : GameAdapter.MODE_GRID;
+		adapter.setViewMode(nextMode);
+		preferences.edit().putInt(PREF_LIBRARY_VIEW_MODE, nextMode).apply();
+	}
+
+	private void updateViewModeMenuIcon(MenuItem item) {
+		if (item == null || adapter == null) return;
+		if (adapter.getViewMode() == GameAdapter.MODE_GRID) {
+			item.setIcon(R.drawable.ic_list_view);
 		} else {
-			String msg = activity.getString(R.string.error) + ": " + throwable.getMessage();
-			Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+			item.setIcon(R.drawable.ic_grid_view);
 		}
 	}
 
-	private void onPickFileResult(Uri uri) {
-		if (uri == null) {
-			return;
-		}
-		preferences.edit()
-				.putString(Constants.PREF_LAST_PATH, FilteredFilePickerFragment.getLastPath())
-				.apply();
-		InstallerDialog.newInstance(uri).show(getParentFragmentManager(), "installer");
+	private Set<String> getFavorites() {
+		return new HashSet<>(preferences.getStringSet(PREF_FAVORITES, Collections.emptySet()));
 	}
 
-	private void alertRename(final int id) {
-		AppItem item = adapter.getItem(id);
+	private List<String> getRecents() {
+		String recentsStr = preferences.getString(PREF_RECENTS, "");
+		if (TextUtils.isEmpty(recentsStr)) {
+			return new ArrayList<>();
+		}
+		return new ArrayList<>(Arrays.asList(recentsStr.split(",")));
+	}
+
+	private void recordRecent(AppItem item) {
+		if (item == null) return;
+		List<String> recents = getRecents();
+		recents.remove(item.getPath());
+		recents.add(0, item.getPath());
+		if (recents.size() > 10) {
+			recents = recents.subList(0, 10);
+		}
+		preferences.edit().putString(PREF_RECENTS, TextUtils.join(",", recents)).apply();
+		adapter.setRecentPaths(recents);
+	}
+
+	private void updateEmptyStateVisibility() {
+		if (binding == null || adapter == null) return;
+		boolean isEmpty = adapter.getGameCount() == 0;
+		binding.layoutEmptyState.setVisibility(isEmpty ? View.VISIBLE : View.GONE);
+		binding.recyclerView.setVisibility(isEmpty ? View.GONE : View.VISIBLE);
+	}
+
+	// GameAdapter.OnGameActionListener Callbacks
+	@Override
+	public void onGameClick(AppItem item) {
+		recordRecent(item);
+		Config.startApp(requireActivity(), item.getTitle(), item.getPathExt(), false);
+	}
+
+	@Override
+	public void onGameMoreClick(AppItem item, View anchor) {
+		boolean isFavorite = adapter.isFavorite(item);
+		GameOptionsBottomSheet bottomSheet = GameOptionsBottomSheet.newInstance(item, isFavorite);
+		bottomSheet.setListener(this);
+		bottomSheet.show(getParentFragmentManager(), "game_options");
+	}
+
+	@Override
+	public void onGameFavoriteToggle(AppItem item) {
+		onToggleFavorite(item);
+	}
+
+	// GameOptionsBottomSheet.GameOptionsListener Callbacks
+	@Override
+	public void onPlay(AppItem item) {
+		onGameClick(item);
+	}
+
+	@Override
+	public void onToggleFavorite(AppItem item) {
+		if (item == null) return;
+		Set<String> favorites = getFavorites();
+		if (favorites.contains(item.getPath())) {
+			favorites.remove(item.getPath());
+		} else {
+			favorites.add(item.getPath());
+		}
+		preferences.edit().putStringSet(PREF_FAVORITES, favorites).apply();
+		adapter.setFavorites(favorites);
+	}
+
+	@Override
+	public void onOpenSettings(AppItem item) {
+		Config.startApp(requireActivity(), item.getTitle(), item.getPathExt(), true);
+	}
+
+	@Override
+	public void onAddShortcut(AppItem item) {
+		requestAddShortcut(item);
+	}
+
+	@Override
+	public void onRename(AppItem item) {
+		alertRename(item);
+	}
+
+	@Override
+	public void onReinstall(AppItem item) {
+		InstallerDialog.newInstance(item.getId()).show(getParentFragmentManager(), "installer");
+	}
+
+	@Override
+	public void onDelete(AppItem item) {
+		alertDelete(item);
+	}
+
+	private void alertRename(AppItem item) {
 		FragmentActivity activity = requireActivity();
 		EditText editText = new EditText(activity);
 		editText.setText(item.getTitle());
 		float density = getResources().getDisplayMetrics().density;
 		LinearLayout linearLayout = new LinearLayout(activity);
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-				ViewGroup.LayoutParams.WRAP_CONTENT);
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+				ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 		int margin = (int) (density * 20);
 		params.setMargins(margin, 0, margin, 0);
 		linearLayout.addView(editText, params);
 		int paddingVertical = (int) (density * 16);
 		int paddingHorizontal = (int) (density * 8);
 		editText.setPadding(paddingHorizontal, paddingVertical, paddingHorizontal, paddingVertical);
-		AlertDialog.Builder builder = new AlertDialog.Builder(activity)
+
+		new AlertDialog.Builder(activity)
 				.setTitle(R.string.action_context_rename)
 				.setView(linearLayout)
 				.setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
 					String title = editText.getText().toString().trim();
-					if (title.equals("")) {
+					if (title.isEmpty()) {
 						Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
 					} else {
 						item.setTitle(title);
 						appRepository.update(item);
 					}
 				})
-				.setNegativeButton(android.R.string.cancel, null);
-		builder.show();
+				.setNegativeButton(android.R.string.cancel, null)
+				.show();
 	}
 
 	private void alertDelete(AppItem item) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity())
+		new AlertDialog.Builder(requireActivity())
 				.setTitle(android.R.string.dialog_alert_title)
 				.setMessage(R.string.message_delete)
 				.setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
 					AppUtils.deleteApp(item);
 					appRepository.delete(item);
 				})
-				.setNegativeButton(android.R.string.cancel, null);
-		builder.show();
-	}
-
-	@Override
-	public void onListItemClick(@NonNull ListView l, @NonNull View v, int position, long id) {
-		AppItem item = adapter.getItem(position);
-		Config.startApp(requireActivity(), item.getTitle(), item.getPathExt(), false);
-	}
-
-	@Override
-	public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v,
-									ContextMenu.ContextMenuInfo menuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo);
-		MenuInflater inflater = requireActivity().getMenuInflater();
-		inflater.inflate(R.menu.context_main, menu);
-		if (!ShortcutManagerCompat.isRequestPinShortcutSupported(requireContext())) {
-			menu.findItem(R.id.action_context_shortcut).setVisible(false);
-		}
-		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-		int index = info.position;
-		AppItem appItem = adapter.getItem(index);
-		if (!new File(appItem.getPathExt() + Config.MIDLET_RES_FILE).exists()) {
-			menu.findItem(R.id.action_context_reinstall).setVisible(false);
-		}
-	}
-
-	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-		int index = info.position;
-		AppItem appItem = adapter.getItem(index);
-		int itemId = item.getItemId();
-		if (itemId == R.id.action_context_shortcut) {
-			requestAddShortcut(appItem);
-		} else if (itemId == R.id.action_context_rename) {
-			alertRename(index);
-		} else if (itemId == R.id.action_context_settings) {
-			Config.startApp(requireActivity(), appItem.getTitle(), appItem.getPathExt(), true);
-		} else if (itemId == R.id.action_context_reinstall) {
-			InstallerDialog.newInstance(appItem.getId()).show(getParentFragmentManager(), "installer");
-		} else if (itemId == R.id.action_context_delete) {
-			alertDelete(appItem);
-		} else {
-			return super.onContextItemSelected(item);
-		}
-		return true;
+				.setNegativeButton(android.R.string.cancel, null)
+				.show();
 	}
 
 	private void requestAddShortcut(AppItem appItem) {
@@ -308,74 +530,17 @@ public class AppsListFragment extends ListFragment {
 		ShortcutManagerCompat.requestPinShortcut(activity, shortcut, null);
 	}
 
-	@Override
-	public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-		inflater.inflate(R.menu.main, menu);
-		final MenuItem searchItem = menu.findItem(R.id.action_search);
-		SearchView searchView = (SearchView) searchItem.getActionView();
-		searchViewDisposable = Observable.create((ObservableOnSubscribe<String>) emitter ->
-				searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-					@Override
-					public boolean onQueryTextSubmit(String query) {
-						emitter.onNext(query);
-						return true;
-					}
-
-					@Override
-					public boolean onQueryTextChange(String newText) {
-						emitter.onNext(newText);
-						return true;
-					}
-				})).debounce(300, TimeUnit.MILLISECONDS)
-				.map(String::toLowerCase)
-				.distinctUntilChanged()
-				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(charSequence -> adapter.getFilter().filter(charSequence));
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		FragmentActivity activity = requireActivity();
-		int itemId = item.getItemId();
-		if (itemId == R.id.action_about) {
-			AboutDialogFragment aboutDialogFragment = new AboutDialogFragment();
-			aboutDialogFragment.show(getChildFragmentManager(), "about");
-		} else if (itemId == R.id.action_profiles) {
-			Intent intentProfiles = new Intent(activity, ProfilesActivity.class);
-			startActivity(intentProfiles);
-		} else if (item.getItemId() == R.id.action_settings) {
-			startActivity(new Intent(activity, SettingsActivity.class));
-			return true;
-		} else if (itemId == R.id.action_help) {
-			HelpDialogFragment helpDialogFragment = new HelpDialogFragment();
-			helpDialogFragment.show(getChildFragmentManager(), "help");
-		} else if (itemId == R.id.action_save_log) {
-			try {
-				LogUtils.writeLog();
-				Toast.makeText(activity, R.string.log_saved, Toast.LENGTH_SHORT).show();
-			} catch (IOException e) {
-				e.printStackTrace();
-				Toast.makeText(activity, R.string.error, Toast.LENGTH_SHORT).show();
-			}
-		} else if (itemId == R.id.action_exit_app) {
-			activity.finish();
-		} else if (itemId == R.id.action_sort) {
-			showSortDialog();
-		}
-		return false;
-	}
-
 	private void showSortDialog() {
 		int variant = appRepository.getSort();
-		SortAdapter adapter = new SortAdapter(requireActivity(), variant);
-		AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity())
+		SortAdapter sortAdapter = new SortAdapter(requireActivity(), variant);
+		new AlertDialog.Builder(requireActivity())
 				.setTitle(R.string.pref_app_sort_title)
-				.setAdapter(adapter, (d, v) -> {
-					adapter.setVariant(v);
+				.setAdapter(sortAdapter, (d, v) -> {
+					sortAdapter.setVariant(v);
 					setSort(v);
 					d.dismiss();
-				});
-		builder.show();
+				})
+				.show();
 	}
 
 	private void setSort(int sortVariant) {
@@ -385,8 +550,35 @@ public class AppsListFragment extends ListFragment {
 		preferences.edit().putInt(PREF_APP_SORT, sortVariant).apply();
 	}
 
+	private void alertDbError(Throwable throwable) {
+		Activity activity = getActivity();
+		if (activity == null) {
+			Log.e(TAG, "Db error detected", throwable);
+			return;
+		}
+		if (throwable instanceof SQLiteDiskIOException) {
+			Toast.makeText(activity, R.string.error_disk_io, Toast.LENGTH_SHORT).show();
+		} else {
+			String msg = activity.getString(R.string.error) + ": " + throwable.getMessage();
+			Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	private void onPickFileResult(Uri uri) {
+		if (uri == null) {
+			return;
+		}
+		preferences.edit()
+				.putString(Constants.PREF_LAST_PATH, FilteredFilePickerFragment.getLastPath())
+				.apply();
+		InstallerDialog.newInstance(uri).show(getParentFragmentManager(), "installer");
+	}
+
 	private void onDbUpdated(List<AppItem> items) {
-		adapter.setItems(items);
+		if (adapter != null) {
+			adapter.setMasterList(items);
+			updateEmptyStateVisibility();
+		}
 		if (appUri != null) {
 			InstallerDialog.newInstance(appUri).show(getParentFragmentManager(), "installer");
 			appUri = null;

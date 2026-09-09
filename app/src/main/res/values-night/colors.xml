@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--dark theme colors-->
-    <color name="primary">#262e37</color>
-    <color name="primary_dark">#20272f</color>
-    <color name="accent">#0099ff</color>
-    <color name="background">#20272f</color>
-    <color name="text_primary">#ffffff</color>
-    <color name="text_secondary">#dedede</color>
-    <color name="btn_bg_normal">#0099ff</color>
-    <color name="btn_bg_pressed">#005D8C</color>
-    <color name="config_card">#262e37</color>
+    <!-- Dark Theme (Obsidian OLED) Material 3 Colors -->
+    <color name="primary">#B388FF</color>
+    <color name="primary_dark">#7C4DFF</color>
+    <color name="on_primary">#22005D</color>
+    <color name="primary_container">#3B0D85</color>
+    <color name="on_primary_container">#E5DEFF</color>
+
+    <color name="secondary">#FFB74D</color>
+    <color name="on_secondary">#4A2800</color>
+    <color name="secondary_container">#6A3C00</color>
+    <color name="on_secondary_container">#FFECCF</color>
+
+    <color name="tertiary">#00E5FF</color>
+    <color name="on_tertiary">#00363D</color>
+
+    <color name="accent">#FF9100</color>
+    <color name="background">#0B0E14</color>
+    <color name="on_background">#F0F3F6</color>
+
+    <color name="surface">#151A22</color>
+    <color name="on_surface">#F0F3F6</color>
+    <color name="surface_container">#1D2430</color>
+    <color name="surface_container_high">#262E3D</color>
+    <color name="surface_variant">#2A3241</color>
+    <color name="on_surface_variant">#8B949E</color>
+
+    <color name="outline">#6E7681</color>
+    <color name="outline_variant">#30363D</color>
+
+    <color name="text_primary">#F0F3F6</color>
+    <color name="text_secondary">#8B949E</color>
+    <color name="btn_bg_normal">#7C4DFF</color>
+    <color name="btn_bg_pressed">#6200EA</color>
+    <color name="config_card">#151A22</color>
+    <color name="card_background">#151A22</color>
+
+    <!-- Scrim and Overlays -->
+    <color name="badge_3d_text">#00363A</color>
 
     <color name="nnf_separator_color">@color/nnf_dark_separator_color</color>
 </resources>

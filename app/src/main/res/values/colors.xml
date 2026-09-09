@@ -4,16 +4,44 @@
     <color name="fab_material_red_500">#f44336</color>
     <color name="file_picker_accent">#ffb62e</color>
 
-    <!--light theme colors-->
-    <color name="primary">#212121</color>
-    <color name="primary_dark">#1c1c1c</color>
-    <color name="accent">#ff2e51</color>
-    <color name="background">#fafafa</color>
-    <color name="text_primary">#000000</color>
-    <color name="text_secondary">#353535</color>
-    <color name="btn_bg_normal">#2e2e2e</color>
-    <color name="btn_bg_pressed">#707070</color>
+    <!-- Light Theme Material 3 Colors -->
+    <color name="primary">#5C46E5</color>
+    <color name="primary_dark">#4732C7</color>
+    <color name="on_primary">#ffffff</color>
+    <color name="primary_container">#E5DEFF</color>
+    <color name="on_primary_container">#1A0063</color>
+
+    <color name="secondary">#FF9100</color>
+    <color name="on_secondary">#000000</color>
+    <color name="secondary_container">#FFECCF</color>
+    <color name="on_secondary_container">#301700</color>
+
+    <color name="tertiary">#00BCD4</color>
+    <color name="on_tertiary">#ffffff</color>
+
+    <color name="accent">#FF9100</color>
+    <color name="background">#F6F8FC</color>
+    <color name="on_background">#1A1C24</color>
+
+    <color name="surface">#ffffff</color>
+    <color name="on_surface">#1A1C24</color>
+    <color name="surface_container">#EDF1F7</color>
+    <color name="surface_container_high">#E2E7F0</color>
+    <color name="surface_variant">#E2E4EE</color>
+    <color name="on_surface_variant">#555B6D</color>
+
+    <color name="outline">#79747E</color>
+    <color name="outline_variant">#D6DAE5</color>
+
+    <color name="text_primary">#1A1C24</color>
+    <color name="text_secondary">#555B6D</color>
+    <color name="btn_bg_normal">#5C46E5</color>
+    <color name="btn_bg_pressed">#4732C7</color>
     <color name="config_card">#ffffff</color>
+    <color name="card_background">#ffffff</color>
+
+    <!-- Scrim and Overlays -->
+    <color name="badge_3d_text">#00363A</color>
 
     <color name="nnf_separator_color">@color/nnf_light_separator_color</color>
 </resources>

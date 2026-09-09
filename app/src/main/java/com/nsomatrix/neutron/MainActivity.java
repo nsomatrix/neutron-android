@@ -30,6 +30,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
+import androidx.core.view.WindowCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
@@ -66,6 +67,7 @@ public class MainActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 		setContentView(R.layout.activity_main);
 		if (FileUtils.isExternalStorageLegacy()) {
 			permissionsLauncher.launch(STORAGE_PERMISSIONS);
