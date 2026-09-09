@@ -82,12 +82,13 @@ import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 import com.nsomatrix.neutron.BuildConfig;
 import com.nsomatrix.neutron.R;
+import com.nsomatrix.neutron.base.BaseActivity;
 import com.nsomatrix.neutron.config.Config;
 import com.nsomatrix.neutron.databinding.ActivityMicroBinding;
 import com.nsomatrix.neutron.util.Constants;
 import com.nsomatrix.neutron.util.LogUtils;
 
-public class MicroActivity extends AppCompatActivity {
+public class MicroActivity extends BaseActivity {
 	private static final int ORIENTATION_DEFAULT = 0;
 	private static final int ORIENTATION_AUTO = 1;
 	private static final int ORIENTATION_PORTRAIT = 2;
@@ -107,7 +108,6 @@ public class MicroActivity extends AppCompatActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		lockNightMode();
 		super.onCreate(savedInstanceState);
 		ContextHolder.setCurrentActivity(this);
 
@@ -189,15 +189,6 @@ public class MicroActivity extends AppCompatActivity {
 		} catch (Exception e) {
 			e.printStackTrace();
 			showErrorDialog(e.toString());
-		}
-	}
-
-	public void lockNightMode() {
-		int current = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-		if (current == Configuration.UI_MODE_NIGHT_YES) {
-			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-		} else {
-			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 		}
 	}
 
