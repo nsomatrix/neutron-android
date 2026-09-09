@@ -60,9 +60,14 @@ import javax.microedition.util.ContextHolder;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
 import androidx.core.widget.TextViewCompat;
+import com.google.android.material.tabs.TabLayout;
 
 import com.nsomatrix.neutron.R;
 import com.nsomatrix.neutron.base.BaseActivity;
@@ -158,9 +163,48 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 		}
 		loadKeyLayout();
 		binding = ActivityConfigBinding.inflate(getLayoutInflater());
-		View view = binding.getRoot();
-		setContentView(view);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+		setContentView(binding.getRoot());
+		setSupportActionBar(binding.toolbar);
+		if (getSupportActionBar() != null) {
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		}
+		binding.toolbar.setNavigationOnClickListener(v -> finish());
+
+		// Edge-to-edge window insets
+		ViewCompat.setOnApplyWindowInsetsListener(binding.appBarLayout, (v, insets) -> {
+			Insets statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars());
+			v.setPadding(0, statusBarInsets.top, 0, 0);
+			return insets;
+		});
+
+		ViewCompat.setOnApplyWindowInsetsListener(binding.wholeConfigRoot, (v, insets) -> {
+			Insets navBarInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars());
+			int baseBottomPadding = (int) (48 * getResources().getDisplayMetrics().density);
+			v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), baseBottomPadding + navBarInsets.bottom);
+			return insets;
+		});
+
+		// Sub-module tabs setup
+		binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.tab_screen));
+		binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.tab_fonts));
+		binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.tab_input));
+		binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.tab_system));
+
+		binding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+			@Override
+			public void onTabSelected(TabLayout.Tab tab) {
+				switchTab(tab.getPosition());
+			}
+
+			@Override
+			public void onTabUnselected(TabLayout.Tab tab) {
+			}
+
+			@Override
+			public void onTabReselected(TabLayout.Tab tab) {
+			}
+		});
 		display = getWindowManager().getDefaultDisplay();
 		fragmentManager = getSupportFragmentManager();
 
@@ -985,6 +1029,15 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 				src.removeTextChangedListener(this);
 			}
 		}
+	}
+
+	private void switchTab(int position) {
+		if (binding == null) return;
+		binding.screenConfigRoot.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
+		binding.fontConfigRoot.setVisibility(position == 1 ? View.VISIBLE : View.GONE);
+		binding.inputConfigRoot.setVisibility(position == 2 ? View.VISIBLE : View.GONE);
+		binding.systemPropertiesConfigRoot.setVisibility(position == 3 ? View.VISIBLE : View.GONE);
+		binding.wholeConfigRoot.scrollTo(0, 0);
 	}
 
 	@Override

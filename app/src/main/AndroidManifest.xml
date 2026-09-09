@@ -118,6 +118,7 @@
         <activity
             android:name=".config.ConfigActivity"
             android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="javax.microedition.shell.MicroActivity"
