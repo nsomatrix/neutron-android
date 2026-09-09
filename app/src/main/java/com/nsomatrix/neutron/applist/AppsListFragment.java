@@ -279,8 +279,7 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 
 		concatAdapter = new ConcatAdapter(heroAdapter, gameAdapter);
 
-		int orientation = getResources().getConfiguration().orientation;
-		int gridColumns = orientation == Configuration.ORIENTATION_LANDSCAPE ? 4 : 2;
+		int gridColumns = getResources().getInteger(R.integer.grid_columns);
 		GridLayoutManager layoutManager = new GridLayoutManager(requireContext(), gridColumns);
 		layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 			@Override

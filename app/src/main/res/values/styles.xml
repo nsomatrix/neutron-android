@@ -184,11 +184,19 @@
     <!-- Bottom Sheet Dialog Theme -->
     <style name="AppBottomSheetDialogTheme" parent="Theme.Material3.DayNight.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModalBottomSheet</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="enableEdgeToEdge">true</item>
     </style>
 
     <style name="AppModalBottomSheet" parent="Widget.Material3.BottomSheet.Modal">
         <item name="backgroundTint">@color/surface</item>
         <item name="shapeAppearance">@style/ShapeAppearance.App.BottomSheet</item>
+        <item name="android:maxWidth">640dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="paddingBottomSystemWindowInsets">false</item>
+        <item name="paddingTopSystemWindowInsets">false</item>
     </style>
 
     <style name="ShapeAppearance.App.BottomSheet" parent="ShapeAppearance.Material3.Corner.Large">

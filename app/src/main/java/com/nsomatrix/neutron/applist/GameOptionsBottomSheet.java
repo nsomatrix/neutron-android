@@ -16,15 +16,22 @@
 
 package com.nsomatrix.neutron.applist;
 
+import android.app.Dialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.nsomatrix.neutron.R;
 import com.nsomatrix.neutron.databinding.FragmentGameOptionsBottomSheetBinding;
@@ -62,6 +69,21 @@ public class GameOptionsBottomSheet extends BottomSheetDialogFragment {
 		return R.style.AppBottomSheetDialogTheme;
 	}
 
+	@Override
+	public void onStart() {
+		super.onStart();
+		Dialog dialog = getDialog();
+		if (dialog instanceof BottomSheetDialog) {
+			BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialog;
+			FrameLayout bottomSheet = bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+			if (bottomSheet != null) {
+				BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(bottomSheet);
+				behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+				behavior.setSkipCollapsed(true);
+			}
+		}
+	}
+
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -77,6 +99,19 @@ public class GameOptionsBottomSheet extends BottomSheetDialogFragment {
 			dismiss();
 			return;
 		}
+
+		// Dynamic navigation bar window insets for edge-to-edge
+		ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (v, windowInsets) -> {
+			Insets navInsets = windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars());
+			int baseBottomPadding = (int) (24 * getResources().getDisplayMetrics().density);
+			binding.sheetContentContainer.setPadding(
+					binding.sheetContentContainer.getPaddingLeft(),
+					binding.sheetContentContainer.getPaddingTop(),
+					binding.sheetContentContainer.getPaddingRight(),
+					baseBottomPadding + navInsets.bottom
+			);
+			return windowInsets;
+		});
 
 		// Setup icon
 		String iconPath = appItem.getImagePathExt();
