@@ -275,7 +275,6 @@
     <string name="filter_all">All</string>
     <string name="filter_favorites">Favorites</string>
     <string name="filter_recent">Recent</string>
-    <string name="filter_3d">3D Games</string>
     <string name="empty_library_title">Your Library is Empty</string>
     <string name="empty_library_desc">Import classic J2ME .JAR or .JAD games to start playing.</string>
     <string name="action_import_game">Import Game</string>
@@ -283,7 +282,6 @@
     <string name="action_toggle_view">Toggle View</string>
     <string name="action_favorite">Favorite</string>
     <string name="action_unfavorite">Unfavorite</string>
-    <string name="tag_3d">3D</string>
     <string name="game_options">Game Options</string>
     <string name="empty_favorites_title">No Favorites Yet</string>
     <string name="empty_favorites_desc">Tap the star on any game in your library to add it here.</string>

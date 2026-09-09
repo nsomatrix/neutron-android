@@ -105,9 +105,7 @@ import com.nsomatrix.neutron.util.AppUtils;
 import com.nsomatrix.neutron.util.Constants;
 import com.nsomatrix.neutron.util.FileUtils;
 import com.nsomatrix.neutron.util.LogUtils;
-
 import com.nsomatrix.neutron.settings.KeyMapperActivity;
-import com.nsomatrix.neutron.settings.SettingsActivity;
 
 public class AppsListFragment extends Fragment implements GameAdapter.OnGameActionListener,
 		GameOptionsBottomSheet.GameOptionsListener {

@@ -35,13 +35,8 @@
 
     <color name="text_primary">#1F2328</color>
     <color name="text_secondary">#656D76</color>
-    <color name="btn_bg_normal">#2563EB</color>
-    <color name="btn_bg_pressed">#1D4ED8</color>
     <color name="config_card">#ffffff</color>
     <color name="card_background">#ffffff</color>
-
-    <color name="badge_3d_text">#00363A</color>
-    <color name="hero_banner_bg">#ffffff</color>
 
     <color name="nnf_separator_color">@color/nnf_light_separator_color</color>
 </resources>

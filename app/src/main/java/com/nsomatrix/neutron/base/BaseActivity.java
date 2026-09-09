@@ -16,30 +16,20 @@
 
 package com.nsomatrix.neutron.base;
 
-import static com.nsomatrix.neutron.util.Constants.PREF_BLACK_BACKGROUND;
-
 import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
-
-import com.nsomatrix.neutron.R;
 
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-		if (sp.getBoolean(PREF_BLACK_BACKGROUND, false)) {
-			setTheme(R.style.ThemeOverlay_App_Dark);
-		}
+		super.onCreate(savedInstanceState);
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setElevation(getResources().getDisplayMetrics().density * 2);
 		}
-		super.onCreate(savedInstanceState);
 	}
 }
