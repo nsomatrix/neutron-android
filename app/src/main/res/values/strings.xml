@@ -180,14 +180,23 @@
     <string name="pref_theme_system">System default</string>
     <string name="pref_theme_title">Theme</string>
     <string name="pref_requires_restart_summary">Requires restart</string>
-    <string name="pref_enable_actionbar_title">Enable ActionBar</string>
-    <string name="pref_enable_actionbar_summary">In fullscreen applications</string>
-    <string name="pref_black_background_title">Black background</string>
-    <string name="pref_black_background_summary">For the dark theme</string>
-    <string name="pref_enable_statusbar_title">Enable statusbar</string>
-    <string name="pref_add_cutout_area_title">Add cutout area</string>
-    <string name="pref_wakelock_title">Keep screen on</string>
-    <string name="pref_vibration_title">Enable vibration</string>
+    <string name="pref_category_appearance">Appearance</string>
+    <string name="pref_category_display">Display &amp; Interface</string>
+    <string name="pref_category_controls">Controls &amp; Feedback</string>
+    <string name="pref_category_storage">Storage &amp; Profiles</string>
+    <string name="pref_category_advanced">Advanced &amp; Experimental</string>
+    <string name="pref_enable_actionbar_title">Action bar</string>
+    <string name="pref_enable_actionbar_summary">Show top toolbar controls during gameplay</string>
+    <string name="pref_black_background_title">Pure black background</string>
+    <string name="pref_black_background_summary">Pitch black (#000000) for OLED displays in dark mode</string>
+    <string name="pref_enable_statusbar_title">Status bar</string>
+    <string name="pref_enable_statusbar_summary">Display system status bar and clock during gameplay</string>
+    <string name="pref_add_cutout_area_title">Display cutout</string>
+    <string name="pref_add_cutout_area_summary">Extend game viewport into camera notch and display cutout</string>
+    <string name="pref_wakelock_title">Keep screen awake</string>
+    <string name="pref_wakelock_summary">Prevent display from sleeping during gameplay</string>
+    <string name="pref_vibration_title">Haptic feedback</string>
+    <string name="pref_vibration_summary">Vibrate on virtual key press and in-game events</string>
     <string name="pref_button_shape_title">Button shape</string>
     <string name="pref_button_shape_oval">Oval</string>
     <string name="pref_button_shape_rect">Rectangle</string>
@@ -199,12 +208,14 @@
     <string name="pref_map_keys">Key mappings</string>
     <string name="pref_encoding_title">Encoding</string>
     <string name="pref_default_settings">Default settings</string>
+    <string name="pref_default_settings_title">Default profile</string>
+    <string name="pref_default_settings_summary">Standard display, FPS, virtual keypad, and shader settings</string>
     <string name="pref_emulator_dir">Working directory</string>
-    <string name="pref_screenshot_summary">Disable scaling and filtering for screenshots</string>
-    <string name="pref_screenshot_title">Raw screenshot</string>
+    <string name="pref_screenshot_summary">Capture pixel-perfect game output without scaling or filters</string>
+    <string name="pref_screenshot_title">Raw screenshots</string>
     <string name="pref_category_experimental">Experimental/temporary options</string>
-    <string name="pref_mascot_summary">Show message when using</string>
-    <string name="pref_mascot_title">Detect Mascot Capsule 3D</string>
+    <string name="pref_mascot_summary">Show notification when an app initializes Mascot Capsule 3D</string>
+    <string name="pref_mascot_title">Mascot Capsule 3D detection</string>
 
     <string name="_RESOLUTION_SEPARATOR" translatable="false">x</string>
     <string name="_FONT_SEPARATOR" translatable="false">-</string>

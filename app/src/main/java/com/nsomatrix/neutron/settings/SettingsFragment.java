@@ -23,15 +23,23 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
 
+import android.view.View;
+
 import com.nononsenseapps.filepicker.Utils;
 
 import java.io.File;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import com.nsomatrix.neutron.R;
 import com.nsomatrix.neutron.config.Config;
 import com.nsomatrix.neutron.config.ProfilesActivity;
@@ -63,6 +71,21 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 		});
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
 			findPreference(PREF_ADD_CUTOUT_AREA).setVisible(true);
+		}
+	}
+
+	@Override
+	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		RecyclerView listView = getListView();
+		if (listView != null) {
+			listView.setClipToPadding(false);
+			ViewCompat.setOnApplyWindowInsetsListener(listView, (v, insets) -> {
+				Insets navBarInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars());
+				int baseBottom = (int) (16 * getResources().getDisplayMetrics().density);
+				v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), baseBottom + navBarInsets.bottom);
+				return insets;
+			});
 		}
 	}
 

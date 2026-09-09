@@ -1,5 +1,6 @@
 /*
  * Copyright 2017 Nikita Shakarun
+ * Copyright 2026 Neutron Emulator Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +18,15 @@
 package com.nsomatrix.neutron.settings;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.nsomatrix.neutron.R;
 import com.nsomatrix.neutron.base.BaseActivity;
 
@@ -30,20 +35,21 @@ public class SettingsActivity extends BaseActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 		setContentView(R.layout.activity_settings);
-		ActionBar actionBar = getSupportActionBar();
-		if (actionBar != null) {
-			actionBar.setDisplayHomeAsUpEnabled(true);
-		}
-		setTitle(R.string.action_settings);
-	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == android.R.id.home) {
-			finish();
-			return true;
+		AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
+		MaterialToolbar toolbar = findViewById(R.id.toolbar);
+		if (toolbar != null) {
+			toolbar.setNavigationOnClickListener(v -> finish());
 		}
-		return super.onOptionsItemSelected(item);
+
+		if (appBarLayout != null) {
+			ViewCompat.setOnApplyWindowInsetsListener(appBarLayout, (v, insets) -> {
+				Insets statusBarInsets = insets.getInsets(WindowInsetsCompat.Type.statusBars());
+				v.setPadding(0, statusBarInsets.top, 0, 0);
+				return insets;
+			});
+		}
 	}
 }

@@ -2,70 +2,119 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <ListPreference
-        android:defaultValue="@string/pref_theme_default"
-        android:entries="@array/pref_theme_entries"
-        android:entryValues="@array/pref_theme_values"
-        android:icon="@drawable/ic_setting_theme"
-        android:key="pref_theme"
-        app:useSimpleSummaryProvider="true"
-        android:title="@string/pref_theme_title" />
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:icon="@drawable/ic_setting_black_background"
-        android:key="pref_black_background"
-        android:summary="@string/pref_black_background_summary"
-        android:title="@string/pref_black_background_title" />
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:icon="@drawable/ic_setting_enable_action_bar"
-        android:key="pref_actionbar_switch"
-        android:summary="@string/pref_enable_actionbar_summary"
-        android:title="@string/pref_enable_actionbar_title" />
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:icon="@drawable/ic_setting_enable_statusbar"
-        android:key="pref_statusbar_switch"
-        android:summary="@string/pref_enable_actionbar_summary"
-        android:title="@string/pref_enable_statusbar_title" />
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:icon="@drawable/ic_setting_add_cutout_area"
-        android:key="pref_add_cutout_area"
-        android:title="@string/pref_add_cutout_area_title"
-        app:isPreferenceVisible="false"
-        tools:isPreferenceVisible="true" />
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:icon="@drawable/ic_setting_keep_screen_on"
-        android:key="pref_wakelock_switch"
-        android:title="@string/pref_wakelock_title" />
-    <SwitchPreferenceCompat
-        android:defaultValue="false"
-        android:icon="@drawable/ic_setting_screenshot"
-        android:key="pref_screenshot_switch"
-        android:title="@string/pref_screenshot_title"
-        android:summary="@string/pref_screenshot_summary"/>
-    <SwitchPreferenceCompat
-        android:defaultValue="true"
-        android:icon="@drawable/ic_setting_enable_vibration"
-        android:key="pref_vibration_switch"
-        android:title="@string/pref_vibration_title" />
-    <Preference
-        android:key="pref_default_settings"
-        android:icon="@drawable/ic_setting_default"
-        android:title="@string/profiles" />
-    <Preference
-        android:key="emulator_dir"
-        android:icon="@drawable/ic_setting_folder"
-        android:title="@string/pref_emulator_dir"
-        tools:summary="/sdcard/Neutron" />
-    <PreferenceCategory android:title="@string/pref_category_experimental">
+
+    <!-- Appearance -->
+    <PreferenceCategory
+        android:title="@string/pref_category_appearance"
+        app:iconSpaceReserved="false">
+
+        <ListPreference
+            android:key="pref_theme"
+            android:title="@string/pref_theme_title"
+            android:defaultValue="@string/pref_theme_default"
+            android:entries="@array/pref_theme_entries"
+            android:entryValues="@array/pref_theme_values"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:key="pref_black_background"
+            android:title="@string/pref_black_background_title"
+            android:summary="@string/pref_black_background_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <!-- Display & Interface -->
+    <PreferenceCategory
+        android:title="@string/pref_category_display"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:key="pref_statusbar_switch"
+            android:title="@string/pref_enable_statusbar_title"
+            android:summary="@string/pref_enable_statusbar_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:key="pref_actionbar_switch"
+            android:title="@string/pref_enable_actionbar_title"
+            android:summary="@string/pref_enable_actionbar_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:key="pref_add_cutout_area"
+            android:title="@string/pref_add_cutout_area_title"
+            android:summary="@string/pref_add_cutout_area_summary"
+            android:defaultValue="false"
+            app:isPreferenceVisible="false"
+            tools:isPreferenceVisible="true"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:key="pref_wakelock_switch"
+            android:title="@string/pref_wakelock_title"
+            android:summary="@string/pref_wakelock_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <!-- Controls & Feedback -->
+    <PreferenceCategory
+        android:title="@string/pref_category_controls"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:key="pref_vibration_switch"
+            android:title="@string/pref_vibration_title"
+            android:summary="@string/pref_vibration_summary"
+            android:defaultValue="true"
+            app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+            android:key="pref_screenshot_switch"
+            android:title="@string/pref_screenshot_title"
+            android:summary="@string/pref_screenshot_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <!-- Storage & Profiles -->
+    <PreferenceCategory
+        android:title="@string/pref_category_storage"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="pref_default_settings"
+            android:title="@string/pref_default_settings_title"
+            android:summary="@string/pref_default_settings_summary"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="emulator_dir"
+            android:title="@string/pref_emulator_dir"
+            tools:summary="/sdcard/Neutron"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <!-- Advanced & Experimental -->
+    <PreferenceCategory
+        android:title="@string/pref_category_advanced"
+        app:iconSpaceReserved="false">
+
         <SwitchPreferenceCompat
             android:key="micro3d_using_message"
-            app:defaultValue="false"
-            android:icon="@drawable/ic_setting_message"
             android:title="@string/pref_mascot_title"
-            android:summary="@string/pref_mascot_summary" />
+            android:summary="@string/pref_mascot_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
     </PreferenceCategory>
+
 </androidx.preference.PreferenceScreen>
