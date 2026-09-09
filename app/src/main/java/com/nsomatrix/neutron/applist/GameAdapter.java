@@ -369,10 +369,6 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 				binding.ivIcon.setImageResource(R.mipmap.ic_launcher);
 			}
 
-			// 3D Tag
-			boolean is3d = checkIs3D(item);
-			binding.tvBadge3d.setVisibility(is3d ? View.VISIBLE : View.GONE);
-
 			// Favorite Star
 			boolean favorite = isFavorite(item);
 			binding.ivFavorite.setImageResource(favorite ? R.drawable.ic_star_filled : R.drawable.ic_star_outline);
@@ -417,10 +413,6 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 			} else {
 				binding.ivIcon.setImageResource(R.mipmap.ic_launcher);
 			}
-
-			// 3D Tag
-			boolean is3d = checkIs3D(item);
-			binding.tvBadge3d.setVisibility(is3d ? View.VISIBLE : View.GONE);
 
 			// Favorite Star
 			boolean favorite = isFavorite(item);

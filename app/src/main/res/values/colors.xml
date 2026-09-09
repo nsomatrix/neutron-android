@@ -42,6 +42,7 @@
 
     <!-- Scrim and Overlays -->
     <color name="badge_3d_text">#00363A</color>
+    <color name="hero_banner_bg">#5C46E5</color>
 
     <color name="nnf_separator_color">@color/nnf_light_separator_color</color>
 </resources>

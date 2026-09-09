@@ -307,8 +307,6 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 				adapter.setActiveFilter(GameAdapter.FILTER_FAVORITES);
 			} else if (checkedId == R.id.chip_recent) {
 				adapter.setActiveFilter(GameAdapter.FILTER_RECENT);
-			} else if (checkedId == R.id.chip_3d) {
-				adapter.setActiveFilter(GameAdapter.FILTER_3D);
 			}
 			updateEmptyStateVisibility();
 		});
