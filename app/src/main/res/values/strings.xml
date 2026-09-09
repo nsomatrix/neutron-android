@@ -270,4 +270,10 @@
     <string name="action_unfavorite">Unfavorite</string>
     <string name="tag_3d">3D</string>
     <string name="game_options">Game Options</string>
+    <string name="empty_favorites_title">No Favorites Yet</string>
+    <string name="empty_favorites_desc">Tap the star on any game in your library to add it here.</string>
+    <string name="empty_recent_title">No Recent Games</string>
+    <string name="empty_recent_desc">Games you launch will appear here for quick access.</string>
+    <string name="empty_search_title">No Games Found</string>
+    <string name="empty_search_desc">No games match your search query.</string>
 </resources>

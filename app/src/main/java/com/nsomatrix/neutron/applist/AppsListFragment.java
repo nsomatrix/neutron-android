@@ -72,6 +72,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
+import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -110,7 +111,11 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 
 	private static final String TAG = AppsListFragment.class.getSimpleName();
 
-	private GameAdapter adapter;
+	private HeroHeaderAdapter heroAdapter;
+	private GameAdapter gameAdapter;
+	private ConcatAdapter concatAdapter;
+	private AppItem currentHeroItem = null;
+	private List<AppItem> currentMasterList = new ArrayList<>();
 	private Uri appUri;
 	private SharedPreferences preferences;
 	private AppRepository appRepository;
@@ -216,8 +221,9 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 					.distinctUntilChanged()
 					.observeOn(AndroidSchedulers.mainThread())
 					.subscribe(query -> {
-						if (adapter != null) {
-							adapter.setSearchQuery(query);
+						if (gameAdapter != null) {
+							gameAdapter.setSearchQuery(query);
+							updateHeroVisibility();
 							updateEmptyStateVisibility();
 						}
 					});
@@ -263,11 +269,15 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 	}
 
 	private void setupRecyclerView() {
-		adapter = new GameAdapter(this);
+		heroAdapter = new HeroHeaderAdapter(this::onGameClick);
+		gameAdapter = new GameAdapter(this);
+
 		int savedViewMode = preferences.getInt(PREF_LIBRARY_VIEW_MODE, GameAdapter.MODE_GRID);
-		adapter.setViewMode(savedViewMode);
-		adapter.setFavorites(getFavorites());
-		adapter.setRecentPaths(getRecents());
+		gameAdapter.setViewMode(savedViewMode);
+		gameAdapter.setFavorites(getFavorites());
+		gameAdapter.setRecentPaths(getRecents());
+
+		concatAdapter = new ConcatAdapter(heroAdapter, gameAdapter);
 
 		int orientation = getResources().getConfiguration().orientation;
 		int gridColumns = orientation == Configuration.ORIENTATION_LANDSCAPE ? 4 : 2;
@@ -275,14 +285,17 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 		layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 			@Override
 			public int getSpanSize(int position) {
-				if (adapter.isHeroPosition(position) || adapter.getViewMode() == GameAdapter.MODE_LIST) {
+				if (heroAdapter.getItemCount() > 0 && position == 0) {
+					return gridColumns;
+				}
+				if (gameAdapter.getViewMode() == GameAdapter.MODE_LIST) {
 					return gridColumns;
 				}
 				return 1;
 			}
 		});
 		binding.recyclerView.setLayoutManager(layoutManager);
-		binding.recyclerView.setAdapter(adapter);
+		binding.recyclerView.setAdapter(concatAdapter);
 
 		// Shrink / Extend FAB on scroll
 		binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -295,6 +308,12 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 				}
 			}
 		});
+
+		if (!currentMasterList.isEmpty()) {
+			gameAdapter.setMasterList(currentMasterList);
+			updateHeroItem();
+			updateEmptyStateVisibility();
+		}
 	}
 
 	private void setupFilterChips() {
@@ -302,14 +321,38 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 			if (checkedIds.isEmpty()) return;
 			int checkedId = checkedIds.get(0);
 			if (checkedId == R.id.chip_all) {
-				adapter.setActiveFilter(GameAdapter.FILTER_ALL);
+				gameAdapter.setActiveFilter(GameAdapter.FILTER_ALL);
 			} else if (checkedId == R.id.chip_favorites) {
-				adapter.setActiveFilter(GameAdapter.FILTER_FAVORITES);
+				gameAdapter.setActiveFilter(GameAdapter.FILTER_FAVORITES);
 			} else if (checkedId == R.id.chip_recent) {
-				adapter.setActiveFilter(GameAdapter.FILTER_RECENT);
+				gameAdapter.setActiveFilter(GameAdapter.FILTER_RECENT);
 			}
+			updateHeroVisibility();
 			updateEmptyStateVisibility();
 		});
+	}
+
+	private void updateHeroItem() {
+		currentHeroItem = null;
+		List<String> recents = getRecents();
+		if (!recents.isEmpty() && !currentMasterList.isEmpty()) {
+			String lastPath = recents.get(0);
+			for (AppItem item : currentMasterList) {
+				if (item.getPath().equals(lastPath)) {
+					currentHeroItem = item;
+					break;
+				}
+			}
+		}
+		updateHeroVisibility();
+	}
+
+	private void updateHeroVisibility() {
+		if (heroAdapter == null) return;
+		boolean shouldShow = currentHeroItem != null
+				&& (gameAdapter == null || gameAdapter.getActiveFilter() == GameAdapter.FILTER_ALL)
+				&& (gameAdapter == null || TextUtils.isEmpty(gameAdapter.getSearchQuery()));
+		heroAdapter.setHeroItem(shouldShow ? currentHeroItem : null);
 	}
 
 	private void setupEmptyStateAndFab() {
@@ -337,15 +380,16 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 	}
 
 	private void toggleViewMode() {
-		int currentMode = adapter.getViewMode();
+		if (gameAdapter == null) return;
+		int currentMode = gameAdapter.getViewMode();
 		int nextMode = (currentMode == GameAdapter.MODE_GRID) ? GameAdapter.MODE_LIST : GameAdapter.MODE_GRID;
-		adapter.setViewMode(nextMode);
+		gameAdapter.setViewMode(nextMode);
 		preferences.edit().putInt(PREF_LIBRARY_VIEW_MODE, nextMode).apply();
 	}
 
 	private void updateViewModeMenuIcon(MenuItem item) {
-		if (item == null || adapter == null) return;
-		if (adapter.getViewMode() == GameAdapter.MODE_GRID) {
+		if (item == null || gameAdapter == null) return;
+		if (gameAdapter.getViewMode() == GameAdapter.MODE_GRID) {
 			item.setIcon(R.drawable.ic_list_view);
 		} else {
 			item.setIcon(R.drawable.ic_grid_view);
@@ -373,14 +417,41 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 			recents = recents.subList(0, 10);
 		}
 		preferences.edit().putString(PREF_RECENTS, TextUtils.join(",", recents)).apply();
-		adapter.setRecentPaths(recents);
+		if (gameAdapter != null) {
+			gameAdapter.setRecentPaths(recents);
+			updateHeroItem();
+		}
 	}
 
 	private void updateEmptyStateVisibility() {
-		if (binding == null || adapter == null) return;
-		boolean isEmpty = adapter.getGameCount() == 0;
+		if (binding == null || gameAdapter == null) return;
+		boolean isEmpty = gameAdapter.getItemCount() == 0 && (heroAdapter == null || heroAdapter.getItemCount() == 0);
 		binding.layoutEmptyState.setVisibility(isEmpty ? View.VISIBLE : View.GONE);
 		binding.recyclerView.setVisibility(isEmpty ? View.GONE : View.VISIBLE);
+
+		if (isEmpty) {
+			if (gameAdapter.getMasterList().isEmpty()) {
+				binding.tvEmptyTitle.setText(R.string.empty_library_title);
+				binding.tvEmptyDesc.setText(R.string.empty_library_desc);
+				binding.btnEmptyImport.setVisibility(View.VISIBLE);
+				binding.btnEmptyFolder.setVisibility(View.VISIBLE);
+			} else if (!TextUtils.isEmpty(gameAdapter.getSearchQuery())) {
+				binding.tvEmptyTitle.setText(R.string.empty_search_title);
+				binding.tvEmptyDesc.setText(R.string.empty_search_desc);
+				binding.btnEmptyImport.setVisibility(View.GONE);
+				binding.btnEmptyFolder.setVisibility(View.GONE);
+			} else if (gameAdapter.getActiveFilter() == GameAdapter.FILTER_FAVORITES) {
+				binding.tvEmptyTitle.setText(R.string.empty_favorites_title);
+				binding.tvEmptyDesc.setText(R.string.empty_favorites_desc);
+				binding.btnEmptyImport.setVisibility(View.GONE);
+				binding.btnEmptyFolder.setVisibility(View.GONE);
+			} else if (gameAdapter.getActiveFilter() == GameAdapter.FILTER_RECENT) {
+				binding.tvEmptyTitle.setText(R.string.empty_recent_title);
+				binding.tvEmptyDesc.setText(R.string.empty_recent_desc);
+				binding.btnEmptyImport.setVisibility(View.GONE);
+				binding.btnEmptyFolder.setVisibility(View.GONE);
+			}
+		}
 	}
 
 	// GameAdapter.OnGameActionListener Callbacks
@@ -392,7 +463,7 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 
 	@Override
 	public void onGameMoreClick(AppItem item, View anchor) {
-		boolean isFavorite = adapter.isFavorite(item);
+		boolean isFavorite = gameAdapter.isFavorite(item);
 		GameOptionsBottomSheet bottomSheet = GameOptionsBottomSheet.newInstance(item, isFavorite);
 		bottomSheet.setListener(this);
 		bottomSheet.show(getParentFragmentManager(), "game_options");
@@ -413,13 +484,17 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 	public void onToggleFavorite(AppItem item) {
 		if (item == null) return;
 		Set<String> favorites = getFavorites();
-		if (favorites.contains(item.getPath())) {
-			favorites.remove(item.getPath());
-		} else {
+		boolean willBeFavorite = !favorites.contains(item.getPath());
+		if (willBeFavorite) {
 			favorites.add(item.getPath());
+		} else {
+			favorites.remove(item.getPath());
 		}
 		preferences.edit().putStringSet(PREF_FAVORITES, favorites).apply();
-		adapter.setFavorites(favorites);
+		if (gameAdapter != null) {
+			gameAdapter.notifyFavoriteToggled(item, willBeFavorite);
+			updateEmptyStateVisibility();
+		}
 	}
 
 	@Override
@@ -573,8 +648,10 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 	}
 
 	private void onDbUpdated(List<AppItem> items) {
-		if (adapter != null) {
-			adapter.setMasterList(items);
+		currentMasterList = items != null ? new ArrayList<>(items) : new ArrayList<>();
+		if (gameAdapter != null) {
+			gameAdapter.setMasterList(currentMasterList);
+			updateHeroItem();
 			updateEmptyStateVisibility();
 		}
 		if (appUri != null) {

@@ -29,7 +29,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -40,7 +39,6 @@ import java.util.Set;
 import com.nsomatrix.neutron.R;
 import com.nsomatrix.neutron.databinding.ItemGameCardGridBinding;
 import com.nsomatrix.neutron.databinding.ItemGameCardListBinding;
-import com.nsomatrix.neutron.databinding.ItemHeroContinuePlayingBinding;
 
 public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -52,8 +50,8 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 	public static final int FILTER_RECENT = 2;
 	public static final int FILTER_3D = 3;
 
-	private static final int TYPE_HERO = 0;
-	private static final int TYPE_ITEM = 1;
+	private static final int TYPE_GRID = 0;
+	private static final int TYPE_LIST = 1;
 
 	public interface OnGameActionListener {
 		void onGameClick(AppItem item);
@@ -66,8 +64,7 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 	private String searchQuery = "";
 
 	private List<AppItem> masterList = new ArrayList<>();
-	private List<AppItem> displayedList = new ArrayList<>();
-	private AppItem heroItem = null;
+	private final List<AppItem> displayedList = new ArrayList<>();
 
 	private final Set<String> favoritePaths = new HashSet<>();
 	private final List<String> recentPaths = new ArrayList<>();
@@ -85,7 +82,35 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 		if (favorites != null) {
 			favoritePaths.addAll(favorites);
 		}
-		applyFilters();
+		if (activeFilter == FILTER_FAVORITES) {
+			applyFilters(false);
+		} else {
+			notifyDataSetChanged();
+		}
+	}
+
+	public void notifyFavoriteToggled(AppItem item, boolean isFavorite) {
+		if (item == null) return;
+		if (isFavorite) {
+			favoritePaths.add(item.getPath());
+		} else {
+			favoritePaths.remove(item.getPath());
+		}
+		int pos = -1;
+		for (int i = 0; i < displayedList.size(); i++) {
+			if (displayedList.get(i).getId() == item.getId()) {
+				pos = i;
+				break;
+			}
+		}
+		if (pos != -1) {
+			if (activeFilter == FILTER_FAVORITES && !isFavorite) {
+				displayedList.remove(pos);
+				notifyItemRemoved(pos);
+			} else {
+				notifyItemChanged(pos);
+			}
+		}
 	}
 
 	public void setRecentPaths(List<String> recents) {
@@ -93,14 +118,18 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 		if (recents != null) {
 			recentPaths.addAll(recents);
 		}
-		updateHeroItem();
-		applyFilters();
+		if (activeFilter == FILTER_RECENT) {
+			applyFilters(false);
+		}
 	}
 
 	public void setMasterList(List<AppItem> items) {
 		this.masterList = items != null ? new ArrayList<>(items) : new ArrayList<>();
-		updateHeroItem();
-		applyFilters();
+		applyFilters(false);
+	}
+
+	public List<AppItem> getMasterList() {
+		return masterList;
 	}
 
 	public void setViewMode(int mode) {
@@ -117,36 +146,33 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 	public void setActiveFilter(int filter) {
 		if (this.activeFilter != filter) {
 			this.activeFilter = filter;
-			applyFilters();
+			applyFilters(false);
 		}
 	}
 
+	public int getActiveFilter() {
+		return activeFilter;
+	}
+
 	public void setSearchQuery(String query) {
-		this.searchQuery = query != null ? query.trim().toLowerCase(Locale.ROOT) : "";
-		applyFilters();
+		String newQuery = query != null ? query.trim().toLowerCase(Locale.ROOT) : "";
+		if (!this.searchQuery.equals(newQuery)) {
+			this.searchQuery = newQuery;
+			applyFilters(true);
+		}
+	}
+
+	public String getSearchQuery() {
+		return searchQuery;
 	}
 
 	public boolean isFavorite(AppItem item) {
 		return item != null && favoritePaths.contains(item.getPath());
 	}
 
-	private void updateHeroItem() {
-		heroItem = null;
-		if (!recentPaths.isEmpty()) {
-			String lastPath = recentPaths.get(0);
-			for (AppItem item : masterList) {
-				if (item.getPath().equals(lastPath)) {
-					heroItem = item;
-					break;
-				}
-			}
-		}
-	}
-
-	private void applyFilters() {
+	private void applyFilters(boolean useDiff) {
 		List<AppItem> filtered = new ArrayList<>();
 		for (AppItem item : masterList) {
-			// Category Filter
 			if (activeFilter == FILTER_FAVORITES && !favoritePaths.contains(item.getPath())) {
 				continue;
 			}
@@ -157,7 +183,6 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 				continue;
 			}
 
-			// Search Query Filter
 			if (!TextUtils.isEmpty(searchQuery)) {
 				String title = item.getTitle() != null ? item.getTitle().toLowerCase(Locale.ROOT) : "";
 				String author = item.getAuthor() != null ? item.getAuthor().toLowerCase(Locale.ROOT) : "";
@@ -169,92 +194,74 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 			filtered.add(item);
 		}
 
-		// Calculate Diff
+		if (!useDiff) {
+			displayedList.clear();
+			displayedList.addAll(filtered);
+			notifyDataSetChanged();
+			return;
+		}
+
 		final List<AppItem> oldList = new ArrayList<>(displayedList);
-		displayedList = filtered;
+		final List<AppItem> newList = filtered;
 
 		DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffUtil.Callback() {
 			@Override
 			public int getOldListSize() {
-				return oldList.size() + (hasHeroHeader() ? 1 : 0);
+				return oldList.size();
 			}
 
 			@Override
 			public int getNewListSize() {
-				return displayedList.size() + (hasHeroHeader() ? 1 : 0);
+				return newList.size();
 			}
 
 			@Override
 			public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-				if (hasHeroHeader()) {
-					if (oldItemPosition == 0 && newItemPosition == 0) return true;
-					if (oldItemPosition == 0 || newItemPosition == 0) return false;
-					return oldList.get(oldItemPosition - 1).getId() == displayedList.get(newItemPosition - 1).getId();
-				}
-				return oldList.get(oldItemPosition).getId() == displayedList.get(newItemPosition).getId();
+				return oldList.get(oldItemPosition).getId() == newList.get(newItemPosition).getId();
 			}
 
 			@Override
 			public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-				if (hasHeroHeader()) {
-					if (oldItemPosition == 0 && newItemPosition == 0) return true;
-					if (oldItemPosition == 0 || newItemPosition == 0) return false;
-					AppItem o = oldList.get(oldItemPosition - 1);
-					AppItem n = displayedList.get(newItemPosition - 1);
-					return TextUtils.equals(o.getTitle(), n.getTitle()) &&
-							TextUtils.equals(o.getAuthor(), n.getAuthor());
-				}
 				AppItem o = oldList.get(oldItemPosition);
-				AppItem n = displayedList.get(newItemPosition);
+				AppItem n = newList.get(newItemPosition);
 				return TextUtils.equals(o.getTitle(), n.getTitle()) &&
-						TextUtils.equals(o.getAuthor(), n.getAuthor());
+						TextUtils.equals(o.getAuthor(), n.getAuthor()) &&
+						TextUtils.equals(o.getVersion(), n.getVersion()) &&
+						favoritePaths.contains(o.getPath()) == favoritePaths.contains(n.getPath());
 			}
 		});
 
-		diffResult.dispatchUpdatesTo(this);
-	}
-
-	public boolean hasHeroHeader() {
-		return heroItem != null && TextUtils.isEmpty(searchQuery) && activeFilter == FILTER_ALL;
-	}
-
-	public boolean isHeroPosition(int position) {
-		return hasHeroHeader() && position == 0;
+		displayedList.clear();
+		displayedList.addAll(newList);
+		try {
+			diffResult.dispatchUpdatesTo(this);
+		} catch (Exception e) {
+			notifyDataSetChanged();
+		}
 	}
 
 	public AppItem getItemAt(int position) {
-		if (hasHeroHeader()) {
-			if (position == 0) return heroItem;
-			return displayedList.get(position - 1);
+		if (position >= 0 && position < displayedList.size()) {
+			return displayedList.get(position);
 		}
-		return displayedList.get(position);
+		return null;
 	}
 
 	@Override
 	public int getItemCount() {
-		return displayedList.size() + (hasHeroHeader() ? 1 : 0);
-	}
-
-	public int getGameCount() {
 		return displayedList.size();
 	}
 
 	@Override
 	public int getItemViewType(int position) {
-		if (isHeroPosition(position)) {
-			return TYPE_HERO;
-		}
-		return TYPE_ITEM;
+		return viewMode == MODE_GRID ? TYPE_GRID : TYPE_LIST;
 	}
 
 	@NonNull
 	@Override
 	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-		if (viewType == TYPE_HERO) {
-			ItemHeroContinuePlayingBinding binding = ItemHeroContinuePlayingBinding.inflate(inflater, parent, false);
-			return new HeroViewHolder(binding);
-		} else if (viewMode == MODE_GRID) {
+		if (viewType == TYPE_GRID) {
 			ItemGameCardGridBinding binding = ItemGameCardGridBinding.inflate(inflater, parent, false);
 			return new GridViewHolder(binding);
 		} else {
@@ -265,13 +272,11 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 	@Override
 	public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-		if (holder instanceof HeroViewHolder) {
-			((HeroViewHolder) holder).bind(heroItem);
-		} else if (holder instanceof GridViewHolder) {
-			AppItem item = getItemAt(position);
+		AppItem item = getItemAt(position);
+		if (item == null) return;
+		if (holder instanceof GridViewHolder) {
 			((GridViewHolder) holder).bind(item);
 		} else if (holder instanceof ListViewHolder) {
-			AppItem item = getItemAt(position);
 			((ListViewHolder) holder).bind(item);
 		}
 	}
@@ -315,37 +320,6 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 		is3dCache.put(item.getPath(), is3d);
 		return is3d;
-	}
-
-	// Hero View Holder
-	class HeroViewHolder extends RecyclerView.ViewHolder {
-		private final ItemHeroContinuePlayingBinding binding;
-
-		HeroViewHolder(ItemHeroContinuePlayingBinding binding) {
-			super(binding.getRoot());
-			this.binding = binding;
-		}
-
-		void bind(AppItem item) {
-			if (item == null) return;
-			binding.tvHeroTitle.setText(item.getTitle());
-			binding.tvHeroAuthor.setText(item.getAuthor());
-
-			Drawable icon = loadIcon(item);
-			if (icon != null) {
-				binding.ivHeroIcon.setImageDrawable(icon);
-			} else {
-				binding.ivHeroIcon.setImageResource(R.mipmap.ic_launcher);
-			}
-
-			binding.btnHeroPlay.setOnClickListener(v -> {
-				if (listener != null) listener.onGameClick(item);
-			});
-
-			binding.cardHero.setOnClickListener(v -> {
-				if (listener != null) listener.onGameClick(item);
-			});
-		}
 	}
 
 	// Grid Card View Holder
