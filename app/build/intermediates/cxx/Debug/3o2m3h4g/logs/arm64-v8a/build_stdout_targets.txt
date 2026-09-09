@@ -1,8 +1,0 @@
-[arm64-v8a] Compile++      : javam3g <= CSynchronization.cpp
-[arm64-v8a] Compile++      : javam3g <= m3g_android_java_api.cpp
-[arm64-v8a] Compile        : javam3g <= m3g_core.c
-[arm64-v8a] Compile++      : javam3g <= m3g_android.cpp
-[arm64-v8a] Compile++      : javam3g <= m3g_android_gl.cpp
-[arm64-v8a] SharedLibrary  : libjavam3g.so
-[arm64-v8a] Compile++      : micro3d <= utils.cpp
-[arm64-v8a] SharedLibrary  : libmicro3d.so

@@ -1,8 +1,0 @@
-[x86] Compile++      : javam3g <= CSynchronization.cpp
-[x86] Compile++      : javam3g <= m3g_android_java_api.cpp
-[x86] Compile        : javam3g <= m3g_core.c
-[x86] Compile++      : javam3g <= m3g_android.cpp
-[x86] Compile++      : javam3g <= m3g_android_gl.cpp
-[x86] SharedLibrary  : libjavam3g.so
-[x86] Compile++      : micro3d <= utils.cpp
-[x86] SharedLibrary  : libmicro3d.so
