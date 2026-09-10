@@ -45,7 +45,7 @@
     <string name="midlet_source"><b>Source: </b></string>
     <string name="midlet_vendor"><b>Vendor: </b></string>
     <string name="midlet_version"><b>Version: </b></string>
-    <string name="converting_wait">Converting JAR...</string>
+    <string name="converting_wait">Converting JAR</string>
     <string name="install">install</string>
     <string name="install_done">Application successfully installed!</string>
     <string name="install_jar_non_matched_jad">This app differs from that described in JAD.\nIgnore JAD and install anyway?</string>
@@ -55,7 +55,7 @@
     <string name="reinstall">App already installed.\n\nDo you want to reinstall it?\nAll data will be saved.</string>
     <string name="reinstall_newest">Update this app to version %1$s?\n\nCurrently installed: %2$s\nAll data will be saved.</string>
     <string name="reinstall_older">Replace this app with version %1$s?\n\nCurrently installed: %2$s\nOlder version may not working correctly with recorded data.</string>
-    <string name="loading_info">loading info…</string>
+    <string name="loading_info">Loading info</string>
 
     <string name="START_CMD">Start</string>
     <string name="CANCEL_CMD">Cancel</string>
@@ -302,8 +302,8 @@
 
     <!-- MIDlet Installer Redesign -->
     <string name="installer_title">MIDlet Installer</string>
-    <string name="installer_inspecting">Inspecting archive…</string>
-    <string name="installer_converting">Optimizing &amp; converting to DEX…</string>
+    <string name="installer_inspecting">Inspecting archive</string>
+    <string name="installer_converting">Optimizing &amp; converting to DEX</string>
     <string name="installer_ready">Ready to Play</string>
     <string name="installer_update_available">Update Available</string>
     <string name="installer_installed_version">Installed: %1$s</string>
