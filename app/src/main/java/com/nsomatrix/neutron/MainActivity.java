@@ -23,14 +23,23 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewConfiguration;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
@@ -53,6 +62,11 @@ import static com.nsomatrix.neutron.util.Constants.PREF_TOOLBAR;
 
 public class MainActivity extends BaseActivity {
 	private static final String[] STORAGE_PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+	private static final long SPLASH_DURATION = 1800L;
+
+	private final Handler splashHandler = new Handler(Looper.getMainLooper());
+	private boolean splashDismissed = false;
+	private View splashOverlay;
 
 	private final ActivityResultLauncher<String[]> permissionsLauncher = registerForActivityResult(
 			new ActivityResultContracts.RequestMultiplePermissions(),
@@ -69,6 +83,13 @@ public class MainActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 		setContentView(R.layout.activity_main);
+
+		splashOverlay = findViewById(R.id.splash_overlay);
+		if (savedInstanceState == null && splashOverlay != null) {
+			setupSplashOverlay();
+		} else if (splashOverlay != null) {
+			splashOverlay.setVisibility(View.GONE);
+		}
 		if (FileUtils.isExternalStorageLegacy()) {
 			permissionsLauncher.launch(STORAGE_PERMISSIONS);
 		}
@@ -174,5 +195,58 @@ public class MainActivity extends BaseActivity {
 		if (uri != null) {
 			InstallerDialog.newInstance(uri).show(getSupportFragmentManager(), "installer");
 		}
+	}
+
+	private void setupSplashOverlay() {
+		TextView tvVersion = splashOverlay.findViewById(R.id.tv_splash_version);
+		if (tvVersion != null) {
+			tvVersion.setText(getString(R.string.version) + " " + BuildConfig.VERSION_NAME);
+			ViewCompat.setOnApplyWindowInsetsListener(splashOverlay, (v, insets) -> {
+				Insets navInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars());
+				ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) tvVersion.getLayoutParams();
+				int baseBottom = (int) (24 * getResources().getDisplayMetrics().density);
+				lp.bottomMargin = baseBottom + navInsets.bottom;
+				tvVersion.setLayoutParams(lp);
+				return insets;
+			});
+		}
+
+		View centerContent = splashOverlay.findViewById(R.id.layout_center_content);
+		if (centerContent != null) {
+			centerContent.setAlpha(0f);
+			centerContent.setScaleX(0.92f);
+			centerContent.setScaleY(0.92f);
+			centerContent.animate()
+					.alpha(1f)
+					.scaleX(1f)
+					.scaleY(1f)
+					.setDuration(350)
+					.setInterpolator(new DecelerateInterpolator())
+					.start();
+		}
+
+		splashOverlay.setOnClickListener(v -> dismissSplashOverlay());
+		splashHandler.postDelayed(this::dismissSplashOverlay, SPLASH_DURATION);
+	}
+
+	private void dismissSplashOverlay() {
+		if (splashDismissed || isFinishing() || splashOverlay == null) return;
+		splashDismissed = true;
+		splashHandler.removeCallbacksAndMessages(null);
+		splashOverlay.animate()
+				.alpha(0f)
+				.setDuration(400)
+				.withEndAction(() -> {
+					if (splashOverlay != null) {
+						splashOverlay.setVisibility(View.GONE);
+					}
+				})
+				.start();
+	}
+
+	@Override
+	protected void onDestroy() {
+		splashHandler.removeCallbacksAndMessages(null);
+		super.onDestroy();
 	}
 }

@@ -181,6 +181,7 @@ dependencies {
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.airbnb.android:lottie:6.4.0'
 
     // Networking && APIs
     implementation 'com.google.code.gson:gson:2.9.0'
