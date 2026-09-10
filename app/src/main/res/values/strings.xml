@@ -299,4 +299,20 @@
     <string name="quick_action_key_mapper">Controls</string>
     <string name="quick_action_settings">Settings</string>
     <string name="library_section_title">Library</string>
+
+    <!-- MIDlet Installer Redesign -->
+    <string name="installer_title">MIDlet Installer</string>
+    <string name="installer_inspecting">Inspecting archive…</string>
+    <string name="installer_converting">Optimizing &amp; converting to DEX…</string>
+    <string name="installer_ready">Ready to Play</string>
+    <string name="installer_update_available">Update Available</string>
+    <string name="installer_installed_version">Installed: %1$s</string>
+    <string name="installer_new_version">New: %1$s</string>
+    <string name="installer_btn_install">Install Game</string>
+    <string name="installer_btn_update">Update Game</string>
+    <string name="installer_btn_select_jar">Select JAR Archive</string>
+    <string name="installer_btn_play">Play Now</string>
+    <string name="installer_btn_launch_current">Launch Existing</string>
+    <string name="installer_success_desc">Game was successfully installed into your library.</string>
+    <string name="installer_need_jar_desc">This JAD descriptor requires a companion JAR file to complete installation.</string>
 </resources>
