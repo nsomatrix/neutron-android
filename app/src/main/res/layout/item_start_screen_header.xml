@@ -68,7 +68,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="14dp"
-                    android:layout_marginEnd="10dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -76,11 +75,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
-                        android:maxLines="1"
+                        android:maxLines="2"
                         android:textColor="@color/text_primary"
-                        android:textSize="16sp"
+                        android:textSize="17sp"
                         android:textStyle="bold"
-                        tools:text="Nso 148_sk" />
+                        tools:text="Neutron Emulator" />
 
                     <TextView
                         android:id="@+id/tv_hero_subtitle"
@@ -88,27 +87,30 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:ellipsize="end"
-                        android:maxLines="1"
+                        android:maxLines="3"
+                        android:lineSpacingMultiplier="1.15"
                         android:textColor="@color/text_secondary"
                         android:textSize="13sp"
-                        tools:text="Enterprise J2ME Engine" />
+                        tools:text="High-performance midlet runtime with Mascot Capsule 3D" />
 
                 </LinearLayout>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_hero_play"
-                    style="@style/Widget.Material3.Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="44dp"
-                    android:textColor="@color/on_primary"
-                    android:textStyle="bold"
-                    app:backgroundTint="@color/primary"
-                    app:cornerRadius="12dp"
-                    app:icon="@drawable/ic_play_arrow"
-                    app:iconTint="@color/on_primary"
-                    android:text="@string/play_now" />
-
             </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_hero_play"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginTop="14dp"
+                android:textColor="@color/on_primary"
+                android:textStyle="bold"
+                app:backgroundTint="@color/primary"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/ic_play_arrow"
+                app:iconGravity="textStart"
+                app:iconTint="@color/on_primary"
+                android:text="@string/play_now" />
 
         </LinearLayout>
 

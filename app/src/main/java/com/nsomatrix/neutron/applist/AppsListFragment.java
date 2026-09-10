@@ -41,8 +41,10 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -90,6 +92,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import com.nsomatrix.neutron.R;
 import com.nsomatrix.neutron.appsdb.AppRepository;
 import com.nsomatrix.neutron.config.Config;
@@ -166,6 +169,7 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 		setupRecyclerView();
 		setupFilterChips();
 		setupEmptyStateAndFab();
+		setupSwipeRefresh();
 	}
 
 	private void setupWindowInsets() {
@@ -283,12 +287,15 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 
 			@Override
 			public void onQuickActionStorage() {
-				startActivity(new Intent(requireActivity(), SettingsActivity.class));
+				openEmulatorFolder();
 			}
 
 			@Override
 			public void onQuickActionKeyMapper() {
-				startActivity(new Intent(requireActivity(), KeyMapperActivity.class));
+				Intent intent = new Intent(requireActivity(), KeyMapperActivity.class);
+				File defDir = new File(Config.getProfilesDir(), "default");
+				intent.setData(Uri.fromFile(defDir));
+				startActivity(intent);
 			}
 
 			@Override
@@ -322,14 +329,14 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 		binding.recyclerView.setLayoutManager(layoutManager);
 		binding.recyclerView.setAdapter(concatAdapter);
 
-		// Shrink / Extend FAB on scroll
+		// Hide / Show FAB on scroll
 		binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 			@Override
 			public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-				if (dy > 8 && binding.floatingActionButton.isExtended()) {
-					binding.floatingActionButton.shrink();
-				} else if (dy < -8 && !binding.floatingActionButton.isExtended()) {
-					binding.floatingActionButton.extend();
+				if (dy > 8 && binding.floatingActionButton.isShown()) {
+					binding.floatingActionButton.hide();
+				} else if (dy < -8 && !binding.floatingActionButton.isShown()) {
+					binding.floatingActionButton.show();
 				}
 			}
 		});
@@ -385,9 +392,7 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 	private void setupEmptyStateAndFab() {
 		binding.floatingActionButton.setOnClickListener(v -> launchFilePicker());
 		binding.btnEmptyImport.setOnClickListener(v -> launchFilePicker());
-		binding.btnEmptyFolder.setOnClickListener(v -> {
-			startActivity(new Intent(requireActivity(), SettingsActivity.class));
-		});
+		binding.btnEmptyFolder.setOnClickListener(v -> openEmulatorFolder());
 	}
 
 	private void launchFilePicker() {
@@ -676,7 +681,82 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 		InstallerDialog.newInstance(uri).show(getParentFragmentManager(), "installer");
 	}
 
+	private void setupSwipeRefresh() {
+		binding.swipeRefreshLayout.setColorSchemeResources(R.color.primary, R.color.accent);
+		binding.swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.surface);
+		binding.swipeRefreshLayout.setOnRefreshListener(this::refreshApps);
+	}
+
+	private void refreshApps() {
+		if (appRepository == null) {
+			if (binding != null) {
+				binding.swipeRefreshLayout.setRefreshing(false);
+			}
+			return;
+		}
+		Schedulers.io().scheduleDirect(() -> {
+			try {
+				AppUtils.updateDb(appRepository, new ArrayList<>(currentMasterList));
+			} catch (Exception e) {
+				Log.e(TAG, "Error updating db on refresh", e);
+			}
+			if (binding != null) {
+				binding.swipeRefreshLayout.postDelayed(() -> {
+					if (binding != null && binding.swipeRefreshLayout.isRefreshing()) {
+						binding.swipeRefreshLayout.setRefreshing(false);
+					}
+				}, 600);
+			}
+		});
+	}
+
+	private void openEmulatorFolder() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			try {
+				startActivity(getFileManagerIntentOnDocumentProvider(Intent.ACTION_VIEW));
+				return;
+			} catch (ActivityNotFoundException ignored) {}
+
+			try {
+				startActivity(getFileManagerIntentOnDocumentProvider("android.provider.action.BROWSE"));
+				return;
+			} catch (ActivityNotFoundException ignored) {}
+
+			try {
+				startActivity(getFileManagerIntent("com.google.android.documentsui"));
+				return;
+			} catch (ActivityNotFoundException ignored) {}
+
+			try {
+				startActivity(getFileManagerIntent("com.android.documentsui"));
+				return;
+			} catch (ActivityNotFoundException ignored) {}
+		}
+		startActivity(new Intent(requireActivity(), SettingsActivity.class));
+	}
+
+	private Intent getFileManagerIntent(String packageName) {
+		Intent intent = new Intent(Intent.ACTION_MAIN);
+		intent.setClassName(packageName, "com.android.documentsui.files.FilesActivity");
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		return intent;
+	}
+
+	private Intent getFileManagerIntentOnDocumentProvider(String action) {
+		String authority = requireContext().getPackageName() + ".documentProvider";
+		String root = new File(Config.getEmulatorDir()).getAbsolutePath();
+		Intent intent = new Intent(action);
+		intent.addCategory(Intent.CATEGORY_DEFAULT);
+		intent.setData(DocumentsContract.buildRootUri(authority, root));
+		intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+				| Intent.FLAG_GRANT_PREFIX_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+		return intent;
+	}
+
 	private void onDbUpdated(List<AppItem> items) {
+		if (binding != null && binding.swipeRefreshLayout.isRefreshing()) {
+			binding.swipeRefreshLayout.setRefreshing(false);
+		}
 		currentMasterList = items != null ? new ArrayList<>(items) : new ArrayList<>();
 		if (gameAdapter != null) {
 			gameAdapter.setMasterList(currentMasterList);

@@ -71,93 +71,99 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Main Content Container -->
-    <FrameLayout
+    <!-- Main Content Container with Swipe Refresh -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!-- High-Performance Game Grid / List -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="96dp"
-            tools:listitem="@layout/item_game_card_grid" />
+            android:layout_height="match_parent">
 
-        <!-- Empty State View -->
-        <LinearLayout
-            android:id="@+id/layout_empty_state"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="32dp"
-            android:visibility="gone"
-            tools:visibility="visible">
+            <!-- High-Performance Game Grid / List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="96dp"
+                tools:listitem="@layout/item_game_card_grid" />
 
-            <ImageView
-                android:layout_width="88dp"
-                android:layout_height="88dp"
-                android:src="@drawable/ic_sports_esports"
-                app:tint="@color/primary" />
-
-            <TextView
-                android:id="@+id/tv_empty_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/empty_library_title"
-                android:textColor="@color/text_primary"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_empty_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+            <!-- Empty State View -->
+            <LinearLayout
+                android:id="@+id/layout_empty_state"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@string/empty_library_desc"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp" />
+                android:orientation="vertical"
+                android:padding="32dp"
+                android:visibility="gone"
+                tools:visibility="visible">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_empty_import"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/action_import_game"
-                app:cornerRadius="14dp"
-                app:icon="@drawable/ic_add_white" />
+                <ImageView
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:src="@drawable/ic_sports_esports"
+                    app:tint="@color/primary" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_empty_folder"
-                style="@style/Widget.Material3.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/action_choose_folder" />
+                <TextView
+                    android:id="@+id/tv_empty_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/empty_library_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_empty_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="@string/empty_library_desc"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
 
-    </FrameLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_empty_import"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/action_import_game"
+                    app:cornerRadius="14dp"
+                    app:icon="@drawable/ic_add_white" />
 
-    <!-- Floating Action Button -->
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_empty_folder"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/action_choose_folder" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <!-- Floating Action Button (+ Only) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="20dp"
-        android:text="@string/add"
-        android:textColor="@color/on_primary"
+        android:contentDescription="@string/add"
         app:backgroundTint="@color/primary"
-        app:icon="@drawable/ic_add_white"
-        app:iconTint="@color/on_primary" />
+        app:srcCompat="@drawable/ic_add_white"
+        app:tint="@color/on_primary" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

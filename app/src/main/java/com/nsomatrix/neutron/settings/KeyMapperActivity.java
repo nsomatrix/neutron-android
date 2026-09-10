@@ -19,7 +19,9 @@ package com.nsomatrix.neutron.settings;
 
 import android.content.Intent;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
+import com.nsomatrix.neutron.config.Config;
 import android.util.SparseIntArray;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -66,11 +68,15 @@ public class KeyMapperActivity extends BaseActivity implements View.OnClickListe
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
-		String path = intent.getDataString();
-		if (path == null) {
-			Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-			finish();
-			return;
+		Uri data = intent.getData();
+		File configDir;
+		if (data != null && data.getPath() != null) {
+			configDir = new File(data.getPath());
+		} else {
+			configDir = new File(Config.getProfilesDir(), "default");
+		}
+		if (!configDir.exists()) {
+			configDir.mkdirs();
 		}
 
 		binding = ActivityKeymapperBinding.inflate(getLayoutInflater());
@@ -82,7 +88,10 @@ public class KeyMapperActivity extends BaseActivity implements View.OnClickListe
 			actionBar.setDisplayHomeAsUpEnabled(true);
 			actionBar.setTitle(R.string.pref_map_keys);
 		}
-		params = ProfilesManager.loadConfig(new File(path));
+		params = ProfilesManager.loadConfig(configDir);
+		if (params == null) {
+			params = new ProfileModel(configDir);
+		}
 
 		virtualKeyboardMappingsList = new ArrayList<>();
 		addVirtualKeyboardMapping(binding.virtualKeyLeftSoft, Canvas.KEY_SOFT_LEFT);
