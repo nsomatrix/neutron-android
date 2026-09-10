@@ -1,7 +1,6 @@
-# javax.annotation
--dontwarn javax.annotation.processing.AbstractProcessor
--dontwarn javax.annotation.processing.SupportedOptions
--dontwarn javax.annotation.processing.Processor
+# javax.annotation & Okio
+-dontwarn javax.annotation.**
+-dontwarn okio.**
 
 # Gson
 ### The following rules are needed for R8 in "full mode" which only adheres to `-keepattribtues` if
