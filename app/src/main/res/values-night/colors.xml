@@ -34,5 +34,15 @@
     <color name="config_card">#161B22</color>
     <color name="card_background">#161B22</color>
 
+    <!-- Virtual Keyboard Colors (Dark Theme) -->
+    <color name="vk_bg">@color/surface_container</color>
+    <color name="vk_fg">@color/text_primary</color>
+    <color name="vk_fg_secondary">@color/text_secondary</color>
+    <color name="vk_bg_selected">@color/surface_container_high</color>
+    <color name="vk_fg_selected">@color/text_primary</color>
+    <color name="vk_outline">@color/outline_variant</color>
+    <color name="vk_deck_bg">@color/background</color>
+    <color name="vk_deck_divider">@color/outline_variant</color>
+
     <color name="nnf_separator_color">@color/nnf_dark_separator_color</color>
 </resources>

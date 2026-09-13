@@ -18,7 +18,9 @@
 
 package javax.microedition.lcdui;
 
+import android.content.Context;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 
 import javax.microedition.lcdui.event.Event;
 import javax.microedition.lcdui.event.EventQueue;
@@ -26,6 +28,7 @@ import javax.microedition.lcdui.event.RunnableEvent;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.util.ContextHolder;
 
+import com.nsomatrix.neutron.R;
 import com.nsomatrix.neutron.jar.Descriptor;
 
 @SuppressWarnings("unused")
@@ -43,12 +46,12 @@ public class Display {
 
 	private static final int[] COLORS =
 			{
-					0xFFD0D0D0,
-					0xFF000080,
-					0xFF000080,
-					0xFFFFFFFF,
-					0xFFFFFFFF,
-					0xFF000080
+					0xFFF6F8FA,
+					0xFF1F2328,
+					0xFFE5E9EF,
+					0xFF1F2328,
+					0xFFD0D7DE,
+					0xFF8C959F
 			};
 
 	private static Display instance;
@@ -78,6 +81,15 @@ public class Display {
 
 	public static void initDisplay() {
 		instance = null;
+		Context ctx = ContextHolder.getAppContext();
+		if (ctx != null) {
+			COLORS[COLOR_BACKGROUND] = ContextCompat.getColor(ctx, R.color.background);
+			COLORS[COLOR_FOREGROUND] = ContextCompat.getColor(ctx, R.color.text_primary);
+			COLORS[COLOR_HIGHLIGHTED_BACKGROUND] = ContextCompat.getColor(ctx, R.color.surface_container_high);
+			COLORS[COLOR_HIGHLIGHTED_FOREGROUND] = ContextCompat.getColor(ctx, R.color.text_primary);
+			COLORS[COLOR_BORDER] = ContextCompat.getColor(ctx, R.color.outline_variant);
+			COLORS[COLOR_HIGHLIGHTED_BORDER] = ContextCompat.getColor(ctx, R.color.outline);
+		}
 	}
 
 	public static void postEvent(Event event) {

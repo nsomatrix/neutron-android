@@ -30,6 +30,8 @@ import android.view.KeyEvent;
 
 import androidx.core.content.ContextCompat;
 
+import com.nsomatrix.neutron.R;
+
 import org.acra.ACRA;
 import org.acra.ErrorReporter;
 
@@ -262,7 +264,11 @@ public class MicroLoader {
 			int screenWidth = params.screenWidth;
 			int screenHeight = params.screenHeight;
 			Displayable.setVirtualSize(screenWidth, screenHeight);
-			Canvas.setBackgroundColor(params.screenBackgroundColor);
+			int screenBgColor = params.screenBackgroundColor;
+			if (params.useThemeColors && context != null) {
+				screenBgColor = ContextCompat.getColor(context, R.color.background);
+			}
+			Canvas.setBackgroundColor(screenBgColor);
 			Canvas.setScale(params.screenGravity, params.screenScaleType, params.screenScaleRatio);
 			Canvas.setFilterBitmap(params.screenFilter);
 			EventQueue.setImmediate(params.immediateMode);
@@ -282,6 +288,17 @@ public class MicroLoader {
 			Canvas.setHasTouchInput(params.touchInput);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	void updateThemeColors() {
+		if (params != null && params.useThemeColors && context != null) {
+			int screenBgColor = ContextCompat.getColor(context, R.color.background);
+			Canvas.setBackgroundColor(screenBgColor);
+		}
+		VirtualKeyboard vk = ContextHolder.getVk();
+		if (vk != null) {
+			vk.resetKeyColor();
 		}
 	}
 

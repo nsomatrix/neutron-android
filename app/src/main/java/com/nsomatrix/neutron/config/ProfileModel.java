@@ -18,6 +18,9 @@ package com.nsomatrix.neutron.config;
 
 import android.util.SparseIntArray;
 
+import android.content.Context;
+import androidx.core.content.ContextCompat;
+
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 
@@ -26,10 +29,11 @@ import java.io.File;
 import javax.microedition.lcdui.keyboard.VirtualKeyboard;
 import javax.microedition.util.ContextHolder;
 
+import com.nsomatrix.neutron.R;
 import com.nsomatrix.neutron.util.SparseIntArrayAdapter;
 
 public class ProfileModel {
-	public static final int VERSION = 3;
+	public static final int VERSION = 4;
 	/** True if this is a new profile (not yet saved to file) */
 	public final transient boolean isNew;
 
@@ -131,6 +135,9 @@ public class ProfileModel {
 	@SerializedName("VirtualKeyboardDelay")
 	public int vkHideDelay;
 
+	@SerializedName("UseThemeColors")
+	public boolean useThemeColors = true;
+
 	@SerializedName("VirtualKeyboardColorBackground")
 	public int vkBgColor;
 
@@ -163,6 +170,7 @@ public class ProfileModel {
 	@SuppressWarnings("unused") // Gson uses default constructor if present
 	public ProfileModel() {
 		isNew = false;
+		useThemeColors = true;
 	}
 
 	public ProfileModel(File dir) {
@@ -171,7 +179,6 @@ public class ProfileModel {
 		version = VERSION;
 		screenWidth = 240;
 		screenHeight = 320;
-		screenBackgroundColor = 0xD0D0D0;
 		screenScaleType = 1;
 		screenGravity = 1;
 		screenScaleRatio = 100;
@@ -190,11 +197,22 @@ public class ProfileModel {
 		vkButtonShape = VirtualKeyboard.ROUND_RECT_SHAPE;
 		vkAlpha = 64;
 
-		vkBgColor = 0xD0D0D0;
-		vkFgColor = 0x000080;
-		vkBgColorSelected = 0x000080;
-		vkFgColorSelected = 0xFFFFFF;
-		vkOutlineColor = 0xFFFFFF;
+		Context context = ContextHolder.getAppContext();
+		if (context != null) {
+			screenBackgroundColor = ContextCompat.getColor(context, R.color.background) & 0x00FFFFFF;
+			vkBgColor = ContextCompat.getColor(context, R.color.vk_bg) & 0x00FFFFFF;
+			vkFgColor = ContextCompat.getColor(context, R.color.vk_fg) & 0x00FFFFFF;
+			vkBgColorSelected = ContextCompat.getColor(context, R.color.vk_bg_selected) & 0x00FFFFFF;
+			vkFgColorSelected = ContextCompat.getColor(context, R.color.vk_fg_selected) & 0x00FFFFFF;
+			vkOutlineColor = ContextCompat.getColor(context, R.color.vk_outline) & 0x00FFFFFF;
+		} else {
+			screenBackgroundColor = 0xF6F8FA;
+			vkBgColor = 0xFFFFFF;
+			vkFgColor = 0x1F2328;
+			vkBgColorSelected = 0xE5E9EF;
+			vkFgColorSelected = 0x1F2328;
+			vkOutlineColor = 0xD0D7DE;
+		}
 		systemProperties = ContextHolder.getAssetAsString("defaults/system.props");
 	}
 }

@@ -642,6 +642,10 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 		int vkHideDelay = params.vkHideDelay;
 		binding.virtualKeyboardHideDelay.setText(vkHideDelay > 0 ? Integer.toString(vkHideDelay) : "");
 
+		binding.keyboardUseThemeColorsToggle.setChecked(params.useThemeColors);
+		updateThemeColorsState(params.useThemeColors);
+		binding.keyboardUseThemeColorsToggle.setOnCheckedChangeListener((btn, isChecked) -> updateThemeColorsState(isChecked));
+
 		binding.keyboardNotPressedButtonBackgroundColorHex.setText(String.format("%06X", params.vkBgColor));
 		binding.keyboardNotPressedButtonLabelColorHex.setText(String.format("%06X", params.vkFgColor));
 		binding.keyboardPressedButtonBackgroundColorHex.setText(String.format("%06X", params.vkBgColorSelected));
@@ -653,6 +657,32 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 			systemProperties = ContextHolder.getAssetAsString("defaults/system.props");
 		}
 		binding.systemProperties.setText(systemProperties);
+	}
+
+	private void updateThemeColorsState(boolean useThemeColors) {
+		float alpha = useThemeColors ? 0.45f : 1.0f;
+		boolean enabled = !useThemeColors;
+		binding.updateKeyboardNotPressedButtonLabelColor.setEnabled(enabled);
+		binding.keyboardNotPressedButtonLabelColorHex.setEnabled(enabled);
+		binding.updateKeyboardNotPressedButtonBackgroundColor.setEnabled(enabled);
+		binding.keyboardNotPressedButtonBackgroundColorHex.setEnabled(enabled);
+		binding.updateKeyboardPressedButtonLabelColor.setEnabled(enabled);
+		binding.keyboardPressedButtonLabelColorHex.setEnabled(enabled);
+		binding.updateKeyboardPressedButtonBackgroundColor.setEnabled(enabled);
+		binding.keyboardPressedButtonBackgroundColorHex.setEnabled(enabled);
+		binding.updateKeyboardOutlineColor.setEnabled(enabled);
+		binding.keyboardOutlineColorHex.setEnabled(enabled);
+
+		binding.updateKeyboardNotPressedButtonLabelColor.setAlpha(alpha);
+		binding.keyboardNotPressedButtonLabelColorHex.setAlpha(alpha);
+		binding.updateKeyboardNotPressedButtonBackgroundColor.setAlpha(alpha);
+		binding.keyboardNotPressedButtonBackgroundColorHex.setAlpha(alpha);
+		binding.updateKeyboardPressedButtonLabelColor.setAlpha(alpha);
+		binding.keyboardPressedButtonLabelColorHex.setAlpha(alpha);
+		binding.updateKeyboardPressedButtonBackgroundColor.setAlpha(alpha);
+		binding.keyboardPressedButtonBackgroundColorHex.setAlpha(alpha);
+		binding.updateKeyboardOutlineColor.setAlpha(alpha);
+		binding.keyboardOutlineColorHex.setAlpha(alpha);
 	}
 
 	private void saveParams() {
@@ -715,6 +745,7 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 			params.vkButtonShape = binding.buttonShapeSelector.getSelectedItemPosition();
 			params.vkAlpha = binding.changeOpacitySeekbar.getProgress();
 			params.vkHideDelay = parseInt(binding.virtualKeyboardHideDelay.getText().toString());
+			params.useThemeColors = binding.keyboardUseThemeColorsToggle.isChecked();
 			try {
 				params.vkBgColor = Integer.parseInt(
 						binding.keyboardNotPressedButtonBackgroundColorHex.getText().toString(), 16);

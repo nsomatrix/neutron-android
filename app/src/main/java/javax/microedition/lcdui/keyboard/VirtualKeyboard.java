@@ -20,15 +20,20 @@ package javax.microedition.lcdui.keyboard;
 import static javax.microedition.lcdui.keyboard.KeyMapper.SE_KEY_SPECIAL_GAMING_A;
 import static javax.microedition.lcdui.keyboard.KeyMapper.SE_KEY_SPECIAL_GAMING_B;
 
+import android.content.Context;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 import android.util.SparseBooleanArray;
+import android.util.TypedValue;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+
+import com.nsomatrix.neutron.R;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -173,6 +178,26 @@ public class VirtualKeyboard implements Overlay, Runnable {
 	private final File saveFile;
 	private final ProfileModel settings;
 	private final RectF virtualScreen = new RectF();
+	private final RectF deckRect = new RectF();
+
+	private Context getContext() {
+		if (overlayView != null && overlayView.getContext() != null) {
+			return overlayView.getContext();
+		}
+		MicroActivity activity = ContextHolder.getActivity();
+		if (activity != null) {
+			return activity;
+		}
+		return ContextHolder.getAppContext();
+	}
+
+	private float dpToPx(float dp) {
+		Context ctx = getContext();
+		if (ctx != null) {
+			return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, ctx.getResources().getDisplayMetrics());
+		}
+		return dp * 2.0f;
+	}
 
 	private Canvas target;
 	private View overlayView;
@@ -183,6 +208,17 @@ public class VirtualKeyboard implements Overlay, Runnable {
 	private float offsetX;
 	private float offsetY;
 	private float prevScaleX;
+
+	private void invalidateOverlay() {
+		View view = overlayView;
+		if (view != null) {
+			view.postInvalidate();
+		}
+	}
+
+	public void resetKeyColor() {
+		invalidateOverlay();
+	}
 	private float prevScaleY;
 	private RectF screen;
 	private float keySize =
@@ -507,7 +543,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 			resizeKeyGroup(group);
 		}
 		snapKeys();
-		overlayView.postInvalidate();
+		invalidateOverlay();
 		if (target != null && target.isShown()) {
 			target.updateSize();
 		}
@@ -725,7 +761,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 		for (int i = 0; i < KEYBOARD_SIZE; i++) {
 			keypad[i].visible = !states[i];
 		}
-		overlayView.postInvalidate();
+		invalidateOverlay();
 	}
 
 	@Override
@@ -834,7 +870,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 		highlightGroup(group);
 		handler.removeCallbacks(this);
 		visible = true;
-		overlayView.postInvalidate();
+		invalidateOverlay();
 		hide();
 	}
 
@@ -870,7 +906,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 			resizeKeyGroup(group);
 		}
 		snapKeys();
-		overlayView.postInvalidate();
+		invalidateOverlay();
 		int delay = settings.vkHideDelay;
 		if (delay > 0 && obscuresVirtualScreen && layoutEditMode == LAYOUT_EOF) {
 			for (VirtualKey key : associatedKeys) {
@@ -907,6 +943,26 @@ public class VirtualKeyboard implements Overlay, Runnable {
 	@Override
 	public void paint(CanvasWrapper g) {
 		if (visible) {
+			if (isPhone() && screen != null && virtualScreen.bottom < screen.bottom) {
+				Context ctx = getContext();
+				int deckBg;
+				int dividerColor;
+				if (settings.useThemeColors && ctx != null) {
+					deckBg = ContextCompat.getColor(ctx, R.color.vk_deck_bg);
+					dividerColor = ContextCompat.getColor(ctx, R.color.vk_deck_divider);
+				} else {
+					deckBg = settings.screenBackgroundColor;
+					dividerColor = settings.vkOutlineColor;
+				}
+
+				deckRect.set(screen.left, virtualScreen.bottom, screen.right, screen.bottom);
+				g.setFillColor(0xFF000000 | (deckBg & 0x00FFFFFF));
+				g.fillRect(deckRect);
+
+				g.setDrawColor(0xFF000000 | (dividerColor & 0x00FFFFFF));
+				g.drawLine(screen.left, virtualScreen.bottom, screen.right, virtualScreen.bottom);
+			}
+
 			for (VirtualKey key : keypad) {
 				if (key.visible) {
 					key.paint(g);
@@ -927,7 +983,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 						vibrate();
 						associatedKeys[pointer] = key;
 						key.onDown();
-						overlayView.postInvalidate();
+						invalidateOverlay();
 						break;
 					}
 				}
@@ -956,7 +1012,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 				if (index >= 0) {
 					editedIndex = index;
 					highlightGroup(index);
-					overlayView.postInvalidate();
+					invalidateOverlay();
 				}
 				offsetX = x;
 				offsetY = y;
@@ -980,7 +1036,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 				} else if (!aKey.contains(x, y)) {
 					associatedKeys[pointer] = null;
 					aKey.onUp();
-					overlayView.postInvalidate();
+					invalidateOverlay();
 					pointerPressed(pointer, x, y);
 				}
 				break;
@@ -1006,7 +1062,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 						}
 					}
 					snapKey(editedIndex, 0);
-					overlayView.postInvalidate();
+					invalidateOverlay();
 				}
 				break;
 			case LAYOUT_SCALES:
@@ -1033,7 +1089,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 				keyScales[index] = scale;
 				resizeKeyGroup(this.editedIndex);
 				snapKeys();
-				overlayView.postInvalidate();
+				invalidateOverlay();
 				break;
 		}
 		return false;
@@ -1049,7 +1105,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 			if (key != null) {
 				associatedKeys[pointer] = null;
 				key.onUp();
-				overlayView.postInvalidate();
+				invalidateOverlay();
 			}
 		} else if (layoutEditMode == LAYOUT_KEYS) {
 			for (int key = 0; key < keypad.length; key++) {
@@ -1086,7 +1142,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 			handler.removeCallbacks(this);
 			if (!visible) {
 				visible = true;
-				overlayView.postInvalidate();
+				invalidateOverlay();
 			}
 		}
 	}
@@ -1110,7 +1166,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 	@Override
 	public void run() {
 		visible = false;
-		overlayView.postInvalidate();
+		invalidateOverlay();
 	}
 
 	@Override
@@ -1119,7 +1175,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 		for (VirtualKey key : keypad) {
 			if (key.hashCode() == hashCode) {
 				key.selected = true;
-				overlayView.postInvalidate();
+				invalidateOverlay();
 				break;
 			}
 		}
@@ -1137,7 +1193,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 		for (VirtualKey key : keypad) {
 			if (key.hashCode() == hashCode) {
 				key.selected = false;
-				overlayView.postInvalidate();
+				invalidateOverlay();
 				break;
 			}
 		}
@@ -1150,6 +1206,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 
 	public void setView(View view) {
 		overlayView = view;
+		invalidateOverlay();
 	}
 
 	public int getKeyStatesVodafone() {
@@ -1206,6 +1263,7 @@ public class VirtualKeyboard implements Overlay, Runnable {
 		final String label;
 		final int keyCode;
 		final RectF rect = new RectF();
+		final RectF drawRect = new RectF();
 		final PointF snapOffset = new PointF();
 		int snapOrigin;
 		int snapMode;
@@ -1233,35 +1291,54 @@ public class VirtualKeyboard implements Overlay, Runnable {
 		}
 
 		void paint(CanvasWrapper g) {
+			Context ctx = getContext();
 			int bgColor;
 			int fgColor;
-			if (selected) {
-				bgColor = settings.vkBgColorSelected;
-				fgColor = settings.vkFgColorSelected;
+			int outlineColor;
+
+			if (settings.useThemeColors && ctx != null) {
+				if (selected) {
+					bgColor = ContextCompat.getColor(ctx, R.color.vk_bg_selected);
+					fgColor = ContextCompat.getColor(ctx, R.color.vk_fg_selected);
+				} else {
+					bgColor = ContextCompat.getColor(ctx, R.color.vk_bg);
+					fgColor = ContextCompat.getColor(ctx, R.color.vk_fg);
+				}
+				outlineColor = ContextCompat.getColor(ctx, R.color.vk_outline);
 			} else {
-				bgColor = settings.vkBgColor;
-				fgColor = settings.vkFgColor;
+				bgColor = selected ? settings.vkBgColorSelected : settings.vkBgColor;
+				fgColor = selected ? settings.vkFgColorSelected : settings.vkFgColor;
+				outlineColor = settings.vkOutlineColor;
 			}
-			int alpha = (opaque || layoutEditMode != LAYOUT_EOF ? 0xFF : settings.vkAlpha) << 24;
-			g.setFillColor(alpha | bgColor);
-			g.setTextColor(alpha | fgColor);
-			g.setDrawColor(alpha | settings.vkOutlineColor);
+
+			int alpha = (opaque || layoutEditMode != LAYOUT_EOF ? 0xFF : settings.vkAlpha);
+			int alphaBits = (alpha & 0xFF) << 24;
+
+			g.setFillColor(alphaBits | (bgColor & 0x00FFFFFF));
+			g.setTextColor(alphaBits | (fgColor & 0x00FFFFFF));
+			g.setDrawColor(alphaBits | (outlineColor & 0x00FFFFFF));
+
+			float padX = Math.min(dpToPx(3.5f), rect.width() * 0.08f);
+			float padY = Math.min(dpToPx(3.5f), rect.height() * 0.08f);
+			drawRect.set(rect.left + padX, rect.top + padY, rect.right - padX, rect.bottom - padY);
+
+			float radius = Math.min(dpToPx(12f), Math.min(drawRect.width(), drawRect.height()) * 0.35f);
 
 			switch (settings.vkButtonShape) {
 				case ROUND_RECT_SHAPE:
-					g.fillRoundRect(rect, corners, corners);
-					g.drawRoundRect(rect, corners, corners);
+					g.fillRoundRect(drawRect, (int) radius, (int) radius);
+					g.drawRoundRect(drawRect, (int) radius, (int) radius);
 					break;
 				case RECT_SHAPE:
-					g.fillRect(rect);
-					g.drawRect(rect);
+					g.fillRect(drawRect);
+					g.drawRect(drawRect);
 					break;
 				case OVAL_SHAPE:
-					g.fillArc(rect, 0, 360);
-					g.drawArc(rect, 0, 360);
+					g.fillArc(drawRect, 0, 360);
+					g.drawArc(drawRect, 0, 360);
 					break;
 			}
-			g.drawString(label, rect.centerX(), rect.centerY());
+			g.drawString(label, drawRect.centerX(), drawRect.centerY());
 		}
 
 		@NonNull

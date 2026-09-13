@@ -1209,6 +1209,9 @@ public abstract class Canvas extends Displayable {
 			overlay = ContextHolder.getVk();
 			if (overlay != null) {
 				overlay.setTarget(Canvas.this);
+				if (overlay instanceof VirtualKeyboard) {
+					((VirtualKeyboard) overlay).setView(overlayView);
+				}
 			}
 		}
 

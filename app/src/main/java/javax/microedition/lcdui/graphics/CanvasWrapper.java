@@ -15,10 +15,10 @@ import javax.microedition.util.ContextHolder;
 public class CanvasWrapper {
 	private static final float TEXT_SIZE_KEYBOARD = 22;
 
-	private final Paint drawPaint = new Paint();
-	private final Paint fillPaint = new Paint();
-	private final Paint textPaint = new Paint();
-	private final Paint imgPaint = new Paint();
+	private final Paint drawPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+	private final Paint fillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+	private final Paint textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+	private final Paint imgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	private final float textSize;
 
 	private float textAscent;
@@ -33,7 +33,8 @@ public class CanvasWrapper {
 
 		// init text paint
 		Resources res = ContextHolder.getAppContext().getResources();
-		Typeface typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
+		drawPaint.setStrokeWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1.2f, res.getDisplayMetrics()));
+		Typeface typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL);
 		textPaint.setTypeface(typeface);
 		textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, TEXT_SIZE_KEYBOARD, res.getDisplayMetrics());
 		textPaint.setTextSize(textSize);
@@ -84,6 +85,14 @@ public class CanvasWrapper {
 
 	public void drawRect(RectF rect) {
 		canvas.drawRect(rect, drawPaint);
+	}
+
+	public void drawLine(float startX, float startY, float stopX, float stopY) {
+		canvas.drawLine(startX, startY, stopX, stopY, drawPaint);
+	}
+
+	public Canvas getCanvas() {
+		return canvas;
 	}
 
 	public void setDrawColor(int color) {

@@ -38,5 +38,15 @@
     <color name="config_card">#ffffff</color>
     <color name="card_background">#ffffff</color>
 
+    <!-- Virtual Keyboard Colors (Light Theme) -->
+    <color name="vk_bg">@color/surface</color>
+    <color name="vk_fg">@color/text_primary</color>
+    <color name="vk_fg_secondary">@color/text_secondary</color>
+    <color name="vk_bg_selected">@color/surface_container_high</color>
+    <color name="vk_fg_selected">@color/text_primary</color>
+    <color name="vk_outline">@color/outline_variant</color>
+    <color name="vk_deck_bg">@color/background</color>
+    <color name="vk_deck_divider">@color/outline_variant</color>
+
     <color name="nnf_separator_color">@color/nnf_light_separator_color</color>
 </resources>

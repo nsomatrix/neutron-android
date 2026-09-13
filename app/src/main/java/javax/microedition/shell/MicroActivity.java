@@ -197,7 +197,24 @@ public class MicroActivity extends BaseActivity {
 		super.onResume();
 		ContextHolder.setCurrentActivity(this);
 		visible = true;
+		if (microLoader != null) {
+			microLoader.updateThemeColors();
+		}
+		if (binding != null && binding.overlayView != null) {
+			binding.overlayView.postInvalidate();
+		}
 		MidletThread.resumeApp();
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		if (microLoader != null) {
+			microLoader.updateThemeColors();
+		}
+		if (binding != null && binding.overlayView != null) {
+			binding.overlayView.postInvalidate();
+		}
 	}
 
 	@Override
