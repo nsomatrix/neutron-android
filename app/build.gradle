@@ -205,7 +205,6 @@ dependencies {
 
     // Android UI
     implementation 'com.github.nikita36078:filepicker:4.3.0'
-    implementation 'com.github.yukuku:ambilwarna:2.0.1'
 
     // Testing && CrashReports
     androidTestImplementation 'androidx.test:runner:1.5.2'

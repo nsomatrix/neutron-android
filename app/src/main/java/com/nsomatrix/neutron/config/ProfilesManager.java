@@ -16,12 +16,8 @@
 
 package com.nsomatrix.neutron.config;
 
-import android.content.Context;
 import android.os.Build;
 import android.util.Log;
-
-import androidx.core.content.ContextCompat;
-import com.nsomatrix.neutron.R;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -168,28 +164,6 @@ public class ProfilesManager {
 				params.screenGravity = 1;
 
 			case 3:
-				params.useThemeColors = true;
-				Context ctx = ContextHolder.getAppContext();
-				if (ctx != null) {
-					if (params.vkFgColor == 0x000080 || params.vkFgColor == 0) {
-						params.vkFgColor = ContextCompat.getColor(ctx, R.color.vk_fg) & 0x00FFFFFF;
-					}
-					if (params.vkBgColor == 0xD0D0D0 || params.vkBgColor == 0) {
-						params.vkBgColor = ContextCompat.getColor(ctx, R.color.vk_bg) & 0x00FFFFFF;
-					}
-					if (params.vkBgColorSelected == 0x000080 || params.vkBgColorSelected == 0) {
-						params.vkBgColorSelected = ContextCompat.getColor(ctx, R.color.vk_bg_selected) & 0x00FFFFFF;
-					}
-					if (params.vkFgColorSelected == 0xFFFFFF || params.vkFgColorSelected == 0) {
-						params.vkFgColorSelected = ContextCompat.getColor(ctx, R.color.vk_fg_selected) & 0x00FFFFFF;
-					}
-					if (params.vkOutlineColor == 0xFFFFFF || params.vkOutlineColor == 0) {
-						params.vkOutlineColor = ContextCompat.getColor(ctx, R.color.vk_outline) & 0x00FFFFFF;
-					}
-					if (params.screenBackgroundColor == 0xD0D0D0 || params.screenBackgroundColor == 0) {
-						params.screenBackgroundColor = ContextCompat.getColor(ctx, R.color.background) & 0x00FFFFFF;
-					}
-				}
 				params.version = ProfileModel.VERSION;
 				ProfilesManager.saveConfig(params);
 				break;

@@ -135,9 +135,6 @@ public class ProfileModel {
 	@SerializedName("VirtualKeyboardDelay")
 	public int vkHideDelay;
 
-	@SerializedName("UseThemeColors")
-	public boolean useThemeColors = true;
-
 	@SerializedName("VirtualKeyboardColorBackground")
 	public int vkBgColor;
 
@@ -170,7 +167,6 @@ public class ProfileModel {
 	@SuppressWarnings("unused") // Gson uses default constructor if present
 	public ProfileModel() {
 		isNew = false;
-		useThemeColors = true;
 	}
 
 	public ProfileModel(File dir) {

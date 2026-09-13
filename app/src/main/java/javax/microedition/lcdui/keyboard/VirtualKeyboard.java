@@ -945,15 +945,8 @@ public class VirtualKeyboard implements Overlay, Runnable {
 		if (visible) {
 			if (isPhone() && screen != null && virtualScreen.bottom < screen.bottom) {
 				Context ctx = getContext();
-				int deckBg;
-				int dividerColor;
-				if (settings.useThemeColors && ctx != null) {
-					deckBg = ContextCompat.getColor(ctx, R.color.vk_deck_bg);
-					dividerColor = ContextCompat.getColor(ctx, R.color.vk_deck_divider);
-				} else {
-					deckBg = settings.screenBackgroundColor;
-					dividerColor = settings.vkOutlineColor;
-				}
+				int deckBg = ContextCompat.getColor(ctx, R.color.vk_deck_bg);
+				int dividerColor = ContextCompat.getColor(ctx, R.color.vk_deck_divider);
 
 				deckRect.set(screen.left, virtualScreen.bottom, screen.right, screen.bottom);
 				g.setFillColor(0xFF000000 | (deckBg & 0x00FFFFFF));
@@ -1292,24 +1285,13 @@ public class VirtualKeyboard implements Overlay, Runnable {
 
 		void paint(CanvasWrapper g) {
 			Context ctx = getContext();
-			int bgColor;
-			int fgColor;
-			int outlineColor;
-
-			if (settings.useThemeColors && ctx != null) {
-				if (selected) {
-					bgColor = ContextCompat.getColor(ctx, R.color.vk_bg_selected);
-					fgColor = ContextCompat.getColor(ctx, R.color.vk_fg_selected);
-				} else {
-					bgColor = ContextCompat.getColor(ctx, R.color.vk_bg);
-					fgColor = ContextCompat.getColor(ctx, R.color.vk_fg);
-				}
-				outlineColor = ContextCompat.getColor(ctx, R.color.vk_outline);
-			} else {
-				bgColor = selected ? settings.vkBgColorSelected : settings.vkBgColor;
-				fgColor = selected ? settings.vkFgColorSelected : settings.vkFgColor;
-				outlineColor = settings.vkOutlineColor;
-			}
+			int bgColor = selected
+					? ContextCompat.getColor(ctx, R.color.vk_bg_selected)
+					: ContextCompat.getColor(ctx, R.color.vk_bg);
+			int fgColor = selected
+					? ContextCompat.getColor(ctx, R.color.vk_fg_selected)
+					: ContextCompat.getColor(ctx, R.color.vk_fg);
+			int outlineColor = ContextCompat.getColor(ctx, R.color.vk_outline);
 
 			int alpha = (opaque || layoutEditMode != LAYOUT_EOF ? 0xFF : settings.vkAlpha);
 			int alphaBits = (alpha & 0xFF) << 24;

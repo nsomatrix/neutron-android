@@ -161,35 +161,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <!-- Background Color Row -->
-                <Button
-                    android:id="@+id/select_screen_background_color"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/PREF_BACKGROUND"
-                    app:layout_constraintEnd_toStartOf="@+id/barrier_screen_config"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/keep_aspect_ratio_toggle"
-                    app:layout_constraintWidth_min="wrap" />
-
-                <EditText
-                    android:id="@+id/screen_background_hex_color"
-                    style="@style/EditTextStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="14dp"
-                    android:gravity="center"
-                    android:hint="@string/PREF_COLOR_HINT"
-                    android:importantForAutofill="no"
-                    android:inputType="text|textCapCharacters|textNoSuggestions"
-                    android:textDirection="ltr"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/barrier_screen_config"
-                    app:layout_constraintTop_toBottomOf="@+id/keep_aspect_ratio_toggle"
-                    tools:ignore="UnusedAttribute" />
-
                 <!-- Scale Ratio Row -->
                 <TextView
                     android:id="@+id/scale_ratio_hint"
@@ -201,7 +172,7 @@
                     android:textColor="?attr/textColorSecondary"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/select_screen_background_color"
+                    app:layout_constraintTop_toBottomOf="@+id/keep_aspect_ratio_toggle"
                     app:layout_constraintEnd_toStartOf="@+id/barrier_screen_config"
                     app:layout_constraintWidth_min="wrap" />
 
@@ -218,7 +189,7 @@
                     android:textDirection="ltr"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/barrier_screen_config"
-                    app:layout_constraintTop_toBottomOf="@+id/select_screen_background_color"
+                    app:layout_constraintTop_toBottomOf="@+id/keep_aspect_ratio_toggle"
                     tools:ignore="HardcodedText,UnusedAttribute" />
 
                 <!-- Orientation -->
@@ -471,7 +442,7 @@
                     android:layout_width="10dp"
                     android:layout_height="match_parent"
                     app:barrierDirection="end"
-                    app:constraint_referenced_ids="scale_ratio_hint,select_screen_background_color,screen_orientation_hint,scale_type_hint,graphical_mode_hint,fps_limit_hint,screen_gravity_hint" />
+                    app:constraint_referenced_ids="scale_ratio_hint,screen_orientation_hint,scale_type_hint,graphical_mode_hint,fps_limit_hint,screen_gravity_hint" />
 
             </androidx.constraintlayout.widget.ConstraintLayout><!-- Screen -->
 
@@ -708,7 +679,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:visibility="visible"
-                    app:constraint_referenced_ids="button_shape_hint,button_shape_selector,enable_haptic_feedback_toggle,opacity_hint,change_opacity_seekbar,force_opacity_for_offscreen_keys_toggle,virtual_keyboard_hide_delay_hint,virtual_keyboard_hide_delay,ms_hint,keyboard_use_theme_colors_toggle,update_keyboard_not_pressed_button_label_color,keyboard_not_pressed_button_label_color_hex,update_keyboard_not_pressed_button_background_color,keyboard_not_pressed_button_background_color_hex,update_keyboard_pressed_button_label_color,keyboard_pressed_button_label_color_hex,update_keyboard_pressed_button_background_color,keyboard_pressed_button_background_color_hex,update_keyboard_outline_color,keyboard_outline_color_hex" />
+                    app:constraint_referenced_ids="button_shape_hint,button_shape_selector,enable_haptic_feedback_toggle,opacity_hint,change_opacity_seekbar,force_opacity_for_offscreen_keys_toggle,virtual_keyboard_hide_delay_hint,virtual_keyboard_hide_delay,ms_hint" />
 
                 <!-- Key shape type -->
                 <TextView
@@ -831,171 +802,12 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/force_opacity_for_offscreen_keys_toggle" />
 
-                <!-- ============ COLOR PICKER ROWS (Spacious with 12dp margins) ============ -->
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/keyboard_use_theme_colors_toggle"
-                    style="@style/SwitchStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="12dp"
-                    android:checked="true"
-                    android:text="@string/pref_vk_use_theme_colors"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/virtual_keyboard_hide_delay" />
-
-                <!-- Row 1: Unpressed Labels -->
-                <Button
-                    android:id="@+id/update_keyboard_not_pressed_button_label_color"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/PREF_VK_FORE"
-                    app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/keyboard_use_theme_colors_toggle"
-                    app:layout_constraintWidth_min="wrap" />
-
-                <EditText
-                    android:id="@+id/keyboard_not_pressed_button_label_color_hex"
-                    style="@style/EditTextStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center"
-                    android:hint="@string/PREF_COLOR_HINT"
-                    android:importantForAutofill="no"
-                    android:inputType="text|textCapCharacters|textNoSuggestions"
-                    android:textDirection="ltr"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
-                    app:layout_constraintTop_toBottomOf="@+id/keyboard_use_theme_colors_toggle"
-                    tools:ignore="UnusedAttribute" />
-
-                <!-- Row 2: Unpressed Buttons -->
-                <Button
-                    android:id="@+id/update_keyboard_not_pressed_button_background_color"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/PREF_VK_BACK"
-                    app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/update_keyboard_not_pressed_button_label_color"
-                    app:layout_constraintWidth_min="wrap" />
-
-                <EditText
-                    android:id="@+id/keyboard_not_pressed_button_background_color_hex"
-                    style="@style/EditTextStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center"
-                    android:hint="@string/PREF_COLOR_HINT"
-                    android:importantForAutofill="no"
-                    android:inputType="text|textCapCharacters|textNoSuggestions"
-                    android:textDirection="ltr"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
-                    app:layout_constraintTop_toBottomOf="@+id/update_keyboard_not_pressed_button_label_color"
-                    tools:ignore="UnusedAttribute" />
-
-                <!-- Row 3: Pressed Labels -->
-                <Button
-                    android:id="@+id/update_keyboard_pressed_button_label_color"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/PREF_VK_SEL_FORE"
-                    app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/update_keyboard_not_pressed_button_background_color"
-                    app:layout_constraintWidth_min="wrap" />
-
-                <EditText
-                    android:id="@+id/keyboard_pressed_button_label_color_hex"
-                    style="@style/EditTextStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center"
-                    android:hint="@string/PREF_COLOR_HINT"
-                    android:importantForAutofill="no"
-                    android:inputType="text|textCapCharacters|textNoSuggestions"
-                    android:textDirection="ltr"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
-                    app:layout_constraintTop_toBottomOf="@+id/update_keyboard_not_pressed_button_background_color"
-                    tools:ignore="UnusedAttribute" />
-
-                <!-- Row 4: Pressed Buttons -->
-                <Button
-                    android:id="@+id/update_keyboard_pressed_button_background_color"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/PREF_VK_SEL_BACK"
-                    app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/update_keyboard_pressed_button_label_color"
-                    app:layout_constraintWidth_min="wrap" />
-
-                <EditText
-                    android:id="@+id/keyboard_pressed_button_background_color_hex"
-                    style="@style/EditTextStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center"
-                    android:hint="@string/PREF_COLOR_HINT"
-                    android:importantForAutofill="no"
-                    android:inputType="text|textCapCharacters|textNoSuggestions"
-                    android:textDirection="ltr"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
-                    app:layout_constraintTop_toBottomOf="@+id/update_keyboard_pressed_button_label_color"
-                    tools:ignore="UnusedAttribute" />
-
-                <!-- Row 5: Outline -->
-                <Button
-                    android:id="@+id/update_keyboard_outline_color"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/PREF_VK_OUTLINE"
-                    app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/update_keyboard_pressed_button_background_color"
-                    app:layout_constraintWidth_min="wrap" />
-
-                <EditText
-                    android:id="@+id/keyboard_outline_color_hex"
-                    style="@style/EditTextStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_marginTop="12dp"
-                    android:gravity="center"
-                    android:hint="@string/PREF_COLOR_HINT"
-                    android:importantForAutofill="no"
-                    android:inputType="text|textCapCharacters|textNoSuggestions"
-                    android:textDirection="ltr"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
-                    app:layout_constraintTop_toBottomOf="@+id/update_keyboard_pressed_button_background_color"
-                    tools:ignore="UnusedAttribute" />
-
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/input_config_barrier"
                     android:layout_width="10dp"
                     android:layout_height="match_parent"
                     app:barrierDirection="end"
-                    app:constraint_referenced_ids="buttons_layout_hint,opacity_hint,button_shape_hint,virtual_keyboard_hide_delay_hint,update_keyboard_not_pressed_button_label_color,update_keyboard_not_pressed_button_background_color,update_keyboard_pressed_button_label_color,update_keyboard_pressed_button_background_color,update_keyboard_outline_color" />
+                    app:constraint_referenced_ids="buttons_layout_hint,opacity_hint,button_shape_hint,virtual_keyboard_hide_delay_hint" />
 
             </androidx.constraintlayout.widget.ConstraintLayout><!-- Input -->
 

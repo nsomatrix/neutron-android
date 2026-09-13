@@ -21,15 +21,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.text.Editable;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -66,7 +62,6 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.PreferenceManager;
-import androidx.core.widget.TextViewCompat;
 import com.google.android.material.tabs.TabLayout;
 
 import com.nsomatrix.neutron.R;
@@ -74,7 +69,6 @@ import com.nsomatrix.neutron.base.BaseActivity;
 import com.nsomatrix.neutron.databinding.ActivityConfigBinding;
 import com.nsomatrix.neutron.settings.KeyMapperActivity;
 import com.nsomatrix.neutron.util.FileUtils;
-import yuku.ambilwarna.AmbilWarnaDialog;
 
 import static com.nsomatrix.neutron.util.Constants.*;
 
@@ -221,13 +215,7 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 		binding.swapScreenSides.setOnClickListener(this);
 		binding.addScreenSizeToPresets.setOnClickListener(v -> addResolutionToPresets());
 		binding.showFontSizePresets.setOnClickListener(this);
-		binding.selectScreenBackgroundColor.setOnClickListener(this);
 		binding.showKeyMappings.setOnClickListener(this);
-		binding.updateKeyboardNotPressedButtonBackgroundColor.setOnClickListener(this);
-		binding.updateKeyboardNotPressedButtonLabelColor.setOnClickListener(this);
-		binding.updateKeyboardPressedButtonBackgroundColor.setOnClickListener(this);
-		binding.updateKeyboardPressedButtonLabelColor.setOnClickListener(this);
-		binding.updateKeyboardOutlineColor.setOnClickListener(this);
 		binding.updateEncoding.setOnClickListener(this::showCharsetPicker);
 		binding.tuneSelectedShader.setOnClickListener(this::showShaderSettings);
 		binding.scaleRatio.addTextChangedListener(new TextWatcher() {
@@ -298,18 +286,6 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 			binding.wholeConfigRoot.addOnLayoutChangeListener(onLayoutChangeListener);
 			binding.virtualKeyboardConfigGroup.setVisibility(binding.showVirtualKeyboardToggle.isChecked() ? View.VISIBLE : View.GONE);
 		});
-		binding.screenBackgroundHexColor.addTextChangedListener(
-				new ColorTextWatcher(binding.screenBackgroundHexColor));
-		binding.keyboardNotPressedButtonLabelColorHex.addTextChangedListener(
-				new ColorTextWatcher(binding.keyboardNotPressedButtonLabelColorHex));
-		binding.keyboardNotPressedButtonBackgroundColorHex.addTextChangedListener(
-				new ColorTextWatcher(binding.keyboardNotPressedButtonBackgroundColorHex));
-		binding.keyboardPressedButtonLabelColorHex.addTextChangedListener(
-				new ColorTextWatcher(binding.keyboardPressedButtonLabelColorHex));
-		binding.keyboardPressedButtonBackgroundColorHex.addTextChangedListener(
-				new ColorTextWatcher(binding.keyboardPressedButtonBackgroundColorHex));
-		binding.keyboardOutlineColorHex.addTextChangedListener(
-				new ColorTextWatcher(binding.keyboardOutlineColorHex));
 	}
 
 	private void onLockAspectChanged(CompoundButton cb, boolean isChecked) {
@@ -601,7 +577,6 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 		if (screenHeight != 0) {
 			binding.screenHeight.setText(Integer.toString(screenHeight));
 		}
-		binding.screenBackgroundHexColor.setText(String.format("%06X", params.screenBackgroundColor));
 		binding.scaleRatio.setText(Integer.toString(params.screenScaleRatio));
 		binding.screenOrientationSelector.setSelection(params.orientation);
 		binding.scaleTypeSelector.setSelection(params.screenScaleType);
@@ -642,47 +617,11 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 		int vkHideDelay = params.vkHideDelay;
 		binding.virtualKeyboardHideDelay.setText(vkHideDelay > 0 ? Integer.toString(vkHideDelay) : "");
 
-		binding.keyboardUseThemeColorsToggle.setChecked(params.useThemeColors);
-		updateThemeColorsState(params.useThemeColors);
-		binding.keyboardUseThemeColorsToggle.setOnCheckedChangeListener((btn, isChecked) -> updateThemeColorsState(isChecked));
-
-		binding.keyboardNotPressedButtonBackgroundColorHex.setText(String.format("%06X", params.vkBgColor));
-		binding.keyboardNotPressedButtonLabelColorHex.setText(String.format("%06X", params.vkFgColor));
-		binding.keyboardPressedButtonBackgroundColorHex.setText(String.format("%06X", params.vkBgColorSelected));
-		binding.keyboardPressedButtonLabelColorHex.setText(String.format("%06X", params.vkFgColorSelected));
-		binding.keyboardOutlineColorHex.setText(String.format("%06X", params.vkOutlineColor));
-
 		String systemProperties = params.systemProperties;
 		if (systemProperties == null) {
 			systemProperties = ContextHolder.getAssetAsString("defaults/system.props");
 		}
 		binding.systemProperties.setText(systemProperties);
-	}
-
-	private void updateThemeColorsState(boolean useThemeColors) {
-		float alpha = useThemeColors ? 0.45f : 1.0f;
-		boolean enabled = !useThemeColors;
-		binding.updateKeyboardNotPressedButtonLabelColor.setEnabled(enabled);
-		binding.keyboardNotPressedButtonLabelColorHex.setEnabled(enabled);
-		binding.updateKeyboardNotPressedButtonBackgroundColor.setEnabled(enabled);
-		binding.keyboardNotPressedButtonBackgroundColorHex.setEnabled(enabled);
-		binding.updateKeyboardPressedButtonLabelColor.setEnabled(enabled);
-		binding.keyboardPressedButtonLabelColorHex.setEnabled(enabled);
-		binding.updateKeyboardPressedButtonBackgroundColor.setEnabled(enabled);
-		binding.keyboardPressedButtonBackgroundColorHex.setEnabled(enabled);
-		binding.updateKeyboardOutlineColor.setEnabled(enabled);
-		binding.keyboardOutlineColorHex.setEnabled(enabled);
-
-		binding.updateKeyboardNotPressedButtonLabelColor.setAlpha(alpha);
-		binding.keyboardNotPressedButtonLabelColorHex.setAlpha(alpha);
-		binding.updateKeyboardNotPressedButtonBackgroundColor.setAlpha(alpha);
-		binding.keyboardNotPressedButtonBackgroundColorHex.setAlpha(alpha);
-		binding.updateKeyboardPressedButtonLabelColor.setAlpha(alpha);
-		binding.keyboardPressedButtonLabelColorHex.setAlpha(alpha);
-		binding.updateKeyboardPressedButtonBackgroundColor.setAlpha(alpha);
-		binding.keyboardPressedButtonBackgroundColorHex.setAlpha(alpha);
-		binding.updateKeyboardOutlineColor.setAlpha(alpha);
-		binding.keyboardOutlineColorHex.setAlpha(alpha);
 	}
 
 	private void saveParams() {
@@ -691,11 +630,6 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 			params.screenWidth = width;
 			int height = parseInt(binding.screenHeight.getText().toString());
 			params.screenHeight = height;
-			try {
-				params.screenBackgroundColor = Integer.parseInt(
-						binding.screenBackgroundHexColor.getText().toString(), 16);
-			} catch (NumberFormatException ignored) {
-			}
 			try {
 				params.screenScaleRatio = Integer.parseInt(binding.scaleRatio.getText().toString());
 			} catch (NumberFormatException e) {
@@ -745,32 +679,6 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 			params.vkButtonShape = binding.buttonShapeSelector.getSelectedItemPosition();
 			params.vkAlpha = binding.changeOpacitySeekbar.getProgress();
 			params.vkHideDelay = parseInt(binding.virtualKeyboardHideDelay.getText().toString());
-			params.useThemeColors = binding.keyboardUseThemeColorsToggle.isChecked();
-			try {
-				params.vkBgColor = Integer.parseInt(
-						binding.keyboardNotPressedButtonBackgroundColorHex.getText().toString(), 16);
-			} catch (Exception ignored) {
-			}
-			try {
-				params.vkFgColor = Integer.parseInt(
-						binding.keyboardNotPressedButtonLabelColorHex.getText().toString(), 16);
-			} catch (Exception ignored) {
-			}
-			try {
-				params.vkBgColorSelected = Integer.parseInt(
-						binding.keyboardPressedButtonBackgroundColorHex.getText().toString(), 16);
-			} catch (Exception ignored) {
-			}
-			try {
-				params.vkFgColorSelected = Integer.parseInt(
-						binding.keyboardPressedButtonLabelColorHex.getText().toString(), 16);
-			} catch (Exception ignored) {
-			}
-			try {
-				params.vkOutlineColor = Integer.parseInt(
-						binding.keyboardOutlineColorHex.getText().toString(), 16);
-			} catch (Exception ignored) {
-			}
 			params.systemProperties = getSystemProperties();
 
 			ProfilesManager.saveConfig(params);
@@ -875,18 +783,6 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 								binding.fontSizeLarge.setText(Integer.toString(values[2]));
 							})
 					.show();
-		} else if (id == R.id.select_screen_background_color) {
-			showColorPicker(binding.screenBackgroundHexColor);
-		} else if (id == R.id.update_keyboard_not_pressed_button_background_color) {
-			showColorPicker(binding.keyboardNotPressedButtonBackgroundColorHex);
-		} else if (id == R.id.update_keyboard_not_pressed_button_label_color) {
-			showColorPicker(binding.keyboardNotPressedButtonLabelColorHex);
-		} else if (id == R.id.update_keyboard_pressed_button_label_color) {
-			showColorPicker(binding.keyboardPressedButtonLabelColorHex);
-		} else if (id == R.id.update_keyboard_pressed_button_background_color) {
-			showColorPicker(binding.keyboardPressedButtonBackgroundColorHex);
-		} else if (id == R.id.update_keyboard_outline_color) {
-			showColorPicker(binding.keyboardOutlineColorHex);
 		} else if (id == R.id.show_key_mappings) {
 			Intent i = new Intent(getIntent().getAction(), Uri.parse(configDir.getPath()),
 					this, KeyMapperActivity.class);
@@ -908,23 +804,6 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 			return true;
 		});
 		popup.show();
-	}
-
-	private void showColorPicker(EditText et) {
-		AmbilWarnaDialog.OnAmbilWarnaListener colorListener = new AmbilWarnaDialog.OnAmbilWarnaListener() {
-			@Override
-			public void onOk(AmbilWarnaDialog dialog, int color) {
-				et.setText(String.format("%06X", color & 0xFFFFFF));
-				ColorDrawable drawable = (ColorDrawable) TextViewCompat.getCompoundDrawablesRelative(et)[2];
-				drawable.setColor(color);
-			}
-
-			@Override
-			public void onCancel(AmbilWarnaDialog dialog) {
-			}
-		};
-		int color = parseInt(et.getText().toString().trim(), 16);
-		new AmbilWarnaDialog(this, color | 0xFF000000, colorListener).show();
 	}
 
 	private void addResolutionToPresets() {
@@ -961,63 +840,6 @@ public class ConfigActivity extends BaseActivity implements View.OnClickListener
 	@Override
 	public void onTuneComplete(float[] values) {
 		params.shader.values = values;
-	}
-
-	private static class ColorTextWatcher implements TextWatcher {
-		private final EditText editText;
-		private final ColorDrawable drawable;
-
-		ColorTextWatcher(EditText editText) {
-			this.editText = editText;
-			int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32,
-					editText.getResources().getDisplayMetrics());
-			ColorDrawable colorDrawable = new ColorDrawable();
-			colorDrawable.setBounds(0, 0, size, size);
-			TextViewCompat.setCompoundDrawablesRelative(editText,null, null, colorDrawable, null);
-			drawable = colorDrawable;
-			editText.setFilters(new InputFilter[]{this::filter});
-		}
-
-		private CharSequence filter(CharSequence src, int ss, int se, Spanned dst, int ds, int de) {
-			StringBuilder sb = new StringBuilder(se - ss);
-			for (int i = ss; i < se; i++) {
-				char c = src.charAt(i);
-				if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F')) {
-					sb.append(c);
-				} else if (c >= 'a' && c <= 'f') {
-					sb.append((char) (c - 32));
-				}
-			}
-			return sb;
-		}
-
-		@Override
-		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-		}
-
-		@Override
-		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			if (s.length() > 6) {
-				if (start >= 6) editText.getText().delete(6, s.length());
-				else {
-					int st = start + count;
-					int end = st + (before == 0 ? count : before);
-					editText.getText().delete(st, Math.min(end, s.length()));
-				}
-			}
-		}
-
-		@Override
-		public void afterTextChanged(Editable s) {
-			if (s.length() == 0) return;
-			try {
-				int color = Integer.parseInt(s.toString(), 16);
-				drawable.setColor(color | Color.BLACK);
-			} catch (NumberFormatException e) {
-				drawable.setColor(Color.BLACK);
-				s.clear();
-			}
-		}
 	}
 
 	private static class ResolutionAutoFill implements TextWatcher, View.OnFocusChangeListener {

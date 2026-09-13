@@ -197,7 +197,6 @@
     <string name="pref_wakelock_summary">Prevent display from sleeping during gameplay</string>
     <string name="pref_vibration_title">Haptic feedback</string>
     <string name="pref_vibration_summary">Vibrate on virtual key press and in-game events</string>
-    <string name="pref_vk_use_theme_colors">Adapt keypad to app theme</string>
     <string name="pref_button_shape_title">Button shape</string>
     <string name="pref_button_shape_oval">Oval</string>
     <string name="pref_button_shape_rect">Rectangle</string>
