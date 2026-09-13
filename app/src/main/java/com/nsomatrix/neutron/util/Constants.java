@@ -41,6 +41,7 @@ public class Constants {
 	public static final String PREF_LIBRARY_VIEW_MODE = "pref_library_view_mode";
 	public static final String PREF_FAVORITES = "pref_favorites_set";
 	public static final String PREF_RECENTS = "pref_recents_list";
+	public static final String PREF_BACKGROUND_OPTIMIZATION_DISMISSED = "pref_background_optimization_dismissed";
 
 	public static final int RESULT_NEED_RECREATE = 1;
 

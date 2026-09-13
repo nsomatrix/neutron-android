@@ -27,12 +27,18 @@ import static com.nsomatrix.neutron.util.Constants.PREF_LAST_PATH;
 import static com.nsomatrix.neutron.util.Constants.PREF_LIBRARY_VIEW_MODE;
 import static com.nsomatrix.neutron.util.Constants.PREF_RECENTS;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.PowerManager;
+import android.provider.Settings;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.core.content.ContextCompat;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDiskIOException;
 import android.graphics.Bitmap;
@@ -131,6 +137,11 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 			FileUtils.getFilePicker(),
 			this::onPickFileResult);
 
+	private final ActivityResultLauncher<String> requestNotificationPermissionLauncher =
+			registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+				requestBatteryOptimization();
+			});
+
 	public static AppsListFragment newInstance(Uri data) {
 		AppsListFragment fragment = new AppsListFragment();
 		Bundle args = new Bundle();
@@ -170,6 +181,7 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 		setupFilterChips();
 		setupEmptyStateAndFab();
 		setupSwipeRefresh();
+		setupBackgroundOptimizationCard();
 	}
 
 	private void setupWindowInsets() {
@@ -685,6 +697,107 @@ public class AppsListFragment extends Fragment implements GameAdapter.OnGameActi
 		binding.swipeRefreshLayout.setColorSchemeResources(R.color.primary, R.color.accent);
 		binding.swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.surface);
 		binding.swipeRefreshLayout.setOnRefreshListener(this::refreshApps);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		checkAndDismissBackgroundOptimizationIfGranted();
+	}
+
+	private void setupBackgroundOptimizationCard() {
+		boolean isDismissed = preferences.getBoolean(Constants.PREF_BACKGROUND_OPTIMIZATION_DISMISSED, false);
+		if (isDismissed || isBackgroundOptimizationGranted()) {
+			binding.layoutBgPermission.getRoot().setVisibility(View.GONE);
+			return;
+		}
+
+		binding.layoutBgPermission.getRoot().setVisibility(View.VISIBLE);
+
+		binding.layoutBgPermission.btnBgEnable.setOnClickListener(v -> {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !isNotificationPermissionGranted()) {
+				requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+			} else {
+				requestBatteryOptimization();
+			}
+		});
+
+		View.OnClickListener dismissListener = v -> dismissBackgroundOptimizationCard(true);
+		binding.layoutBgPermission.btnBgDismiss.setOnClickListener(dismissListener);
+		binding.layoutBgPermission.btnBgDismissIcon.setOnClickListener(dismissListener);
+	}
+
+	private boolean isBackgroundOptimizationGranted() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			Context context = getContext();
+			if (context == null) return true;
+			PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+			return powerManager != null && powerManager.isIgnoringBatteryOptimizations(context.getPackageName());
+		}
+		return true;
+	}
+
+	private boolean isNotificationPermissionGranted() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+			Context context = getContext();
+			if (context == null) return true;
+			return ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS)
+					== PackageManager.PERMISSION_GRANTED;
+		}
+		return true;
+	}
+
+	private void requestBatteryOptimization() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			Context context = getContext();
+			if (context == null) return;
+			PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+			if (powerManager != null && !powerManager.isIgnoringBatteryOptimizations(context.getPackageName())) {
+				try {
+					Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+					intent.setData(Uri.parse("package:" + context.getPackageName()));
+					startActivity(intent);
+				} catch (Exception e) {
+					try {
+						Intent intent = new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+						startActivity(intent);
+					} catch (Exception ex) {
+						Log.e(TAG, "Failed to launch battery optimization settings", ex);
+					}
+				}
+			} else {
+				dismissBackgroundOptimizationCard(true);
+			}
+		} else {
+			dismissBackgroundOptimizationCard(true);
+		}
+	}
+
+	private void checkAndDismissBackgroundOptimizationIfGranted() {
+		if (binding == null) return;
+		if (isBackgroundOptimizationGranted()) {
+			dismissBackgroundOptimizationCard(true);
+		}
+	}
+
+	private void dismissBackgroundOptimizationCard(boolean savePreference) {
+		if (savePreference && preferences != null) {
+			preferences.edit().putBoolean(Constants.PREF_BACKGROUND_OPTIMIZATION_DISMISSED, true).apply();
+		}
+		if (binding != null && binding.layoutBgPermission.getRoot().getVisibility() != View.GONE) {
+			binding.layoutBgPermission.getRoot().animate()
+					.alpha(0f)
+					.translationY(-20f)
+					.setDuration(250)
+					.withEndAction(() -> {
+						if (binding != null) {
+							binding.layoutBgPermission.getRoot().setVisibility(View.GONE);
+							binding.layoutBgPermission.getRoot().setAlpha(1f);
+							binding.layoutBgPermission.getRoot().setTranslationY(0f);
+						}
+					})
+					.start();
+		}
 	}
 
 	private void refreshApps() {

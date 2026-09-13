@@ -71,12 +71,25 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Main Content Container with Swipe Refresh -->
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout"
+    <!-- Main Content Area -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- Background Execution Optimization Card -->
+        <include
+            android:id="@+id/layout_bg_permission"
+            layout="@layout/item_background_permission_card"
+            android:visibility="gone" />
+
+        <!-- Main Content Container with Swipe Refresh -->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -153,6 +166,8 @@
         </FrameLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
 
     <!-- Floating Action Button (+ Only) -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton

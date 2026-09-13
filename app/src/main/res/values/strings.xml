@@ -315,4 +315,9 @@
     <string name="installer_btn_launch_current">Launch Existing</string>
     <string name="installer_success_desc">Game was successfully installed into your library.</string>
     <string name="installer_need_jar_desc">This JAD descriptor requires a companion JAR file to complete installation.</string>
+    <!-- Background Execution Setup -->
+    <string name="background_permission_title">Background Performance</string>
+    <string name="background_permission_desc">Allow unrestricted background battery and notifications so games, audio, and network tasks continue seamlessly when switched.</string>
+    <string name="background_permission_enable">Optimize</string>
+    <string name="background_permission_dismiss">Dismiss</string>
 </resources>
