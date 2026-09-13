@@ -158,11 +158,8 @@ public class MidletThread extends HandlerThread implements Handler.Callback {
 					midlet.pauseApp();
 					state = PAUSED;
 				} catch (Throwable t) {
-					state = DESTROYED;
-					try {
-						midlet.destroyApp(true);
-					} catch (MIDletStateChangeException ignored) {}
-					throw new RuntimeException("Filed pauseApp", t);
+					state = PAUSED;
+					Log.w(TAG, "Exception during midlet pauseApp", t);
 				}
 				break;
 			case DESTROY:

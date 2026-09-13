@@ -195,6 +195,7 @@ public class MicroActivity extends BaseActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
+		ContextHolder.setCurrentActivity(this);
 		visible = true;
 		MidletThread.resumeApp();
 	}
