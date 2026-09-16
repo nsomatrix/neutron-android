@@ -40,6 +40,8 @@ import java.util.Arrays;
 
 import javax.microedition.util.ContextHolder;
 
+import com.google.android.material.color.DynamicColors;
+
 import com.nsomatrix.neutron.util.Constants;
 
 public class EmulatorApplication extends Application {
@@ -81,6 +83,7 @@ public class EmulatorApplication extends Application {
 		sp.registerOnSharedPreferenceChangeListener(themeListener);
 		setNightMode(sp.getString(Constants.PREF_THEME, null));
 		AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+		DynamicColors.applyToActivitiesIfAvailable(this);
 	}
 
 	@SuppressLint("PackageManagerGetSignatures")
@@ -122,13 +125,6 @@ public class EmulatorApplication extends Application {
 				break;
 			case "dark":
 				AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-				break;
-			case "auto-battery":
-				AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
-				break;
-			case "auto-time":
-				//noinspection deprecation
-				AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_TIME);
 				break;
 			default:
 			case "system":
