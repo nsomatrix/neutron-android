@@ -490,4 +490,28 @@ public class AppInstaller {
 	public AppItem getExistsApp() {
 		return currentApp;
 	}
+
+	public long getJarSize() {
+		if (srcJar != null && srcJar.exists()) {
+			return srcJar.length();
+		}
+		if (srcFile != null && srcFile.exists()) {
+			return srcFile.length();
+		}
+		if (newDesc != null) {
+			String jarSize = newDesc.getAttrs().get("MIDlet-Jar-Size");
+			if (jarSize != null) {
+				try {
+					return Long.parseLong(jarSize.trim());
+				} catch (Exception ignored) {}
+			}
+		}
+		if (currentApp != null) {
+			File resJar = new File(currentApp.getPathExt(), Config.MIDLET_RES_FILE);
+			if (resJar.exists()) {
+				return resJar.length();
+			}
+		}
+		return 0;
+	}
 }

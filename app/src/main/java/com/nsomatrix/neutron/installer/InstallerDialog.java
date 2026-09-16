@@ -19,38 +19,45 @@ package com.nsomatrix.neutron.installer;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import java.text.DecimalFormat;
+import java.util.Map;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
 import com.nsomatrix.neutron.R;
 import com.nsomatrix.neutron.applist.AppItem;
 import com.nsomatrix.neutron.applist.AppListModel;
 import com.nsomatrix.neutron.appsdb.AppRepository;
 import com.nsomatrix.neutron.config.Config;
 import com.nsomatrix.neutron.databinding.DialogInstallerBinding;
-import com.nsomatrix.neutron.util.FileUtils;
 import com.nsomatrix.neutron.jar.Descriptor;
+import com.nsomatrix.neutron.util.FileUtils;
 
-public class InstallerDialog extends DialogFragment {
+public class InstallerDialog extends BottomSheetDialogFragment {
 	private static final String ARG_URI = "InstallerDialog.uri";
 	private static final String ARG_ID = "InstallerDialog.id";
 	private final CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -60,7 +67,6 @@ public class InstallerDialog extends DialogFragment {
 	private Button btnClose;
 	private Button btnRun;
 	private AppInstaller installer;
-	private AlertDialog mDialog;
 
 	private DialogInstallerBinding binding;
 
@@ -100,26 +106,25 @@ public class InstallerDialog extends DialogFragment {
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setStyle(STYLE_NORMAL, R.style.EnterpriseBottomSheetDialogTheme);
 		if (savedInstanceState != null) {
 			dismissAllowingStateLoss();
 		}
 	}
 
-	@NonNull
+	@Nullable
 	@Override
-	public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-		binding = DialogInstallerBinding.inflate(LayoutInflater.from(getContext()));
-		mDialog = new AlertDialog.Builder(requireActivity(), getTheme())
-				.setIcon(R.mipmap.ic_launcher)
-				.setView(binding.getRoot())
-				.setTitle("MIDlet installer")
-				.setMessage("")
-				.setCancelable(false)
-				.setPositiveButton(R.string.install, null)
-				.setNegativeButton(android.R.string.cancel, null)
-				.setNeutralButton(R.string.START_CMD, null)
-				.create();
-		return mDialog;
+	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		binding = DialogInstallerBinding.inflate(inflater, container, false);
+		return binding.getRoot();
+	}
+
+	@Override
+	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		btnOk = binding.btnOk;
+		btnClose = binding.btnClose;
+		btnRun = binding.btnRun;
 	}
 
 	@Override
@@ -137,12 +142,20 @@ public class InstallerDialog extends DialogFragment {
 	@Override
 	public void onStart() {
 		super.onStart();
+		Dialog dialog = getDialog();
+		if (dialog instanceof BottomSheetDialog) {
+			BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) dialog;
+			FrameLayout bottomSheet = bottomSheetDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+			if (bottomSheet != null) {
+				bottomSheet.setBackgroundResource(android.R.color.transparent);
+				BottomSheetBehavior<FrameLayout> behavior = BottomSheetBehavior.from(bottomSheet);
+				behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+				behavior.setSkipCollapsed(true);
+			}
+		}
 		if (installer != null) {
 			return;
 		}
-		btnOk = mDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-		btnClose = mDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-		btnRun = mDialog.getButton(DialogInterface.BUTTON_NEUTRAL);
 		hideButtons();
 		Bundle args = requireArguments();
 		Uri uri = args.getParcelable(ARG_URI);
@@ -195,13 +208,11 @@ public class InstallerDialog extends DialogFragment {
 	}
 
 	private void hideProgress() {
-		binding.installationProgress.setVisibility(View.GONE);
-		binding.installationStatus.setVisibility(View.GONE);
+		binding.layoutProgress.setVisibility(View.GONE);
 	}
 
 	private void showProgress() {
-		binding.installationProgress.setVisibility(View.VISIBLE);
-		binding.installationStatus.setVisibility(View.VISIBLE);
+		binding.layoutProgress.setVisibility(View.VISIBLE);
 	}
 
 	private void hideButtons() {
@@ -216,9 +227,7 @@ public class InstallerDialog extends DialogFragment {
 	}
 
 	private void convert() {
-		Descriptor nd = installer.getNewDescriptor();
-		SpannableStringBuilder info = nd.getInfo(requireActivity());
-		mDialog.setMessage(info);
+		updateHeaderAndDetails();
 		binding.installationStatus.setText(R.string.converting_wait);
 		showProgress();
 		hideButtons();
@@ -229,98 +238,167 @@ public class InstallerDialog extends DialogFragment {
 		compositeDisposable.add(disposable);
 	}
 
-	private void alertConfirm(SpannableStringBuilder message,
-							  View.OnClickListener positive) {
-		hideProgress();
-		mDialog.setCancelable(false);
-		mDialog.setCanceledOnTouchOutside(false);
-		mDialog.setMessage(message);
-		btnOk.setOnClickListener(positive);
-		showButtons();
+	private String formatAppSize(long size) {
+		if (size <= 0) return "N/A";
+		DecimalFormat decimalFormat = new DecimalFormat("########.00");
+		if (size >= 1024L) {
+			float kb = (float) size / 1024F;
+			if (kb >= 1024F) {
+				float mb = kb / 1024F;
+				return decimalFormat.format(mb) + " MB";
+			}
+			return decimalFormat.format(kb) + " KB";
+		}
+		return size + " B";
 	}
 
-	private void alertSelectJar(View.OnClickListener positive) {
-		hideProgress();
-		mDialog.setCancelable(false);
-		mDialog.setCanceledOnTouchOutside(false);
-		mDialog.setMessage(getString(R.string.install_jar_needed));
-		btnOk.setOnClickListener(positive);
-		showButtons();
+	private void updateHeaderAndDetails() {
+		if (installer == null) return;
+		Descriptor nd = installer.getNewDescriptor();
+		if (nd != null) {
+			binding.tvAppName.setText(nd.getName());
+			binding.tvAppVendor.setText(nd.getVendor() != null ? nd.getVendor() : getString(R.string.app_name));
+			if (nd.getVersion() != null) {
+				binding.tvAppVersionBadge.setText("v" + nd.getVersion());
+				binding.tvAppVersionBadge.setVisibility(View.VISIBLE);
+			} else {
+				binding.tvAppVersionBadge.setVisibility(View.GONE);
+			}
+
+			Map<String, String> attrs = nd.getAttrs();
+			String profile = attrs.get("MicroEdition-Profile");
+			if (profile == null) profile = attrs.get("MicroEdition-Configuration");
+			if (profile == null) profile = "MIDP 2.0";
+			binding.tvDetailProfile.setText(profile);
+
+			String desc = attrs.get("MIDlet-Description");
+			if (desc != null && !desc.trim().isEmpty()) {
+				binding.tvDescription.setText(desc.trim());
+				binding.tvDescription.setVisibility(View.VISIBLE);
+			} else {
+				binding.tvDescription.setVisibility(View.GONE);
+			}
+		}
+
+		long size = installer.getJarSize();
+		binding.tvDetailSize.setText(formatAppSize(size));
+
+		Drawable drawable = Drawable.createFromPath(installer.getIconPath());
+		if (drawable != null) {
+			binding.ivAppIcon.setImageDrawable(drawable);
+		} else {
+			binding.ivAppIcon.setImageResource(R.mipmap.ic_launcher);
+		}
+	}
+
+	private void showNotice(String text, int iconRes, int textColorRes, int bgDrawableRes) {
+		binding.cardNotice.setVisibility(View.VISIBLE);
+		binding.cardNotice.setBackgroundResource(bgDrawableRes);
+		binding.ivNoticeIcon.setImageResource(iconRes);
+		binding.tvNoticeText.setText(text);
+		binding.tvNoticeText.setTextColor(androidx.core.content.ContextCompat.getColor(requireContext(), textColorRes));
 	}
 
 	private void onProgress(@NonNull Integer status) {
-		if (!isAdded()) {
+		if (!isAdded() || binding == null) {
 			return;
 		}
 		if (status == AppInstaller.STATUS_SUCCESS) {
-			binding.installationProgress.setVisibility(View.GONE);
-			binding.installationStatus.setText(getString(R.string.install_done));
+			hideProgress();
 			AppItem app = installer.getExistsApp();
-			Drawable drawable = Drawable.createFromPath(app.getImagePathExt());
-			if (drawable != null) mDialog.setIcon(drawable);
+			if (app != null) {
+				binding.tvAppName.setText(app.getTitle());
+				binding.tvAppVendor.setText(app.getAuthor());
+				binding.tvAppVersionBadge.setText("Installed");
+				Drawable drawable = Drawable.createFromPath(app.getImagePathExt());
+				if (drawable != null) binding.ivAppIcon.setImageDrawable(drawable);
+			}
+			long size = installer.getJarSize();
+			if (size > 0) {
+				binding.tvDetailSize.setText(formatAppSize(size));
+			}
+
+			showNotice(getString(R.string.install_done), R.drawable.ic_installer_check, R.color.installer_info_text, R.drawable.bg_info_banner);
+
 			btnOk.setText(R.string.START_CMD);
 			btnOk.setOnClickListener(v -> {
-				Config.startApp(v.getContext(), app.getTitle(), app.getPathExt(), false);
+				if (app != null) {
+					Config.startApp(v.getContext(), app.getTitle(), app.getPathExt(), false);
+				}
 				dismiss();
 			});
 			btnClose.setText(R.string.close);
 			showButtons();
 			return;
 		}
+
+		updateHeaderAndDetails();
+
 		Descriptor nd = installer.getNewDescriptor();
-		SpannableStringBuilder message;
 		switch (status) {
 			case AppInstaller.STATUS_NEW:
 				if (installer.getJar() != null) {
 					convert();
 					return;
 				}
-				message = nd.getInfo(requireActivity());
+				if (installer.getJar() == null) {
+					showNotice(getString(R.string.warn_install_from_net), R.drawable.ic_installer_warning, R.color.installer_warning_text, R.drawable.bg_warning_banner);
+				} else {
+					binding.cardNotice.setVisibility(View.GONE);
+				}
+				btnOk.setText(R.string.install);
+				btnOk.setOnClickListener(v -> convert());
 				break;
+
 			case AppInstaller.STATUS_OLDEST:
-				message = new SpannableStringBuilder(getString(
-						R.string.reinstall_older,
-						nd.getVersion(),
-						installer.getCurrentVersion()));
+				showNotice(getString(R.string.reinstall_older, nd.getVersion(), installer.getCurrentVersion()),
+						R.drawable.ic_installer_warning, R.color.installer_warning_text, R.drawable.bg_warning_banner);
+				btnOk.setText(R.string.install);
+				btnOk.setOnClickListener(v -> convert());
 				break;
+
 			case AppInstaller.STATUS_EQUAL:
-				message = new SpannableStringBuilder(getString(R.string.reinstall));
+				showNotice(getString(R.string.reinstall), R.drawable.ic_installer_info, R.color.installer_info_text, R.drawable.bg_info_banner);
 				AppItem app = installer.getExistsApp();
+				btnOk.setText(R.string.action_reinstall);
+				btnOk.setOnClickListener(v -> convert());
 				btnRun.setVisibility(View.VISIBLE);
+				btnRun.setText(R.string.START_CMD);
 				btnRun.setOnClickListener(v -> {
 					installer.clearCache();
 					installer.deleteTemp();
-					Config.startApp(v.getContext(), app.getTitle(), app.getPathExt(), false);
+					if (app != null) {
+						Config.startApp(v.getContext(), app.getTitle(), app.getPathExt(), false);
+					}
 					dismiss();
 				});
 				break;
+
 			case AppInstaller.STATUS_NEWEST:
-				message = new SpannableStringBuilder(getString(
-						R.string.reinstall_newest,
-						nd.getVersion(),
-						installer.getCurrentVersion()));
+				showNotice(getString(R.string.reinstall_newest, nd.getVersion(), installer.getCurrentVersion()),
+						R.drawable.ic_installer_info, R.color.installer_info_text, R.drawable.bg_info_banner);
+				btnOk.setText(R.string.install);
+				btnOk.setOnClickListener(v -> convert());
 				break;
+
 			case AppInstaller.STATUS_UNMATCHED:
 				SpannableStringBuilder info = installer.getManifest().getInfo(requireActivity());
 				info.append(getString(R.string.install_jar_non_matched_jad));
-				alertConfirm(info, v -> installApp(installer.getJar(), null));
-				return;
+				showNotice(info.toString(), R.drawable.ic_installer_warning, R.color.installer_warning_text, R.drawable.bg_warning_banner);
+				btnOk.setText(R.string.install);
+				btnOk.setOnClickListener(v -> installApp(installer.getJar(), null));
+				break;
+
 			case AppInstaller.STATUS_NEED_JAD:
-				alertSelectJar(v -> openFileLauncher.launch(null));
-				return;
+				showNotice(getString(R.string.install_jar_needed), R.drawable.ic_installer_info, R.color.installer_info_text, R.drawable.bg_info_banner);
+				btnOk.setText(R.string.choose);
+				btnOk.setOnClickListener(v -> openFileLauncher.launch(null));
+				break;
+
 			default:
 				throw new IllegalStateException("Unexpected value: " + status);
 		}
-		if (installer.getJar() == null) {
-			message.append('\n').append(getString(R.string.warn_install_from_net));
-		}
-		Drawable drawable = Drawable.createFromPath(installer.getIconPath());
-		if (drawable != null) mDialog.setIcon(drawable);
-		mDialog.setTitle(nd.getName());
-		mDialog.setCancelable(false);
-		mDialog.setCanceledOnTouchOutside(false);
-		mDialog.setMessage(message);
-		btnOk.setOnClickListener(v -> convert());
+
 		hideProgress();
 		showButtons();
 	}

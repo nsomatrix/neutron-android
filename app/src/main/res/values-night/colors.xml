@@ -11,6 +11,20 @@
     <color name="btn_bg_pressed">#1D4ED8</color>
     <color name="config_card">#1E1E1E</color>
 
+    <!-- Installer Card Dynamic Dark Theme Colors -->
+    <color name="installer_card_bg">#2A2D32</color>
+    <color name="installer_card_border">#383D44</color>
+    <color name="installer_drag_handle">#525866</color>
+    <color name="installer_pill_bg">#1E293B</color>
+    <color name="installer_pill_border">#334155</color>
+    <color name="installer_pill_text">#60A5FA</color>
+    <color name="installer_warning_bg">#362208</color>
+    <color name="installer_warning_border">#54350C</color>
+    <color name="installer_warning_text">#FBBF24</color>
+    <color name="installer_info_bg">#0A2E20</color>
+    <color name="installer_info_border">#114B34</color>
+    <color name="installer_info_text">#34D399</color>
+
     <color name="scrim_background">#B0000000</color>
     <color name="nnf_separator_color">@color/nnf_dark_separator_color</color>
 </resources>
