@@ -61,6 +61,8 @@
     <string name="reinstall_newest">Update this app to version %1$s?\n\nCurrently installed: %2$s\nAll data will be saved.</string>
     <string name="reinstall_older">Replace this app with version %1$s?\n\nCurrently installed: %2$s\nOlder version may not working correctly with recorded data.</string>
     <string name="loading_info">loading info…</string>
+    <string name="querying_jar_info">Querying package info…</string>
+    <string name="reading_package">Reading package contents…</string>
 
     <string name="START_CMD">Start</string>
     <string name="CANCEL_CMD">Cancel</string>

@@ -125,6 +125,7 @@ public class InstallerDialog extends BottomSheetDialogFragment {
 		btnOk = binding.btnOk;
 		btnClose = binding.btnClose;
 		btnRun = binding.btnRun;
+		showQueryingState();
 	}
 
 	@Override
@@ -167,7 +168,41 @@ public class InstallerDialog extends BottomSheetDialogFragment {
 		reinstallApp(id);
 	}
 
+	private void showQueryingState() {
+		if (binding == null) return;
+		binding.tvAppName.setText(R.string.loading_info);
+		binding.tvAppVendor.setText("");
+
+		binding.progressVersion.setVisibility(View.VISIBLE);
+		if (binding.progressVersion.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+			ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) binding.progressVersion.getLayoutParams();
+			params.setMarginEnd(0);
+			binding.progressVersion.setLayoutParams(params);
+		}
+		binding.tvAppVersionBadge.setText("");
+		binding.tvAppVersionBadge.setVisibility(View.GONE);
+		binding.layoutVersionPill.setVisibility(View.VISIBLE);
+
+		binding.progressDetailSize.setVisibility(View.VISIBLE);
+		binding.tvDetailSize.setText("");
+
+		binding.progressDetailProfile.setVisibility(View.VISIBLE);
+		binding.tvDetailProfile.setText("");
+
+		binding.installationStatus.setText(R.string.loading_info);
+		showProgress();
+		hideButtons();
+	}
+
+	private void hideSpinners() {
+		if (binding == null) return;
+		binding.progressVersion.setVisibility(View.GONE);
+		binding.progressDetailSize.setVisibility(View.GONE);
+		binding.progressDetailProfile.setVisibility(View.GONE);
+	}
+
 	private void installApp(String path, Uri uri) {
+		showQueryingState();
 		installer = new AppInstaller(path, uri, requireActivity().getApplication(), appRepository);
 		btnClose.setOnClickListener(v -> {
 			installer.deleteTemp();
@@ -182,6 +217,7 @@ public class InstallerDialog extends BottomSheetDialogFragment {
 	}
 
 	private void reinstallApp(int id) {
+		showQueryingState();
 		installer = new AppInstaller(id, requireActivity().getApplication(), appRepository);
 		btnClose.setOnClickListener(v -> {
 			installer.deleteTemp();
@@ -200,6 +236,7 @@ public class InstallerDialog extends BottomSheetDialogFragment {
 		if (uri == null) {
 			return;
 		}
+		showQueryingState();
 		Disposable disposable = installer.updateInfo(uri)
 				.subscribeOn(Schedulers.computation())
 				.observeOn(AndroidSchedulers.mainThread())
@@ -253,16 +290,18 @@ public class InstallerDialog extends BottomSheetDialogFragment {
 	}
 
 	private void updateHeaderAndDetails() {
-		if (installer == null) return;
+		if (installer == null || binding == null) return;
+		hideSpinners();
 		Descriptor nd = installer.getNewDescriptor();
 		if (nd != null) {
 			binding.tvAppName.setText(nd.getName());
 			binding.tvAppVendor.setText(nd.getVendor() != null ? nd.getVendor() : getString(R.string.app_name));
 			if (nd.getVersion() != null) {
 				binding.tvAppVersionBadge.setText("v" + nd.getVersion());
+				binding.layoutVersionPill.setVisibility(View.VISIBLE);
 				binding.tvAppVersionBadge.setVisibility(View.VISIBLE);
 			} else {
-				binding.tvAppVersionBadge.setVisibility(View.GONE);
+				binding.layoutVersionPill.setVisibility(View.GONE);
 			}
 
 			Map<String, String> attrs = nd.getAttrs();
@@ -303,6 +342,7 @@ public class InstallerDialog extends BottomSheetDialogFragment {
 		if (!isAdded() || binding == null) {
 			return;
 		}
+		hideSpinners();
 		if (status == AppInstaller.STATUS_SUCCESS) {
 			hideProgress();
 			AppItem app = installer.getExistsApp();
@@ -310,6 +350,8 @@ public class InstallerDialog extends BottomSheetDialogFragment {
 				binding.tvAppName.setText(app.getTitle());
 				binding.tvAppVendor.setText(app.getAuthor());
 				binding.tvAppVersionBadge.setText("Installed");
+				binding.layoutVersionPill.setVisibility(View.VISIBLE);
+				binding.tvAppVersionBadge.setVisibility(View.VISIBLE);
 				Drawable drawable = Drawable.createFromPath(app.getImagePathExt());
 				if (drawable != null) binding.ivAppIcon.setImageDrawable(drawable);
 			}
