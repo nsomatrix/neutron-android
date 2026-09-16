@@ -21,7 +21,7 @@
     <string name="about_4pda" translatable="false"></string>
     <string name="about_xda" translatable="false"></string>
     <string name="about_crowdin" translatable="false"></string>
-    <string name="about_copyright" translatable="false">&lt;BR>&lt;BR>Rebranded as Neutron by nsomatrix.</string>
+    <string name="about_copyright" translatable="false">&lt;BR>&lt;BR>Copyright 2026 nsomatrix</string>
     <string name="author">Author: </string>
     <string name="version">Version: </string>
     <string name="no_data_for_display">No data</string>
