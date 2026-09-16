@@ -262,7 +262,6 @@ public class MicroLoader {
 			int screenWidth = params.screenWidth;
 			int screenHeight = params.screenHeight;
 			Displayable.setVirtualSize(screenWidth, screenHeight);
-			Canvas.setBackgroundColor(params.screenBackgroundColor);
 			Canvas.setScale(params.screenGravity, params.screenScaleType, params.screenScaleRatio);
 			Canvas.setFilterBitmap(params.screenFilter);
 			EventQueue.setImmediate(params.immediateMode);

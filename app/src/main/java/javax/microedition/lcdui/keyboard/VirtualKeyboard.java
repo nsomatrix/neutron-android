@@ -20,12 +20,15 @@ package javax.microedition.lcdui.keyboard;
 import static javax.microedition.lcdui.keyboard.KeyMapper.SE_KEY_SPECIAL_GAMING_A;
 import static javax.microedition.lcdui.keyboard.KeyMapper.SE_KEY_SPECIAL_GAMING_B;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 import android.util.SparseBooleanArray;
+import android.util.TypedValue;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -1232,20 +1235,50 @@ public class VirtualKeyboard implements Overlay, Runnable {
 			return visible && rect.contains(x, y);
 		}
 
+		private int resolveThemeColor(Context context, int attrResId, int fallbackColor) {
+			if (context != null) {
+				TypedValue tv = new TypedValue();
+				if (context.getTheme().resolveAttribute(attrResId, tv, true)) {
+					if (tv.type >= TypedValue.TYPE_FIRST_COLOR_INT && tv.type <= TypedValue.TYPE_LAST_COLOR_INT) {
+						return tv.data & 0xFFFFFF;
+					}
+					try {
+						return androidx.core.content.ContextCompat.getColor(context, tv.resourceId) & 0xFFFFFF;
+					} catch (Exception ignored) {
+					}
+				}
+			}
+			return fallbackColor;
+		}
+
 		void paint(CanvasWrapper g) {
+			Context context = ContextHolder.getActivity();
+			if (context == null) {
+				context = ContextHolder.getAppContext();
+			}
+			boolean isNight = false;
+			if (context != null) {
+				int mode = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+				isNight = (mode == Configuration.UI_MODE_NIGHT_YES);
+			}
+
 			int bgColor;
 			int fgColor;
+			int outlineColor;
+
 			if (selected) {
-				bgColor = settings.vkBgColorSelected;
-				fgColor = settings.vkFgColorSelected;
+				bgColor = resolveThemeColor(context, com.google.android.material.R.attr.colorAccent, 0x2563EB);
+				fgColor = resolveThemeColor(context, com.google.android.material.R.attr.colorOnPrimary, 0xFFFFFF);
 			} else {
-				bgColor = settings.vkBgColor;
-				fgColor = settings.vkFgColor;
+				bgColor = resolveThemeColor(context, com.google.android.material.R.attr.colorSurface, isNight ? 0x1E1E1E : 0xFFFFFF);
+				fgColor = resolveThemeColor(context, com.google.android.material.R.attr.colorOnSurface, isNight ? 0xFFFFFF : 0x0F172A);
 			}
+			outlineColor = resolveThemeColor(context, com.google.android.material.R.attr.colorOutline, isNight ? 0x44FFFFFF : 0x44000000);
+
 			int alpha = (opaque || layoutEditMode != LAYOUT_EOF ? 0xFF : settings.vkAlpha) << 24;
 			g.setFillColor(alpha | bgColor);
 			g.setTextColor(alpha | fgColor);
-			g.setDrawColor(alpha | settings.vkOutlineColor);
+			g.setDrawColor(alpha | outlineColor);
 
 			switch (settings.vkButtonShape) {
 				case ROUND_RECT_SHAPE:

@@ -22,6 +22,7 @@ package javax.microedition.lcdui;
 import static android.opengl.GLES20.*;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -195,6 +196,29 @@ public abstract class Canvas extends Displayable {
 		backgroundColor = color | 0xFF000000;
 	}
 
+	public static int getBackgroundColor() {
+		if (backgroundColor != 0) {
+			return backgroundColor;
+		}
+		Context context = ContextHolder.getActivity();
+		if (context == null) {
+			context = ContextHolder.getAppContext();
+		}
+		if (context != null) {
+			TypedValue tv = new TypedValue();
+			if (context.getTheme().resolveAttribute(android.R.attr.colorBackground, tv, true)) {
+				if (tv.type >= TypedValue.TYPE_FIRST_COLOR_INT && tv.type <= TypedValue.TYPE_LAST_COLOR_INT) {
+					return tv.data | 0xFF000000;
+				}
+				try {
+					return ContextCompat.getColor(context, tv.resourceId) | 0xFF000000;
+				} catch (Exception ignored) {
+				}
+			}
+		}
+		return 0xFF121212;
+	}
+
 	public static void setFilterBitmap(boolean filter) {
 		Canvas.filter = filter;
 	}
@@ -301,7 +325,7 @@ public abstract class Canvas extends Displayable {
 		if (graphicsMode != 2) return; // Fix for Android Pie
 		CanvasWrapper g = canvasWrapper;
 		g.bind(canvas);
-		g.clear(backgroundColor);
+		g.clear(getBackgroundColor());
 		synchronized (bufferLock) {
 			offscreenCopy.getBitmap().prepareToDraw();
 			g.drawImage(offscreenCopy, virtualScreen);
@@ -675,7 +699,7 @@ public abstract class Canvas extends Displayable {
 				}
 				CanvasWrapper g = this.canvasWrapper;
 				g.bind(canvas);
-				g.clear(backgroundColor);
+				g.clear(getBackgroundColor());
 				synchronized (bufferLock) {
 					g.drawImage(offscreenCopy, virtualScreen);
 				}
@@ -780,7 +804,7 @@ public abstract class Canvas extends Displayable {
 		@Override
 		public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 			program = new ShaderProgram(shaderFilter);
-			int c = Canvas.backgroundColor;
+			int c = Canvas.getBackgroundColor();
 			glClearColor((c >> 16 & 0xff) / 255.0f, (c >> 8 & 0xff) / 255.0f, (c & 0xff) / 255.0f, 1.0f);
 			glDisable(GL_BLEND);
 			glDisable(GL_DEPTH_TEST);

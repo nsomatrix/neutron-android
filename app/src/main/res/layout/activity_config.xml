@@ -109,33 +109,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <Button
-                android:id="@+id/select_screen_background_color"
-                android:layout_width="0dp"
-                android:layout_height="38dp"
-                android:layout_margin="4dp"
-                android:text="@string/PREF_BACKGROUND"
-                app:layout_constraintEnd_toStartOf="@+id/barrier_screen_config"
-                app:layout_constraintBottom_toBottomOf="@+id/screen_background_hex_color"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/screen_background_hex_color"
-                app:layout_constraintWidth_min="wrap" />
-
-            <EditText
-                android:id="@+id/screen_background_hex_color"
-                style="@style/EditTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="@string/PREF_COLOR_HINT"
-                android:importantForAutofill="no"
-                android:inputType="text|textCapCharacters|textNoSuggestions"
-                android:textDirection="ltr"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/barrier_screen_config"
-                app:layout_constraintTop_toBottomOf="@+id/keep_aspect_ratio_toggle"
-                tools:ignore="UnusedAttribute" />
-
 
             <TextView
                 android:id="@+id/scale_ratio_hint"
@@ -146,7 +119,7 @@
                 android:textColor="?attr/textColorSecondary"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/screen_background_hex_color"
+                app:layout_constraintTop_toBottomOf="@+id/keep_aspect_ratio_toggle"
                 app:layout_constraintEnd_toStartOf="@+id/barrier_screen_config"
                 app:layout_constraintWidth_min="wrap"  />
 
@@ -162,7 +135,8 @@
                 android:textDirection="ltr"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/barrier_screen_config"
-                app:layout_constraintTop_toBottomOf="@+id/screen_background_hex_color"
+                app:layout_constraintTop_toBottomOf="@+id/keep_aspect_ratio_toggle"
+                tools:ignore="HardcodedText,UnusedAttribute" />
                 tools:ignore="HardcodedText,UnusedAttribute" />
 
 
@@ -405,7 +379,7 @@
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
                 app:barrierDirection="end"
-                app:constraint_referenced_ids="scale_ratio_hint,select_screen_background_color,screen_orientation_hint,scale_type_hint,graphical_mode_hint,fps_limit_hint,screen_gravity_hint" />
+                app:constraint_referenced_ids="scale_ratio_hint,screen_orientation_hint,scale_type_hint,graphical_mode_hint,fps_limit_hint,screen_gravity_hint" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout><!-- Screen -->
@@ -624,7 +598,7 @@
                 android:layout_marginTop="6dp"
                 android:background="?bg_config_card"
                 android:visibility="gone"
-                app:constraint_referenced_ids="force_opacity_for_offscreen_keys_toggle,enable_haptic_feedback_toggle,keyboard_not_pressed_button_background_color_hex,keyboard_pressed_button_label_color_hex,button_shape_hint,update_keyboard_pressed_button_label_color,update_keyboard_not_pressed_button_label_color,keyboard_outline_color_hex,update_keyboard_not_pressed_button_background_color,change_opacity_seekbar,update_keyboard_pressed_button_background_color,virtual_keyboard_hide_delay,ms_hint,button_shape_selector,opacity_hint,update_keyboard_outline_color,virtual_keyboard_hide_delay_hint,keyboard_not_pressed_button_label_color_hex,keyboard_pressed_button_background_color_hex"
+                app:constraint_referenced_ids="force_opacity_for_offscreen_keys_toggle,enable_haptic_feedback_toggle,button_shape_hint,change_opacity_seekbar,virtual_keyboard_hide_delay,ms_hint,button_shape_selector,opacity_hint,virtual_keyboard_hide_delay_hint"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -777,180 +751,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/force_opacity_for_offscreen_keys_toggle" />
 
 
-            <!-- Key colors -->
-
-            <Button
-                android:id="@+id/update_keyboard_not_pressed_button_label_color"
-                android:layout_width="0dp"
-                android:layout_height="38dp"
-                android:layout_marginVertical="4dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginLeft="9dp"
-                android:text="@string/PREF_VK_FORE"
-                app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toBottomOf="@+id/keyboard_not_pressed_button_label_color_hex"
-                app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/keyboard_not_pressed_button_label_color_hex"
-                app:layout_constraintWidth_min="wrap" />
-
-            <EditText
-                android:id="@+id/keyboard_not_pressed_button_label_color_hex"
-                style="@style/EditTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:gravity="center"
-                android:hint="@string/PREF_COLOR_HINT"
-                android:importantForAutofill="no"
-                android:inputType="text|textCapCharacters|textNoSuggestions"
-                android:textDirection="ltr"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
-                app:layout_constraintTop_toBottomOf="@+id/virtual_keyboard_hide_delay_hint"
-                tools:ignore="UnusedAttribute" />
-
-            <Button
-                android:id="@+id/update_keyboard_not_pressed_button_background_color"
-                android:layout_width="0dp"
-                android:layout_height="38dp"
-                android:layout_marginVertical="4dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginLeft="9dp"
-                android:text="@string/PREF_VK_BACK"
-                app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toTopOf="@+id/update_keyboard_pressed_button_label_color"
-                app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/update_keyboard_not_pressed_button_label_color"
-                app:layout_constraintWidth_min="wrap" />
-
-            <EditText
-                android:id="@+id/keyboard_not_pressed_button_background_color_hex"
-                style="@style/EditTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:gravity="center"
-                android:hint="@string/PREF_COLOR_HINT"
-                android:importantForAutofill="no"
-                android:inputType="text|textCapCharacters|textNoSuggestions"
-                android:textDirection="ltr"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
-                app:layout_constraintTop_toBottomOf="@+id/keyboard_not_pressed_button_label_color_hex"
-                tools:ignore="UnusedAttribute" />
-
-            <Button
-                android:id="@+id/update_keyboard_pressed_button_label_color"
-                android:layout_width="0dp"
-                android:layout_height="38dp"
-                android:layout_marginVertical="4dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginLeft="9dp"
-                android:text="@string/PREF_VK_SEL_FORE"
-                app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toTopOf="@+id/keyboard_pressed_button_background_color_hex"
-                app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/keyboard_not_pressed_button_background_color_hex"
-                app:layout_constraintWidth_min="wrap" />
-
-            <EditText
-                android:id="@+id/keyboard_pressed_button_label_color_hex"
-                style="@style/EditTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:gravity="center"
-                android:hint="@string/PREF_COLOR_HINT"
-                android:importantForAutofill="no"
-                android:inputType="text|textCapCharacters|textNoSuggestions"
-                android:textDirection="ltr"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
-                app:layout_constraintTop_toBottomOf="@+id/keyboard_not_pressed_button_background_color_hex"
-                tools:ignore="UnusedAttribute" />
-
-
-            <Button
-                android:id="@+id/update_keyboard_pressed_button_background_color"
-                android:layout_width="0dp"
-                android:layout_height="38dp"
-                android:layout_marginVertical="4dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginLeft="9dp"
-                android:layout_marginTop="1dp"
-                android:text="@string/PREF_VK_SEL_BACK"
-                app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toTopOf="@+id/keyboard_outline_color_hex"
-                app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/keyboard_pressed_button_background_color_hex"
-                app:layout_constraintWidth_min="wrap" />
-
-            <EditText
-                android:id="@+id/keyboard_pressed_button_background_color_hex"
-                style="@style/EditTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:gravity="center"
-                android:hint="@string/PREF_COLOR_HINT"
-                android:importantForAutofill="no"
-                android:inputType="text|textCapCharacters|textNoSuggestions"
-                android:textDirection="ltr"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
-                app:layout_constraintTop_toBottomOf="@+id/keyboard_pressed_button_label_color_hex"
-                tools:ignore="UnusedAttribute" />
-
-
-            <Button
-                android:id="@+id/update_keyboard_outline_color"
-                android:layout_width="0dp"
-                android:layout_height="38dp"
-                android:layout_marginVertical="4dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginLeft="9dp"
-                android:text="@string/PREF_VK_OUTLINE"
-                app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toBottomOf="@+id/keyboard_outline_color_hex"
-                app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/keyboard_pressed_button_background_color_hex"
-                app:layout_constraintWidth_min="wrap" />
-
-            <EditText
-                android:id="@+id/keyboard_outline_color_hex"
-                style="@style/EditTextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:gravity="center"
-                android:hint="@string/PREF_COLOR_HINT"
-                android:importantForAutofill="no"
-                android:inputType="text|textCapCharacters|textNoSuggestions"
-                android:textDirection="ltr"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
-                app:layout_constraintTop_toBottomOf="@+id/keyboard_pressed_button_background_color_hex"
-                tools:ignore="UnusedAttribute" />
-
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/input_config_barrier"
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
                 app:barrierDirection="end"
-                app:constraint_referenced_ids="buttons_layout_hint,opacity_hint,button_shape_hint,virtual_keyboard_hide_delay_hint,update_keyboard_not_pressed_button_label_color,update_keyboard_not_pressed_button_background_color,update_keyboard_pressed_button_label_color,update_keyboard_outline_color" />
+                app:constraint_referenced_ids="buttons_layout_hint,opacity_hint,button_shape_hint,virtual_keyboard_hide_delay_hint" />
 
-            <!-- Key colors -->
-            <!-- Keyboard settings -->
         </androidx.constraintlayout.widget.ConstraintLayout><!-- Input -->
 
         <!-- System Properties -->
