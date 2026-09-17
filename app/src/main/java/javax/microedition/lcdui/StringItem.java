@@ -30,6 +30,8 @@ import androidx.appcompat.widget.AppCompatTextView;
 import javax.microedition.lcdui.event.SimpleEvent;
 import javax.microedition.util.ContextHolder;
 
+import com.nsomatrix.neutron.util.FontCache;
+
 public class StringItem extends Item {
 	private String text;
 	private TextView textview;
@@ -93,6 +95,7 @@ public class StringItem extends Item {
 			}
 
 			textview.setTextAppearance(context, android.R.style.TextAppearance_Small);
+			textview.setTypeface(FontCache.getGoogleSans(android.graphics.Typeface.NORMAL));
 			if (appearanceMode == HYPERLINK && text != null) {
 				SpannableStringBuilder s = new SpannableStringBuilder(text);
 				s.setSpan(new URLSpan(text), 0, s.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);

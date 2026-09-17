@@ -53,6 +53,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
+
+import com.nsomatrix.neutron.util.MenuFontHelper;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatCheckBox;
@@ -434,6 +436,7 @@ public class MicroActivity extends AppCompatActivity {
 		if (ContextHolder.getVk() == null) {
 			menu.findItem(R.id.action_submenu_vk).setVisible(false);
 		}
+		MenuFontHelper.applyGoogleSans(menu);
 		return true;
 	}
 
@@ -449,6 +452,7 @@ public class MicroActivity extends AppCompatActivity {
 		} else {
 			menu.setGroupVisible(R.id.action_group_canvas, false);
 		}
+		MenuFontHelper.applyGoogleSans(menu);
 		return true;
 	}
 

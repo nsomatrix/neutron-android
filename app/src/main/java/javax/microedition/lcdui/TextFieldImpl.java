@@ -33,6 +33,8 @@ import androidx.appcompat.widget.AppCompatEditText;
 
 import javax.microedition.lcdui.event.SimpleEvent;
 
+import com.nsomatrix.neutron.util.FontCache;
+
 class TextFieldImpl {
 	private EditText textview;
 
@@ -175,6 +177,7 @@ class TextFieldImpl {
 	EditText getView(Context context, Item item) {
 		if (textview == null) {
 			textview = new AppCompatEditText(context);
+			textview.setTypeface(FontCache.getGoogleSans(android.graphics.Typeface.NORMAL));
 
 			setMaxSize(maxSize);
 			setConstraints(constraints);

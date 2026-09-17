@@ -39,6 +39,8 @@ import java.util.Collection;
 import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Image;
 
+import com.nsomatrix.neutron.util.FontCache;
+
 public abstract class CompoundAdapter implements Adapter, Handler.Callback {
 
 	private static final int NOTIFY_CHANGED = 1;
@@ -126,6 +128,7 @@ public abstract class CompoundAdapter implements Adapter, Handler.Callback {
 		} else {
 			textview = (TextView) LayoutInflater.from(parent.getContext()).inflate(viewResourceID, null);
 		}
+		textview.setTypeface(FontCache.getGoogleSans(android.graphics.Typeface.NORMAL));
 
 		CompoundItem item = items.get(position);
 

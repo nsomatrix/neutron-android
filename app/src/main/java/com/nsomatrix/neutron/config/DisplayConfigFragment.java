@@ -42,6 +42,7 @@ import androidx.preference.PreferenceManager;
 import com.nsomatrix.neutron.R;
 import com.nsomatrix.neutron.databinding.FragmentConfigDisplayBinding;
 import com.nsomatrix.neutron.util.FileUtils;
+import com.nsomatrix.neutron.util.MenuFontHelper;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -351,6 +352,7 @@ public class DisplayConfigFragment extends Fragment implements View.OnClickListe
 		for (String preset : viewModel.getScreenPresets()) {
 			menu.add(preset);
 		}
+		MenuFontHelper.applyGoogleSans(menu);
 		popup.setOnMenuItemClickListener(item -> {
 			String string = item.getTitle().toString();
 			int separator = string.indexOf(" x ");

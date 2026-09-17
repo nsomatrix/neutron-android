@@ -33,6 +33,8 @@ import javax.microedition.lcdui.event.CommandActionEvent;
 import javax.microedition.lcdui.event.SimpleEvent;
 import javax.microedition.util.ContextHolder;
 
+import com.nsomatrix.neutron.util.FontCache;
+
 public abstract class Item implements View.OnCreateContextMenuListener {
 	public static final int PLAIN = 0;
 	public static final int HYPERLINK = 1;
@@ -176,6 +178,7 @@ public abstract class Item implements View.OnCreateContextMenuListener {
 
 			labelview = new AppCompatTextView(context);
 			labelview.setTextAppearance(context, android.R.style.TextAppearance_Medium);
+			labelview.setTypeface(FontCache.getGoogleSans(android.graphics.Typeface.BOLD));
 			labelview.setText(label);
 
 			if (label != null) {

@@ -74,7 +74,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/google_sans"
             android:letterSpacing="0.12"
             android:text="@string/app_name"
             android:textColor="@color/splash_text_primary"
@@ -85,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="@font/google_sans"
             android:letterSpacing="0.2"
             android:text="NEXT-GEN EMULATION ENGINE"
             android:textColor="@color/splash_text_secondary"

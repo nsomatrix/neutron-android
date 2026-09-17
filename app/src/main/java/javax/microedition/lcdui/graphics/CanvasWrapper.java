@@ -12,6 +12,8 @@ import android.util.TypedValue;
 import javax.microedition.lcdui.Image;
 import javax.microedition.util.ContextHolder;
 
+import com.nsomatrix.neutron.util.FontCache;
+
 public class CanvasWrapper {
 	private static final float TEXT_SIZE_KEYBOARD = 22;
 
@@ -33,7 +35,7 @@ public class CanvasWrapper {
 
 		// init text paint
 		Resources res = ContextHolder.getAppContext().getResources();
-		Typeface typeface = Typeface.createFromAsset(res.getAssets(), "Roboto-Regular.ttf");
+		Typeface typeface = FontCache.getGoogleSans(Typeface.NORMAL);
 		textPaint.setTypeface(typeface);
 		textSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, TEXT_SIZE_KEYBOARD, res.getDisplayMetrics());
 		textPaint.setTextSize(textSize);

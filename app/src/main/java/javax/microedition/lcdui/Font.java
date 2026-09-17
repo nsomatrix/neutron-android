@@ -29,6 +29,7 @@ import java.util.Arrays;
 import javax.microedition.util.ContextHolder;
 
 import com.nsomatrix.neutron.config.ProfileModel;
+import com.nsomatrix.neutron.util.FontCache;
 
 public class Font {
 	public static final int FACE_MONOSPACE = 32;
@@ -75,20 +76,15 @@ public class Font {
 		this.style = style;
 		this.size = size;
 
-		Typeface family;
-		switch (face) {
-			case FACE_MONOSPACE:
-				family = Typeface.MONOSPACE;
-				break;
-			case FACE_PROPORTIONAL:
-				family = Typeface.SANS_SERIF;
-				break;
-			default:
-				family = Typeface.DEFAULT;
+		Typeface typeface;
+		if (face == FACE_MONOSPACE) {
+			typeface = Typeface.create(Typeface.MONOSPACE, style & Typeface.BOLD_ITALIC);
+		} else {
+			typeface = FontCache.getGoogleSans(style);
 		}
 
 		paint.setColor(Color.BLACK);
-		paint.setTypeface(Typeface.create(family, style & Typeface.BOLD_ITALIC));
+		paint.setTypeface(typeface);
 		paint.setAntiAlias(antiAlias);
 		paint.setStyle(Paint.Style.FILL);
 		paint.setUnderlineText((style & STYLE_UNDERLINED) != 0);
