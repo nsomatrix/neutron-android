@@ -163,6 +163,10 @@ dependencies {
 
     implementation project(':dexlib')
 
+    // Android Core & Splash
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+    implementation 'com.airbnb.android:lottie:6.1.0'
+
     // Android Jetpack
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-rxjava2:$roomVersion"

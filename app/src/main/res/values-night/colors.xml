@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Dark Theme Colors (True Neutral Dark Black & Accent Blue) -->
-    <color name="primary">#1E1E1E</color>
-    <color name="primary_dark">#121212</color>
-    <color name="accent">#3B82F6</color>
-    <color name="background">#121212</color>
-    <color name="text_primary">#FFFFFF</color>
+    <!-- Dark Theme Colors (True Neutral Dark Black & Slate Gray) -->
+    <color name="splash_background">#09090B</color>
+    <color name="splash_card_bg">#18181B</color>
+    <color name="splash_card_border">#27272A</color>
+    <color name="splash_text_primary">#FAFAFA</color>
+    <color name="splash_text_secondary">#A1A1AA</color>
+
+    <color name="primary">#FAFAFA</color>
+    <color name="primary_dark">#000000</color>
+    <color name="color_on_primary">#18181B</color>
+    <color name="accent">#FAFAFA</color>
+    <color name="color_on_accent">#18181B</color>
+    <color name="background">#09090B</color>
+    <color name="action_bar_bg">#1E1E1E</color>
+    <color name="action_bar_title">#FAFAFA</color>
+    <color name="text_primary">#FAFAFA</color>
     <color name="text_secondary">#A1A1AA</color>
-    <color name="btn_bg_normal">#2563EB</color>
-    <color name="btn_bg_pressed">#1D4ED8</color>
+    <color name="btn_bg_normal">#27272A</color>
+    <color name="btn_bg_pressed">#3F3F46</color>
     <color name="config_card">#1E1E1E</color>
 
     <!-- Installer Card Dynamic Dark Theme Colors -->
-    <color name="installer_card_bg">#2A2D32</color>
-    <color name="installer_card_border">#383D44</color>
+    <color name="installer_card_bg">#18181B</color>
+    <color name="installer_card_border">#27272A</color>
     <color name="installer_drag_handle">#525866</color>
-    <color name="installer_pill_bg">#1E293B</color>
-    <color name="installer_pill_border">#334155</color>
-    <color name="installer_pill_text">#60A5FA</color>
+    <color name="installer_pill_bg">#27272A</color>
+    <color name="installer_pill_border">#3F3F46</color>
+    <color name="installer_pill_text">#FAFAFA</color>
     <color name="installer_warning_bg">#362208</color>
     <color name="installer_warning_border">#54350C</color>
     <color name="installer_warning_text">#FBBF24</color>

@@ -25,5 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        app:srcCompat="@drawable/ic_add_white" />
+        app:backgroundTint="@color/primary"
+        app:srcCompat="@drawable/ic_add_white"
+        app:tint="@color/color_on_primary" />
 </FrameLayout>
