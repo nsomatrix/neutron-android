@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/font_config_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <EditText
+            android:id="@+id/font_size_small"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/PREF_FONT_SMALL"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textDirection="ltr"
+            app:layout_constraintEnd_toStartOf="@+id/separator_first"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute" />
+
+        <TextView
+            android:id="@+id/separator_first"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/_FONT_SEPARATOR"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="?attr/textColorSecondary"
+            app:layout_constraintBottom_toBottomOf="@+id/font_size_small"
+            app:layout_constraintEnd_toStartOf="@+id/font_size_medium"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/font_size_small"
+            app:layout_constraintTop_toTopOf="@+id/font_size_small" />
+
+        <EditText
+            android:id="@+id/font_size_medium"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/PREF_FONT_MEDIUM"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textDirection="ltr"
+            app:layout_constraintEnd_toStartOf="@+id/separator_second"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/separator_first"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute" />
+
+        <TextView
+            android:id="@+id/separator_second"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/_FONT_SEPARATOR"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="?attr/textColorSecondary"
+            app:layout_constraintBottom_toBottomOf="@+id/font_size_large"
+            app:layout_constraintEnd_toStartOf="@+id/font_size_large"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/font_size_medium"
+            app:layout_constraintTop_toTopOf="@+id/font_size_large" />
+
+        <EditText
+            android:id="@+id/font_size_large"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/PREF_FONT_LARGE"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textDirection="ltr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/separator_second"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute" />
+
+        <Button
+            android:id="@+id/show_font_size_presets"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/SIZE_PRESETS"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/font_size_medium" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/show_font_sizes_in_scaled_pixels_toggle"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:layout_marginTop="8dp"
+            android:text="@string/PREF_FONT_SIZE_IN_SP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/show_font_size_presets" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/enable_anti_aliasing_toggle"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:text="@string/PREF_FONT_ANTI_ALIASING"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/show_font_sizes_in_scaled_pixels_toggle" />
+
+        <!-- Dynamic Theme-Adaptive Live Preview Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/font_preview_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="?attr/colorSurface"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enable_anti_aliasing_toggle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Font Live Preview"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="?attr/colorAccent"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_preview_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Small: The quick brown fox jumps over the lazy dog."
+                    android:textColor="?attr/textColorPrimary" />
+
+                <TextView
+                    android:id="@+id/tv_preview_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Medium: The quick brown fox jumps over the lazy dog."
+                    android:textColor="?attr/textColorPrimary" />
+
+                <TextView
+                    android:id="@+id/tv_preview_large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Large: The quick brown fox jumps over the lazy dog."
+                    android:textColor="?attr/textColorPrimary" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

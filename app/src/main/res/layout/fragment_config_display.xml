@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/screen_config_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <ImageButton
+            android:id="@+id/show_screen_size_presets"
+            style="@style/ImageButtonStyle"
+            android:layout_width="@dimen/height_config_row"
+            android:layout_height="0dp"
+            android:contentDescription="@string/SIZE_PRESETS"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/screen_width"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_list"
+            app:tooltipText="@string/SIZE_PRESETS" />
+
+        <EditText
+            android:id="@+id/screen_width"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/PREF_WIDTH"
+            android:importantForAutofill="no"
+            android:inputType="numberSigned"
+            android:maxLines="1"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toStartOf="@+id/swap_screen_sides"
+            app:layout_constraintStart_toEndOf="@+id/show_screen_size_presets"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/swap_screen_sides"
+            style="@style/ImageButtonStyle"
+            android:layout_width="@dimen/height_config_row"
+            android:layout_height="0dp"
+            android:contentDescription="@string/SWAP_SIZES"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/screen_width"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_swap"
+            app:tooltipText="@string/SWAP_SIZES" />
+
+        <EditText
+            android:id="@+id/screen_height"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="@string/PREF_HEIGHT"
+            android:importantForAutofill="no"
+            android:inputType="numberSigned"
+            android:maxLines="1"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toStartOf="@+id/add_screen_size_to_presets"
+            app:layout_constraintStart_toEndOf="@+id/swap_screen_sides"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/add_screen_size_to_presets"
+            style="@style/ImageButtonStyle"
+            android:layout_width="@dimen/height_config_row"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/screen_height"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_add_preset" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/keep_aspect_ratio_toggle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:layout_marginTop="8dp"
+            android:text="@string/PREF_KEEP_ASPECT_RATIO"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/swap_screen_sides" />
+
+        <TextView
+            android:id="@+id/scale_ratio_hint"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:gravity="center_vertical"
+            android:text="@string/PREF_SCALE_RATIO"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/barrier_screen_config"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/keep_aspect_ratio_toggle"
+            app:layout_constraintWidth_min="wrap" />
+
+        <EditText
+            android:id="@+id/scale_ratio"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:gravity="center"
+            android:hint="100"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textDirection="ltr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier_screen_config"
+            app:layout_constraintTop_toBottomOf="@+id/keep_aspect_ratio_toggle"
+            tools:ignore="HardcodedText,UnusedAttribute" />
+
+        <TextView
+            android:id="@+id/screen_orientation_hint"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:gravity="center_vertical"
+            android:text="@string/PREF_ORIENTATION"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/barrier_screen_config"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scale_ratio_hint"
+            app:layout_constraintWidth_min="wrap" />
+
+        <Spinner
+            android:id="@+id/screen_orientation_selector"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:entries="@array/PREF_ORIENTATION_ENTRIES"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier_screen_config"
+            app:layout_constraintTop_toTopOf="@+id/screen_orientation_hint" />
+
+        <TextView
+            android:id="@+id/screen_gravity_hint"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:checked="false"
+            android:gravity="center_vertical"
+            android:text="@string/pref_screen_gravity"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/barrier_screen_config"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/screen_orientation_hint"
+            app:layout_constraintWidth_min="wrap" />
+
+        <Spinner
+            android:id="@+id/screen_gravity_selector"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:entries="@array/pref_screen_gravity_entries"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier_screen_config"
+            app:layout_constraintTop_toBottomOf="@+id/screen_orientation_hint" />
+
+        <TextView
+            android:id="@+id/scale_type_hint"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:checked="false"
+            android:gravity="center_vertical"
+            android:text="@string/pref_screen_scale_type"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/barrier_screen_config"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/screen_gravity_hint"
+            app:layout_constraintWidth_min="wrap" />
+
+        <Spinner
+            android:id="@+id/scale_type_selector"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:entries="@array/pref_scale_type_entries"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier_screen_config"
+            app:layout_constraintTop_toBottomOf="@+id/screen_gravity_hint" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/filtering_toggle"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:checked="false"
+            android:text="@string/PREF_FILTER"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scale_type_hint" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/immediate_processing_toggle"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:checked="false"
+            android:text="@string/PREF_IMMEDIATE"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filtering_toggle" />
+
+        <TextView
+            android:id="@+id/graphical_mode_hint"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:checked="false"
+            android:gravity="center_vertical"
+            android:text="@string/pref_graphics_mode_title"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/barrier_screen_config"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/immediate_processing_toggle"
+            app:layout_constraintWidth_min="wrap" />
+
+        <Spinner
+            android:id="@+id/graphical_mode_selector"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:entries="@array/pref_graphics_mode_entries"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier_screen_config"
+            app:layout_constraintTop_toBottomOf="@+id/immediate_processing_toggle" />
+
+        <LinearLayout
+            android:id="@+id/shader_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/graphical_mode_hint"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/PREF_SHADER_FILTER"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="?attr/textColorSecondary"
+                android:textSize="15sp" />
+
+            <Spinner
+                android:id="@+id/shader_selector"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="?attr/textColorSecondary"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/tune_selected_shader"
+                style="@style/ImageButtonStyle"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/shader_tuning"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_baseline_tune_24"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/parallel_screen_redrawing_toggle"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:checked="false"
+            android:text="@string/parallel_screen_redrawing"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shader_root"
+            tools:visibility="visible" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/force_fullscreen_toggle"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:checked="false"
+            android:text="@string/PREF_FORCE_FULLSCREEN"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/parallel_screen_redrawing_toggle" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/show_fps_toggle"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:checked="false"
+            android:text="@string/PREF_SHOW_FPS"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/force_fullscreen_toggle" />
+
+        <TextView
+            android:id="@+id/fps_limit_hint"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:layout_marginBottom="9dp"
+            android:gravity="center_vertical"
+            android:text="@string/PREF_LIMIT_FPS"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/barrier_screen_config"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/show_fps_toggle"
+            app:layout_constraintWidth_min="wrap" />
+
+        <EditText
+            android:id="@+id/fps_limit"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:layout_marginBottom="9dp"
+            android:gravity="center"
+            android:hint="@string/unlimited"
+            android:importantForAutofill="no"
+            android:inputType="number|numberSigned"
+            android:textDirection="ltr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/barrier_screen_config"
+            app:layout_constraintTop_toBottomOf="@+id/show_fps_toggle"
+            tools:ignore="UnusedAttribute" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_screen_config"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="scale_ratio_hint,screen_orientation_hint,scale_type_hint,graphical_mode_hint,fps_limit_hint,screen_gravity_hint" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

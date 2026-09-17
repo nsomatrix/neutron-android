@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/input_config_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/enable_touch_input_toggle"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:text="@string/PREF_TOUCH_INPUT"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- KeyCodes layout -->
+        <TextView
+            android:id="@+id/buttons_layout_hint"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:gravity="center_vertical"
+            android:text="@string/PREF_LAYOUT"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enable_touch_input_toggle"
+            app:layout_constraintWidth_min="wrap" />
+
+        <Spinner
+            android:id="@+id/buttons_layout_selector"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:entries="@array/PREF_LAYOUT_ENTRIES"
+            android:gravity="end"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
+            app:layout_constraintTop_toBottomOf="@+id/enable_touch_input_toggle" />
+
+        <Button
+            android:id="@+id/show_key_mappings"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/pref_map_keys"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttons_layout_hint" />
+
+        <!-- Virtual Keyboard settings -->
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/show_virtual_keyboard_toggle"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:layout_marginTop="12dp"
+            android:checked="true"
+            android:text="@string/PREF_VIRTUAL_KEYBOARD_OPTIONS"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/show_key_mappings" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/virtual_keyboard_config_group"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:constraint_referenced_ids="force_opacity_for_offscreen_keys_toggle,enable_haptic_feedback_toggle,button_shape_hint,change_opacity_seekbar,virtual_keyboard_hide_delay,ms_hint,button_shape_selector,opacity_hint,virtual_keyboard_hide_delay_hint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/show_virtual_keyboard_toggle"
+            tools:visibility="visible" />
+
+        <!-- Key shape type -->
+        <TextView
+            android:id="@+id/button_shape_hint"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:gravity="center_vertical"
+            android:text="@string/pref_button_shape_title"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/show_virtual_keyboard_toggle"
+            app:layout_constraintWidth_min="wrap" />
+
+        <Spinner
+            android:id="@+id/button_shape_selector"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:entries="@array/pref_button_shape_entries"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
+            app:layout_constraintTop_toBottomOf="@+id/show_virtual_keyboard_toggle" />
+
+        <!-- Keys vibration feedback -->
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/enable_haptic_feedback_toggle"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:checked="false"
+            android:text="@string/PREF_VK_FEEDBACK"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_shape_hint" />
+
+        <!-- Keys opacity -->
+        <TextView
+            android:id="@+id/opacity_hint"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:gravity="center_vertical"
+            android:text="@string/PREF_VK_ALPHA"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enable_haptic_feedback_toggle"
+            app:layout_constraintWidth_min="wrap" />
+
+        <SeekBar
+            android:id="@+id/change_opacity_seekbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:max="255"
+            app:layout_constraintBottom_toBottomOf="@id/opacity_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
+            app:layout_constraintTop_toBottomOf="@+id/enable_haptic_feedback_toggle" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/force_opacity_for_offscreen_keys_toggle"
+            style="@style/SwitchStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:checked="false"
+            android:text="@string/PREF_VK_FORCE_OPACITY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/opacity_hint" />
+
+        <!-- Keys hider -->
+        <TextView
+            android:id="@+id/virtual_keyboard_hide_delay_hint"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:gravity="center_vertical"
+            android:text="@string/PREF_VK_HIDE_DELAY"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@+id/input_config_barrier"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/force_opacity_for_offscreen_keys_toggle"
+            app:layout_constraintWidth_min="wrap" />
+
+        <EditText
+            android:id="@+id/virtual_keyboard_hide_delay"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_config_row"
+            android:gravity="center"
+            android:hint="@string/pref_vk_hide_hint"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textDirection="ltr"
+            app:layout_constraintEnd_toStartOf="@+id/ms_hint"
+            app:layout_constraintStart_toEndOf="@+id/input_config_barrier"
+            app:layout_constraintTop_toBottomOf="@+id/force_opacity_for_offscreen_keys_toggle"
+            tools:ignore="UnusedAttribute" />
+
+        <TextView
+            android:id="@+id/ms_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_config_row"
+            android:gravity="center_vertical"
+            android:text="@string/PREF_UNIT_MS"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/force_opacity_for_offscreen_keys_toggle" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/input_config_barrier"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="buttons_layout_hint,opacity_hint,button_shape_hint,virtual_keyboard_hide_delay_hint" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
