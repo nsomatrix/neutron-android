@@ -17,10 +17,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="@color/action_bar_bg"
             android:descendantFocusability="blocksDescendants"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:theme="@style/AppActionBarTheme"
+            app:titleTextAppearance="@style/AppActionBarTitleStyle"
+            app:titleTextColor="@color/action_bar_title"
+            app:popupTheme="@style/Widget.AppTheme.OverflowMenu"
             tools:title="MIDlet Title" />
 
         <FrameLayout
