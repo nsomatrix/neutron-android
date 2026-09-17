@@ -12,6 +12,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
@@ -31,7 +33,7 @@ import java.util.concurrent.Executors;
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
 
-    private static final long MIN_SPLASH_DURATION_MS = 1600L;
+    private static final long MIN_SPLASH_DURATION_MS = 2400L;
     private final ExecutorService initExecutor = Executors.newSingleThreadExecutor();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private LottieAnimationView lottieLoader;
@@ -41,6 +43,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // 1. Install AndroidX Splash Screen engine before super.onCreate()
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
+        splashScreen.setOnExitAnimationListener(splashScreenViewProvider -> {
+            // Immediately remove OS window splash so activity_splash layout & Lottie loader are visible right away
+            splashScreenViewProvider.remove();
+        });
 
         super.onCreate(savedInstanceState);
         
@@ -103,20 +109,33 @@ public class SplashActivity extends AppCompatActivity {
     private void navigateToMain() {
         if (isFinishing() || isDestroyed()) return;
 
-        if (lottieLoader != null) {
-            lottieLoader.pauseAnimation();
+        View splashRoot = findViewById(R.id.splash_root);
+        if (splashRoot != null) {
+            splashRoot.animate()
+                    .alpha(0f)
+                    .setDuration(260L)
+                    .setInterpolator(new AccelerateDecelerateInterpolator())
+                    .withEndAction(() -> {
+                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                        if (getIntent() != null && getIntent().getData() != null) {
+                            intent.setData(getIntent().getData());
+                            intent.setAction(getIntent().getAction());
+                        }
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+                        finish();
+                    })
+                    .start();
+        } else {
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            if (getIntent() != null && getIntent().getData() != null) {
+                intent.setData(getIntent().getData());
+                intent.setAction(getIntent().getAction());
+            }
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            finish();
         }
-
-        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-        // Forward launch intent data (e.g. JAR/JAD file opens) if present
-        if (getIntent() != null && getIntent().getData() != null) {
-            intent.setData(getIntent().getData());
-            intent.setAction(getIntent().getAction());
-        }
-
-        startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        finish();
     }
 
     @Override
